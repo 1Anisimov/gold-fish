@@ -1,0 +1,25 @@
+.buttonBlock{
+    font-family: Trebuchet MS;
+font-size: 17px;
+font-weight: 700;
+line-height: 22.06px;
+text-align: left;
+color: rgba(42, 42, 42, 1);
+}
+.buttonLink:hover .buttonBlock{
+    color: #F9A43F;
+}
+.buttonLink{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+}
+.linkBlock{
+    display: flex;
+    align-items: center;
+    min-width: 200px;
+}
+.border{
+    border: 1px solid red;
+}
