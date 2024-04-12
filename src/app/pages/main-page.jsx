@@ -12,7 +12,7 @@ const MainPage = () => {
           <div className="content_page">
             <MainCatalog />
             <TemporarilyBuy title="Успей купить" />
-            <TemporarilyBuy title="Специальные предложения" />
+            <TemporarilyBuy title="Специальные предложения" isSale />
             <UpcomingEvents />
             <MoreInfo />
             <BlockInfo />
