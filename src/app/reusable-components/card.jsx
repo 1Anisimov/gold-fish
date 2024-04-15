@@ -2,7 +2,6 @@ import React from 'react';
 import MainButton from './main-button';
 import cardTimer from '../image/time_card.png';
 import cardPlayers from '../image/players_card.png';
-import { MathSale } from '../utils/math-sale';
 
 const Card = ({ product }) => {
   return (

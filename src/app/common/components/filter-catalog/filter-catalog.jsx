@@ -3,6 +3,8 @@ import cls from './filter-catalog.module.css';
 import { Link } from 'react-router-dom';
 import FilterCategories from '../filter-categories/filter-categories';
 import FilterScrollbar from '../filter-scrollbar/filter-scrollbar';
+import FilterAge from '../filter-age/filter-age';
+import FilterPresence from '../filter-presence/filter-presence';
 // import arrowBottom from '../../../image/icons/arrow_bottom_filter_mini.png';
 // import { Link } from 'react-router-dom';
 
@@ -66,6 +68,11 @@ const FilterCatalog = ({ setTitleCatalog }) => {
             </div>
           </div>
           <FilterScrollbar />
+          <FilterAge />
+          <FilterPresence />
+          <div className={cls.buttonShowBlock}>
+            <button className={cls.buttonShow}>Показать</button>
+          </div>
         </div>
       </div>
     </>

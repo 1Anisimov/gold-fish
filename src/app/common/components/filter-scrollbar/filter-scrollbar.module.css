@@ -1,44 +1,41 @@
-.text{
+.container{
+    border-top: 2px solid rgba(42, 42, 42, 0.12);
+}
+.title{
     font-family: Trebuchet MS;
     font-size: 19px;
     font-weight: 700;
+    line-height: 22.06px;
+    text-align: left;
     color: rgba(42, 42, 42, 1);
 }
-.scrollbar{
-    border-top: 2px solid rgba(42, 42, 42, 0.12);
-    padding: 0 20px;
-}
 .input{
-    width: 100%;
-    position: absolute;
-    z-index: 2;
+    width: 65px;
+    height: 27px;
+    top: 1415px;
+    left: 296px;
+    gap: 0px;
+    border-radius: 9px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    border: 1px solid rgba(0, 0, 0, 0.38)
+
 }
-.inputRight{
-    z-index: 1;
+.inputBlock{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    padding: 0 10px 0 0;
+    margin-bottom: 20px;
 }
-.sliderBlock{
-    position: relative;
-    
-}
-.sliderBlock input{
-    top: -3px;
-    
-    height: 5px;
-    width: 100%;
-    position: absolute;
-    pointer-events: none;
-    -webkit-appearance: none;
-    background: none;
-}
-input[type="range"]::-webkit-slider-thumb{
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-    pointer-events: auto;
-    -webkit-appearance: none;
-    background: black;
-}
-.BlockInputs{
-    border: 1px solid black;
-    
+.label{
+    font-family: Trebuchet MS;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.58px;
+    text-align: left;
+    color: rgba(42, 42, 42, 1);
+    margin-right: 5px;
+
 }

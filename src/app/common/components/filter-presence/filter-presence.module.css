@@ -1,0 +1,29 @@
+.title{
+    font-family: Trebuchet MS;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 22.06px;
+    text-align: left;
+    color: rgba(42, 42, 42, 1);
+}
+.presence{
+    border-top: 2px solid rgba(42, 42, 42, 0.12);
+}
+.label{
+    font-family: Trebuchet MS;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.58px;
+    text-align: left;
+    margin-left: 10px;
+
+}
+
+.input{
+    border: 1px solid rgba(42, 42, 42, 1);
+    border-radius: 7px;
+    
+}
+.container{
+    padding-left: 15px;
+}

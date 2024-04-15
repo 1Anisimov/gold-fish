@@ -9,7 +9,7 @@ const BlockInfo = () => {
           <div className="info_container">
             <div className="info_left">
               <h1>Об игровом центре «GoldFish»</h1>
-              <p>
+              <div>
                 <div className="info_left__text">
                   «GoldFish»- магазин, в котором Вы можете купить отличный подарок как для себя, так
                   и для своих близких
@@ -32,7 +32,7 @@ const BlockInfo = () => {
                   мастер-классы по интересующим тебя играм, заводить новые знакомства и приобщаться
                   к игровому комьюнити!
                 </div>
-              </p>
+              </div>
             </div>
             <div className="info_right">
               <img src={imageInfo} alt="" />

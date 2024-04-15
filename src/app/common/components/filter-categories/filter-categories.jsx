@@ -3,8 +3,11 @@ import cls from './filter-categories.module.css';
 import { categoriesArray } from '../../../../API/FakeAPI';
 import FilterSubcategory from '../filter-subcategory/filter-subcategory';
 import { Link, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getCategory } from '../../../store/filters';
 
 const FilterCategories = ({ setTitleCatalog }) => {
+  const dispatch = useDispatch();
   const params = useParams();
   const { category } = params;
 
@@ -18,6 +21,7 @@ const FilterCategories = ({ setTitleCatalog }) => {
     ({ target }) => {
       activeCategory === target.id ? setActiveCategory('') : setActiveCategory(target.id);
       setTitleCatalog(title);
+      dispatch(getCategory(target.id));
     };
 
   return (

@@ -5,7 +5,8 @@
     background-color: #fff;
     border-radius: 9px;
     box-shadow: 5px 6px 16px 0px rgba(42, 42, 42, 0.16);
-    
+    margin-bottom: 50px;
+    padding-bottom: 30px;
 }
 .textButton{
     display: flex;
@@ -64,5 +65,26 @@ button::-moz-focus-inner {
     min-width: 200px;
 }
 .buttonLink:hover .buttonBlock{
+    color: #F9A43F;
+}
+.buttonShowBlock{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: Trebuchet MS;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 13.93px;
+    text-align: left;
+}
+.buttonShow{
+    border: 1px solid rgba(42, 42, 42, 1);
+    background-color: #fff;
+    padding: 10px 90px;
+    border-radius: 9px;
+    margin-top: 15px;
+}
+.buttonShow:hover {
+    border: 1px solid #F9A43F;
     color: #F9A43F;
 }

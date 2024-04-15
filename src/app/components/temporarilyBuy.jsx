@@ -16,12 +16,16 @@ const TemporarilyBuy = ({ title, isSale }) => {
             {products.map((product) =>
               isSale ? (
                 product.sale ? (
-                  <Card product={product} />
+                  <div key={product.id}>
+                    <Card product={product} />
+                  </div>
                 ) : (
                   ''
                 )
               ) : !product.sale ? (
-                <Card product={product} />
+                <div key={product.id}>
+                  <Card product={product} />
+                </div>
               ) : (
                 ''
               )
