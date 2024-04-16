@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import cls from './filter-presence.module.css';
 
-const FilterPresence = () => {
+const FilterPresence = ({ onChange }) => {
   const presenceArray = [
-    { title: 'В наличие' },
-    { title: 'Под заказ' },
-    { title: 'Нет в наличие' }
+    { title: 'В наличие', id: 1, value: 'are_available', category: 'presence' },
+    { title: 'Под заказ', id: 2, value: 'to_order', category: 'presence' },
+    { title: 'Нет в наличие', id: 3, value: 'not_available', category: 'presence' }
   ];
   const [openClose, setOpenClose] = useState(true);
+
   return (
     <>
       <div className={cls.presence}>
@@ -37,8 +38,15 @@ const FilterPresence = () => {
                 <div>
                   {presenceArray &&
                     presenceArray.map((item) => (
-                      <div className={cls.container}>
-                        <input className={cls.input} type="checkbox" required />
+                      <div className={cls.container} key={item.id}>
+                        <input
+                          className={cls.input}
+                          type="checkbox"
+                          name={item.value}
+                          onChange={onChange}
+                          id={item.category}
+                          defaultChecked
+                        />
                         <label className={cls.label} htmlFor="">
                           {item.title}
                         </label>

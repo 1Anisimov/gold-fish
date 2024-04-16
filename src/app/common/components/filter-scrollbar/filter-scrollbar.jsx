@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
 import { Slider, ConfigProvider } from 'antd';
 import cls from './filter-scrollbar.module.css';
+import { useDispatch } from 'react-redux';
+import { getPrice } from '../../../store/filters';
 
 const FilterSlider = () => {
+  const dispatch = useDispatch();
   const [openClose, setOpenClose] = useState(true);
   const [sliderValue, setSliderValue] = useState([1, 10000]);
   const onChange = (value) => {
+    dispatch(getPrice(value));
     setSliderValue(value);
   };
-  // const onChangeInput = (value, minMax) => {
-  //   if (minMax === 'min') {
-  //     setSliderValue((prevState) => (prevState[0] = value));
-  //   }
-  //   if (minMax === 'max') {
-  //     setSliderValue((prevState) => (prevState[1] = value));
-  //   }
-  // };
-  console.log(sliderValue);
   return (
     <>
       <div className={cls.container}>
@@ -48,13 +43,13 @@ const FilterSlider = () => {
                     <label className={cls.label} htmlFor="">
                       От
                     </label>
-                    <input value={sliderValue[0]} className={cls.input} type="number" />
+                    <input value={sliderValue[0]} className={cls.input} readOnly type="number" />
                   </div>
                   <div>
                     <label className={cls.label} htmlFor="">
                       До
                     </label>
-                    <input value={sliderValue[1]} className={cls.input} type="number" />
+                    <input value={sliderValue[1]} className={cls.input} readOnly type="number" />
                   </div>
                 </div>
                 <ConfigProvider
@@ -67,8 +62,8 @@ const FilterSlider = () => {
                         trackHoverBg: 'black',
                         dotActiveBorderColor: 'black',
                         dotBorderColor: 'black',
-                        railHoverBg: 'black',
-                        railBg: 'black',
+                        railHoverBg: 'rgba(0, 0, 0, 0.04)',
+                        railBg: 'rgba(0, 0, 0, 0.04)',
                         colorPrimaryBorderHover: 'black'
                       }
                     }

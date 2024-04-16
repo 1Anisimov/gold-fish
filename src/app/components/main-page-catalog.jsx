@@ -8,7 +8,6 @@ import history from '../utils/history';
 
 const MainCatalog = () => {
   const goToCatalog = ({ target }) => {
-    console.log(target);
     history.push(`/catalog/${target.id}`);
   };
   return (

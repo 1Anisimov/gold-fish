@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import cls from './filter-age.module.css';
 
-const FilterAge = () => {
+const FilterAge = ({ onChange }) => {
   const agesArray = [
-    { title: '3-5 лет', value: '3-5' },
-    { title: '6-7 лет', value: '6-7' },
-    { title: '8-12 лет', value: '8-12' },
-    { title: '13-15 лет', value: '13-15 ' },
-    { title: '16-17 лет', value: '16-17' },
-    { title: 'более 18 лет', value: '18' }
+    { title: '3-5 лет', value: '3,4,5', category: 'age' },
+    { title: '6-7 лет', value: '6,7', category: 'age' },
+    { title: '8-12 лет', value: '8,9,10,11,12', category: 'age' },
+    { title: '13-15 лет', value: '13,14,15', category: 'age' },
+    { title: '16-17 лет', value: '16,17', category: 'age' },
+    { title: 'более 18 лет', value: '18', category: 'age' }
   ];
   const [openClose, setOpenClose] = useState(true);
   return (
@@ -41,12 +41,14 @@ const FilterAge = () => {
                   <div>
                     {agesArray &&
                       agesArray.map((item) => (
-                        <div className={cls.container}>
+                        <div className={cls.container} key={item.value}>
                           <input
                             className={cls.input}
-                            value={item.value}
+                            name={item.value}
                             type="checkbox"
-                            required
+                            defaultChecked
+                            onChange={onChange}
+                            id={item.category}
                           />
                           <label className={cls.label} value={item.value} htmlFor="">
                             {item.title}
