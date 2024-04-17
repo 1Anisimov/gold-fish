@@ -5,9 +5,20 @@ const filtersSlice = createSlice({
     initialState: {
         category: null,
         isLoading: "LOADING",
-        age: null,
+        age: {
+            18: true,
+            '3,4,5': true,
+            '6,7': true,
+            '8,9,10,11,12': true,
+            '13,14,15': true,
+            '16,17': true
+          },
         subcategory: null,
-        presence: null,
+        presence: {
+            are_available: true,
+            to_order: true,
+            not_available: true
+          },
         price: [1, 10000],
         players: [1, 10]
 
@@ -85,11 +96,72 @@ const filtersSlice = createSlice({
         filtersPresenceRequestFile: (state) => {
             state.isLoading = "ERROR";
         },
+        
+        filtersRemoveAllRequested: (state) => {
+            state.isLoading = "LOADING";
+        },
+        filtersRemoveAllReceved: (state) => {
+            state.age = {
+                18: true,
+                '3,4,5': true,
+                '6,7': true,
+                '8,9,10,11,12': true,
+                '13,14,15': true,
+                '16,17': true
+              };
+            state.category = null;
+            state.subcategory = null;
+            state.presence = {
+                are_available: true,
+                to_order: true,
+                not_available: true
+              };
+            state.price = [1, 10000];
+            state.players = [1, 10];
+            state.isLoading = "READY";
+        },
+        filtersRemoveAllRequestFile: (state) => {
+            state.isLoading = "ERROR";
+        },
+
+        changeAgeCheckboxRequested: (state) => {
+            state.isLoading = "LOADING";
+        },
+        changeAgeCheckboxReceved: (state, action) => {
+            state.presence = action.payload;
+            state.isLoading = "READY";
+        },
+        changeAgeCheckboxRequestFile: (state) => {
+            state.isLoading = "ERROR";
+        },
+
+        changePlayersRequested: (state) => {
+            state.isLoading = "LOADING";
+        },
+        changePlayersReceved: (state, action) => {
+            state.players = action.payload;
+            state.isLoading = "READY";
+        },
+        changePlayersRequestFile: (state) => {
+            state.isLoading = "ERROR";
+        },
     }
 });
 
 const { reducer: filtersReducer, actions } = filtersSlice;
 const {
+    changePlayersRequested,
+    changePlayersReceved,
+    changePlayersRequestFile,
+
+    changeAgeCheckboxRequested,
+    changeAgeCheckboxReceved,
+    changeAgeCheckboxRequestFile,
+
+    filtersRemoveAllRequested,
+    filtersRemoveAllReceved,
+    filtersRemoveAllRequestFile,
+
     removeCategoryAndSubcategoryRequested,
     removeCategoryAndSubcategoryReceved,
     removeCategoryAndSubcategoryRequestFile,
@@ -115,6 +187,24 @@ const {
     filtersPriceRequestFile,
 
  } = actions;
+
+ export const changeAgeCheckbox = () => async (dispatch) => {
+    dispatch(changeAgeCheckboxRequested())
+    try {
+        dispatch(changeAgeCheckboxReceved())
+    } catch (error) {
+        dispatch(changeAgeCheckboxRequestFile())
+    }
+}
+
+ export const removeAllFilters = () => async (dispatch) => {
+    dispatch(filtersRemoveAllRequested())
+    try {
+        dispatch(filtersRemoveAllReceved())
+    } catch (error) {
+        dispatch(filtersRemoveAllRequestFile())
+    }
+}
 
  export const RemoveCategoryAndSubcategory = () => async (dispatch) => {
     dispatch(removeCategoryAndSubcategoryRequested())
@@ -167,19 +257,24 @@ export const getSubcategory = (payload) => async (dispatch) => {
         dispatch(filtersSubcategoryRequestFile());
     }
 }
+
+export const changePlayers = (payload) => async (dispatch) => {
+    dispatch(changePlayersRequested())
+    try {
+        dispatch(changePlayersReceved(payload))
+    } catch (error) {
+        dispatch(changePlayersRequestFile());
+    }
+}
+
 export const getFiltersState = () => (state) => state.filter;
 export const getFiltersLoadingStatus = () => (state) => state.filter.isLoading;
 export const getFiltersPrice = () => (state) => state.filter.price;
 export const getFiltersAge = () => (state) => state.filter.age;
+export const getFiltersPresence = () => (state) => state.filter.presence;
+export const getFiltersPlayers = () => (state) => state.filter.players; 
 
-// export const getFiltersByIds = (filtersIds) => (state) => {
-//     if (state.filters.entities) {
-//             for (const prof of state.filters.entities) {
-//                 if (prof._id === filtersIds) {
-//                     return prof;
-//                 }
-//             }
-//     } return {};
-// };
+
+
 
 export default filtersReducer;

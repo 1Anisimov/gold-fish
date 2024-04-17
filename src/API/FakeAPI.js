@@ -45,7 +45,7 @@ import imageSecond from "../app/image/tavlei-stena-cshitov.jpg"
         img: image,
         price: 13000,
         name: "Warhammer 40,000: Chaos Space Marines",
-        players: "3-5",
+        players: "4-6",
         time: "30-60",
         age: "18",
         category:"board_games",

@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Slider, ConfigProvider } from 'antd';
-import cls from './filter-scrollbar.module.css';
+import cls from './filter-players.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFiltersLoadingStatus, getFiltersPrice, getPrice } from '../../../store/filters';
+import { changePlayers, getFiltersLoadingStatus, getFiltersPlayers } from '../../../store/filters';
 
-const FilterSlider = () => {
+const FilterPlayers = () => {
   const dispatch = useDispatch();
-  const priceState = useSelector(getFiltersPrice());
+  const playersState = useSelector(getFiltersPlayers());
   const filterLoadingStatus = useSelector(getFiltersLoadingStatus());
   const [openClose, setOpenClose] = useState(true);
   const onChange = (value) => {
-    dispatch(getPrice(value));
+    dispatch(changePlayers(value));
   };
   return (
     <>
@@ -30,7 +30,7 @@ const FilterSlider = () => {
                     data-bs-target="#collapseTwo"
                     aria-expanded={openClose ? 'true' : 'false'}
                     aria-controls="collapseTwo">
-                    <h3 className={cls.title}>Цена</h3>
+                    <h3 className={cls.title}>Кол-во игроков</h3>
                   </button>
                 </div>
               </h2>
@@ -44,13 +44,13 @@ const FilterSlider = () => {
                       <label className={cls.label} htmlFor="">
                         От
                       </label>
-                      <input value={priceState[0]} className={cls.input} readOnly type="number" />
+                      <input value={playersState[0]} className={cls.input} readOnly type="number" />
                     </div>
                     <div>
                       <label className={cls.label} htmlFor="">
                         До
                       </label>
-                      <input value={priceState[1]} className={cls.input} readOnly type="number" />
+                      <input value={playersState[1]} className={cls.input} readOnly type="number" />
                     </div>
                   </div>
                   <ConfigProvider
@@ -71,8 +71,9 @@ const FilterSlider = () => {
                     }}>
                     <Slider
                       range
-                      defaultValue={[1, 10000]}
-                      max={10000}
+                      defaultValue={playersState}
+                      max={10}
+                      min={1}
                       onChange={(value) => onChange(value)}
                     />
                   </ConfigProvider>
@@ -87,4 +88,4 @@ const FilterSlider = () => {
     </>
   );
 };
-export default FilterSlider;
+export default FilterPlayers;

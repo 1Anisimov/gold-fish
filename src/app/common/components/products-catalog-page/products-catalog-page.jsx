@@ -3,15 +3,23 @@ import cls from './products-catalog-page.module.css';
 import { products } from '../../../../API/FakeAPI';
 import Card from '../../../reusable-components/card';
 import { useSelector } from 'react-redux';
-import { getFiltersAge, getFiltersPrice, getFiltersState } from '../../../store/filters';
+import {
+  getFiltersAge,
+  getFiltersLoadingStatus,
+  getFiltersPlayers,
+  getFiltersPrice,
+  getFiltersState
+} from '../../../store/filters';
 
 const ProductsCatalog = () => {
   const currentState = useSelector(getFiltersState());
   const currentPrice = useSelector(getFiltersPrice());
   const currentAge = useSelector(getFiltersAge());
+  const currentPlayers = useSelector(getFiltersPlayers());
+  const filtersLoadingStatus = useSelector(getFiltersLoadingStatus());
 
   const handleAgeParams = (age) => {
-    if (currentAge) {
+    if (filtersLoadingStatus) {
       let ageArray = [];
       Object.keys(currentAge).map((item) => {
         if (currentAge[item]) {
@@ -25,31 +33,61 @@ const ProductsCatalog = () => {
       return newAgeArray.find((item) => item === age);
     }
   };
+  const handlePlayersParams = (str) => {
+    const players = str.split('-');
+    const newPlayersArray = [];
+    if (players.length > 1) {
+      for (let i = Number(players[0]); i <= Number(players[1]); i++) {
+        newPlayersArray.push(i);
+      }
+      return newPlayersArray;
+    } else {
+      newPlayersArray.push(Number(players[0]));
+      newPlayersArray.push(Number(players[0]));
+      return newPlayersArray;
+    }
+  };
 
   const findProduct = () => {
     if (currentState.category === null) {
       return products.map((product) => {
         if (currentPrice[1] >= product.price && currentPrice[0] <= product.price) {
           if (currentAge && handleAgeParams(product.age)) {
-            return (
-              <div className={cls.card} key={product.id}>
-                <Card product={product} />
-              </div>
-            );
-          }
-        }
-        return null;
-      });
-    } else if (currentState.subcategory === null) {
-      return products.map((product) => {
-        if (currentState.category === product.category) {
-          if (currentPrice[1] >= product.price && currentPrice[0] <= product.price) {
-            if (currentAge && handleAgeParams(product.age)) {
+            if (
+              currentPlayers[0] <= handlePlayersParams(product.players)[0] &&
+              currentPlayers[1] >=
+                handlePlayersParams(product.players)[
+                  handlePlayersParams(product.players).length - 1
+                ]
+            ) {
               return (
                 <div className={cls.card} key={product.id}>
                   <Card product={product} />
                 </div>
               );
+            }
+          }
+        }
+        return null;
+      });
+    } else if (currentState.category && currentState.subcategory === null) {
+      return products.map((product) => {
+        if (currentState.category === product.category) {
+          if (currentPrice[1] >= product.price && currentPrice[0] <= product.price) {
+            if (currentAge && handleAgeParams(product.age)) {
+              if (
+                currentPlayers[0] <= handlePlayersParams(product.players)[0] &&
+                currentPlayers[1] >=
+                  handlePlayersParams(product.players)[
+                    handlePlayersParams(product.players).length - 1
+                  ]
+              ) {
+                return (
+                  <div className={cls.card} key={product.id}>
+                    <Card product={product} />
+                  </div>
+                );
+              }
             }
           }
         }
@@ -61,11 +99,19 @@ const ProductsCatalog = () => {
         if (currentState.subcategory === product.subcategory) {
           if (currentPrice[1] >= product.price && currentPrice[0] <= product.price) {
             if (currentAge && handleAgeParams(product.age)) {
-              return (
-                <div className={cls.card} key={product.id}>
-                  <Card product={product} />
-                </div>
-              );
+              if (
+                currentPlayers[0] <= handlePlayersParams(product.players)[0] &&
+                currentPlayers[1] >=
+                  handlePlayersParams(product.players)[
+                    handlePlayersParams(product.players).length - 1
+                  ]
+              ) {
+                return (
+                  <div className={cls.card} key={product.id}>
+                    <Card product={product} />
+                  </div>
+                );
+              }
             }
           }
         }

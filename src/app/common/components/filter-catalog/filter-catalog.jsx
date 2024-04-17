@@ -5,19 +5,27 @@ import FilterCategories from '../filter-categories/filter-categories';
 import FilterScrollbar from '../filter-scrollbar/filter-scrollbar';
 import FilterAge from '../filter-age/filter-age';
 import FilterPresence from '../filter-presence/filter-presence';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   RemoveCategoryAndSubcategory,
   getAge,
   getCategory,
+  getFiltersAge,
+  getFiltersPresence,
   getPresence,
-  getSubcategory
+  getSubcategory,
+  removeAllFilters
 } from '../../../store/filters';
+import history from '../../../utils/history';
+import FilterPlayers from '../filter-players/filter-players';
 
 const FilterCatalog = ({ setTitleCatalog }) => {
   const dispatch = useDispatch();
   const params = useParams();
   const { category, subcategory } = params;
+
+  const ageState = useSelector(getFiltersAge());
+  const presenceState = useSelector(getFiltersPresence());
 
   useEffect(() => {
     if (category) {
@@ -43,43 +51,41 @@ const FilterCatalog = ({ setTitleCatalog }) => {
     setTitleCatalog(title);
     dispatch(RemoveCategoryAndSubcategory());
   };
-  const [inputCheckboxAge, setInputCheckboxAge] = useState({
-    18: true,
-    '3,4,5': true,
-    '6,7': true,
-    '8,9,10,11,12': true,
-    '13,14,15': true,
-    '16,17': true
-  });
-  const [inputCheckboxPresence, setInputCheckboxPresence] = useState({
-    are_available: true,
-    to_order: true,
-    not_available: true
-  });
 
-  const handleChangeCheckbox = () => {
-    document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
-      if (checkbox.id === 'age') {
-        setInputCheckboxAge((prevState) => ({
-          ...prevState,
-          [checkbox.name]: checkbox.checked
-        }));
-      }
-      if (checkbox.id === 'presence') {
-        setInputCheckboxPresence((prevState) => ({
-          ...prevState,
-          [checkbox.name]: checkbox.checked
-        }));
-      }
-    });
+  const handleRemoveFilters = () => {
+    dispatch(removeAllFilters());
+    history.push('/catalog/');
   };
-  useEffect(() => {
-    dispatch(getAge(inputCheckboxAge));
-  }, [inputCheckboxAge, dispatch]);
 
-  useEffect(() => {
-    dispatch(getPresence(inputCheckboxPresence));
-  }, [inputCheckboxPresence, dispatch]);
+  const handleChangeAge = (state, name, value) => {
+    const newStateAgeObject = {
+      ...state,
+      [name]: value
+    };
+    dispatch(getAge(newStateAgeObject));
+  };
+  const handleChangePresence = (state, name, value) => {
+    const newStateAgeObject = {
+      ...state,
+      [name]: value
+    };
+    dispatch(getPresence(newStateAgeObject));
+  };
+
+  const handleChangeCheckbox = ({ target }) => {
+    console.log(target);
+    if (target.id === 'age') {
+      if (ageState) {
+        handleChangeAge(ageState, target.name, target.checked);
+      }
+    }
+
+    if (target.id === 'presence') {
+      if (presenceState) {
+        handleChangePresence(presenceState, target.name, target.checked);
+      }
+    }
+  };
 
   return (
     <>
@@ -130,8 +136,11 @@ const FilterCatalog = ({ setTitleCatalog }) => {
           <FilterScrollbar />
           <FilterAge onChange={handleChangeCheckbox} />
           <FilterPresence onChange={handleChangeCheckbox} />
+          <FilterPlayers />
           <div className={cls.buttonShowBlock}>
-            <button className={cls.buttonShow}>Показать</button>
+            <button onClick={handleRemoveFilters} className={cls.buttonShow}>
+              Сбросить фильтры
+            </button>
           </div>
         </div>
       </div>

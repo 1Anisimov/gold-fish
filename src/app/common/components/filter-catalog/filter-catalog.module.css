@@ -80,7 +80,7 @@ button::-moz-focus-inner {
 .buttonShow{
     border: 1px solid rgba(42, 42, 42, 1);
     background-color: #fff;
-    padding: 10px 90px;
+    padding: 10px 70px;
     border-radius: 9px;
     margin-top: 15px;
 }
