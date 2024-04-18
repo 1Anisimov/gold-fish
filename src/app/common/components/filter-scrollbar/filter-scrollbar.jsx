@@ -2,16 +2,28 @@ import React, { useState } from 'react';
 import { Slider, ConfigProvider } from 'antd';
 import cls from './filter-scrollbar.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFiltersLoadingStatus, getFiltersPrice, getPrice } from '../../../store/filters';
+import {
+  changePriceInput,
+  getFiltersLoadingStatus,
+  getFiltersPrice,
+  getPrice
+} from '../../../store/filters';
+import { memo } from 'react';
 
-const FilterSlider = () => {
+const Component = () => {
   const dispatch = useDispatch();
   const priceState = useSelector(getFiltersPrice());
   const filterLoadingStatus = useSelector(getFiltersLoadingStatus());
   const [openClose, setOpenClose] = useState(true);
   const onChange = (value) => {
-    dispatch(getPrice(value));
+    console.log(value.value);
+    dispatch(getPrice(value.value));
   };
+
+  const changeInputValue = ({ target }) => {
+    dispatch(changePriceInput(Number(target.value), target.name));
+  };
+
   return (
     <>
       <div className={cls.container}>
@@ -44,13 +56,27 @@ const FilterSlider = () => {
                       <label className={cls.label} htmlFor="">
                         От
                       </label>
-                      <input value={priceState[0]} className={cls.input} readOnly type="number" />
+                      <input
+                        defaultValue={priceState[0]}
+                        className={cls.input}
+                        type="number"
+                        name="min"
+                        value={priceState[0]}
+                        onChange={changeInputValue}
+                      />
                     </div>
                     <div>
                       <label className={cls.label} htmlFor="">
                         До
                       </label>
-                      <input value={priceState[1]} className={cls.input} readOnly type="number" />
+                      <input
+                        defaultValue={priceState[1]}
+                        className={cls.input}
+                        type="number"
+                        name="max"
+                        value={priceState[1]}
+                        onChange={changeInputValue}
+                      />
                     </div>
                   </div>
                   <ConfigProvider
@@ -71,9 +97,10 @@ const FilterSlider = () => {
                     }}>
                     <Slider
                       range
-                      defaultValue={[1, 10000]}
+                      value={priceState}
+                      defaultValue={priceState}
                       max={10000}
-                      onChange={(value) => onChange(value)}
+                      onChange={(value) => onChange({ value })}
                     />
                   </ConfigProvider>
                 </div>
@@ -87,4 +114,4 @@ const FilterSlider = () => {
     </>
   );
 };
-export default FilterSlider;
+export const FilterSlider = memo(Component);

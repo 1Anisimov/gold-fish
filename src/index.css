@@ -50,6 +50,7 @@ code {
     monospace;
 }
 
+
 .main_page {
   background-color: #f1eeea;
   width: 100%;
@@ -231,9 +232,28 @@ font-weight: 700;
 
   
 }
-.container_main {
-  margin: 0 200px;
+.main_container{
+  max-width: 1100px;
 }
+.main_container_bg{
+  background-color: #f1eeea;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.header_container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 200px;
+  background:#2A2A2A;
+}
+
+
+
 .info_left {
   flex-basis: 50%;
   font-family: Trebuchet MS;

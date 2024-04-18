@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { Slider, ConfigProvider } from 'antd';
 import cls from './filter-players.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { changePlayers, getFiltersLoadingStatus, getFiltersPlayers } from '../../../store/filters';
+import {
+  changePlayers,
+  changePlayersInput,
+  getFiltersLoadingStatus,
+  getFiltersPlayers
+} from '../../../store/filters';
 
 const FilterPlayers = () => {
   const dispatch = useDispatch();
@@ -10,7 +15,11 @@ const FilterPlayers = () => {
   const filterLoadingStatus = useSelector(getFiltersLoadingStatus());
   const [openClose, setOpenClose] = useState(true);
   const onChange = (value) => {
+    console.log(value);
     dispatch(changePlayers(value));
+  };
+  const changeInputValue = ({ target }) => {
+    dispatch(changePlayersInput(Number(target.value), target.name));
   };
   return (
     <>
@@ -44,13 +53,31 @@ const FilterPlayers = () => {
                       <label className={cls.label} htmlFor="">
                         От
                       </label>
-                      <input value={playersState[0]} className={cls.input} readOnly type="number" />
+                      <input
+                        defaultValue={playersState[0]}
+                        value={playersState[0]}
+                        className={cls.input}
+                        name="min"
+                        type="number"
+                        max={10}
+                        min={1}
+                        onChange={changeInputValue}
+                      />
                     </div>
                     <div>
                       <label className={cls.label} htmlFor="">
                         До
                       </label>
-                      <input value={playersState[1]} className={cls.input} readOnly type="number" />
+                      <input
+                        defaultValue={playersState[1]}
+                        value={playersState[1]}
+                        className={cls.input}
+                        name="max"
+                        type="number"
+                        max={10}
+                        min={1}
+                        onChange={changeInputValue}
+                      />
                     </div>
                   </div>
                   <ConfigProvider
@@ -71,6 +98,7 @@ const FilterPlayers = () => {
                     }}>
                     <Slider
                       range
+                      value={playersState}
                       defaultValue={playersState}
                       max={10}
                       min={1}

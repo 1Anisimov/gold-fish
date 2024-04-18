@@ -145,11 +145,51 @@ const filtersSlice = createSlice({
         changePlayersRequestFile: (state) => {
             state.isLoading = "ERROR";
         },
+
+        changePriceInputRequested: (state) => {
+            state.isLoading = "LOADING";
+        },
+        changePriceInputMinReceved: (state, action) => {
+            state.price[0] = action.payload;
+            state.isLoading = "READY";
+        },
+        changePriceInputMaxReceved: (state, action) => {
+            state.price[1] = action.payload;
+            state.isLoading = "READY";
+        },
+        changePriceInputRequestFile: (state) => {
+            state.isLoading = "ERROR";
+        },
+
+        changePlayersInputRequested: (state) => {
+            state.isLoading = "LOADING";
+        },
+        changePlayersInputMinReceved: (state, action) => {
+            state.players[0] = action.payload;
+            state.isLoading = "READY";
+        },
+        changePlayersInputMaxReceved: (state, action) => {
+            state.players[1] = action.payload;
+            state.isLoading = "READY";
+        },
+        changePlayersInputRequestFile: (state) => {
+            state.isLoading = "ERROR";
+        },
     }
 });
 
 const { reducer: filtersReducer, actions } = filtersSlice;
 const {
+    changePlayersInputRequested,
+    changePlayersInputMinReceved,
+    changePlayersInputMaxReceved,
+    changePlayersInputRequestFile,
+
+    changePriceInputRequested,
+    changePriceInputMinReceved,
+    changePriceInputMaxReceved,
+    changePriceInputRequestFile,
+
     changePlayersRequested,
     changePlayersReceved,
     changePlayersRequestFile,
@@ -194,6 +234,35 @@ const {
         dispatch(changeAgeCheckboxReceved())
     } catch (error) {
         dispatch(changeAgeCheckboxRequestFile())
+    }
+}
+
+export const changePlayersInput = (value, name) => async (dispatch) => {
+    dispatch(changePlayersInputRequested())
+    try {
+        if(name === 'min') {
+            dispatch(changePlayersInputMinReceved(value))
+        }
+        if(name === 'max') {
+            dispatch(changePlayersInputMaxReceved(value))
+        }
+    } catch (error) {
+        dispatch(changePlayersInputRequestFile())
+    }
+}
+
+export const changePriceInput = (value, name) => async (dispatch) => {
+    dispatch(changePriceInputRequested())
+    try {
+        if(name === 'min') {
+            dispatch(changePriceInputMinReceved(value))
+        }
+        if(name === 'max') {
+            dispatch(changePriceInputMaxReceved(value))
+        }
+        
+    } catch (error) {
+        dispatch(changePriceInputRequestFile())
     }
 }
 

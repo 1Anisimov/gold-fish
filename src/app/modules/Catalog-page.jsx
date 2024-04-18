@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-// import { useParams } from 'react-router-dom';
 import FilterCatalog from '../common/components/filter-catalog/filter-catalog';
 import ProductsCatalog from '../common/components/products-catalog-page/products-catalog-page';
 
 const CatalogPage = () => {
-  //   const params = useParams();
   const [titleCatalog, setTitleCatalog] = useState('Каталог продукции');
   return (
     <>

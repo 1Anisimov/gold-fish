@@ -49,79 +49,52 @@ const ProductsCatalog = () => {
   };
 
   const findProduct = () => {
-    if (currentState.category === null) {
-      return products.map((product) => {
-        if (currentPrice[1] >= product.price && currentPrice[0] <= product.price) {
-          if (currentAge && handleAgeParams(product.age)) {
-            if (
-              currentPlayers[0] <= handlePlayersParams(product.players)[0] &&
-              currentPlayers[1] >=
-                handlePlayersParams(product.players)[
-                  handlePlayersParams(product.players).length - 1
-                ]
-            ) {
-              return (
-                <div className={cls.card} key={product.id}>
-                  <Card product={product} />
-                </div>
-              );
-            }
-          }
-        }
-        return null;
-      });
-    } else if (currentState.category && currentState.subcategory === null) {
-      return products.map((product) => {
-        if (currentState.category === product.category) {
-          if (currentPrice[1] >= product.price && currentPrice[0] <= product.price) {
-            if (currentAge && handleAgeParams(product.age)) {
-              if (
-                currentPlayers[0] <= handlePlayersParams(product.players)[0] &&
-                currentPlayers[1] >=
-                  handlePlayersParams(product.players)[
-                    handlePlayersParams(product.players).length - 1
-                  ]
-              ) {
-                return (
-                  <div className={cls.card} key={product.id}>
-                    <Card product={product} />
-                  </div>
-                );
-              }
-            }
-          }
-        }
-        return null;
-      });
-    }
-    if (currentState.category && currentState.subcategory) {
-      return products.map((product) => {
-        if (currentState.subcategory === product.subcategory) {
-          if (currentPrice[1] >= product.price && currentPrice[0] <= product.price) {
-            if (currentAge && handleAgeParams(product.age)) {
-              if (
-                currentPlayers[0] <= handlePlayersParams(product.players)[0] &&
-                currentPlayers[1] >=
-                  handlePlayersParams(product.players)[
-                    handlePlayersParams(product.players).length - 1
-                  ]
-              ) {
-                return (
-                  <div className={cls.card} key={product.id}>
-                    <Card product={product} />
-                  </div>
-                );
-              }
-            }
-          }
-        }
-        return null;
-      });
-    }
+    const productsCategories = products.filter((product) => {
+      if (currentState.subcategory !== null && product.subcategory === currentState.subcategory) {
+        return product;
+      }
+      if (
+        currentState.subcategory === null &&
+        currentState.category !== null &&
+        product.category === currentState.category
+      ) {
+        return product;
+      }
+      if (currentState.subcategory === null && currentState.category === null) {
+        return product;
+      }
+    });
+    const newArray = productsCategories.filter(
+      (product) =>
+        currentPrice[1] >= product.price &&
+        currentPrice[0] <= product.price &&
+        currentAge &&
+        handleAgeParams(product.age) &&
+        currentPlayers[0] <= handlePlayersParams(product.players)[0] &&
+        currentPlayers[1] >=
+          handlePlayersParams(product.players)[handlePlayersParams(product.players).length - 1]
+    );
+
+    return newArray.map((product) => {
+      return (
+        <div className={cls.card} key={product.id}>
+          <Card product={product} />
+        </div>
+      );
+    });
   };
   return (
     <>
-      <div className={cls.block}>{findProduct()}</div>
+      {' '}
+      {filtersLoadingStatus === 'READY' ? (
+        findProduct().length > 0 ? (
+          <div className={cls.block}>{findProduct()}</div>
+        ) : (
+          <div className={cls.notProduct}>Товары не найдены</div>
+        )
+      ) : (
+        'Loading...'
+      )}
     </>
   );
 };
