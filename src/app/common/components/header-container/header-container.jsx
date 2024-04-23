@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HeaderContainerTop = ({ children }) => {
+const HeaderContainer = ({ children }) => {
   return (
     <>
       <div className="header_container_top">{children}</div>
@@ -8,4 +8,4 @@ const HeaderContainerTop = ({ children }) => {
   );
 };
 
-export default HeaderContainerTop;
+export default HeaderContainer;

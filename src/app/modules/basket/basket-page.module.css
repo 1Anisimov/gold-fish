@@ -1,0 +1,172 @@
+.basket{
+    margin-top: 170px;
+    margin-bottom: 170px;
+}
+.title{
+    font-family: Trebuchet MS;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 37.16px;
+    text-align: left;
+
+}
+.basketBlock{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+.right{
+    background: rgba(255, 255, 255, 1);
+    width: 350px;
+    gap: 0px;
+    border-radius: 9px;
+    opacity: 0px;
+    box-shadow: 5px 6px 16px 0px rgba(42, 42, 42, 0.16);
+    padding: 31px;
+}
+.price{
+    margin-bottom: 18px;
+}
+.sum{
+    font-family: Trebuchet MS;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 22.06px;
+    text-align: left;
+}
+.totalPrice{
+    font-family: Trebuchet MS;
+    font-size: 33px;
+    font-weight: 700;
+    line-height: 38.32px;
+    text-align: left;
+
+}
+.promocodeTitle{
+    font-family: Trebuchet MS;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.58px;
+    text-align: left;
+    color: rgba(42, 42, 42, 1);
+}
+.input{
+    border: 1px solid rgba(42, 42, 42, 0.25);
+    height: 34px;
+    gap: 0px;
+    border-radius: 9px;
+    opacity: 0px;
+    width: 100%;
+
+}
+.promocodeButton{
+    background: rgba(202, 202, 202, 1);
+    height: 34px;
+    width: 34px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+}
+.promocodeBlock{
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+.promocode{
+    margin-bottom: 23px;
+}
+.firstButton{
+    margin-bottom: 14px;
+}
+.secondButton{
+    margin-bottom: 26px;
+}
+.deleteIcon{
+    margin-bottom: 2px;
+}
+
+
+
+.left{
+    display: flex;
+    flex-direction: column;
+    width: 720px;
+}
+.productItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 95px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+.productImage{
+    width: 95px;
+    height: 95px;
+    gap: 0px;
+    border-radius: 9px;
+    border: 1px solid rgba(42, 42, 42, 0.25);
+    opacity: 0px;
+    background: rgba(255, 255, 255, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.productImageImg{
+    width: 82px;
+    height: 82px;
+}
+.productText{
+    font-family: Trebuchet MS;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 25.54px;
+    text-align: left;
+}
+.quantity{
+    font-family: Trebuchet MS;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 25.54px;
+    text-align: left;
+    width: 100px;
+    margin-left: 30px;
+}
+.quantityButton{
+    font-family: Trebuchet MS;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 25.54px;
+    text-align: left;
+    background-color: #f1eeea;
+}
+.quantitySpan{
+    margin: 0 5px;
+}
+.productName{
+    margin-left: 30px;
+    width: 270px;
+    cursor: pointer;
+}
+.productName:hover{
+    color: #F9A43F;
+}
+.productSaleText{
+    font-family: Trebuchet MS;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 20.9px;
+    text-align: left;
+    color: rgba(42, 42, 42, 1);
+    text-decoration: line-through;
+}
+.salePrice{
+    width: 89px;
+}
+.tbody{
+    border-spacing: 0px 20px;
+}

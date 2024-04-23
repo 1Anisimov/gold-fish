@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MainButton = ({ width, heigth, text, isGradient, big }) => {
+const MainButton = ({ width, heigth, text, isGradient, big, handleClick }) => {
   const checkSize = () => {
     if (big) {
       return '23px';
@@ -10,6 +10,7 @@ const MainButton = ({ width, heigth, text, isGradient, big }) => {
   return (
     <>
       <button
+        onClick={handleClick}
         className={isGradient ? 'button-gradient' : 'button-white'}
         style={{
           height: heigth + 'px',

@@ -1,0 +1,101 @@
+.buyBlock{
+    width: 348px;
+    gap: 0px;
+    border-radius: 9px;
+    box-shadow: 5px 6px 16px 0px rgba(42, 42, 42, 0.16);
+    opacity: 0px;
+    background: rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 30px;
+}
+.priceBlock{
+    font-family: Trebuchet MS;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 52.25px;
+    text-align: left;
+    color: rgba(42, 42, 42, 1);
+    margin-bottom: 20px;
+}
+.price{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.priceDecoration{
+    text-decoration: line-through;
+    font-family: Trebuchet MS;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 29.03px;
+    text-align: left;
+}
+.button{
+    margin-bottom: 20px;
+}
+.infoBlock{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.infoItem{
+    font-family: Trebuchet MS;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.58px;
+    text-align: left;    
+}
+.infoItemAge{
+    font-family: Trebuchet MS;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 27.87px;
+    text-align: left;
+
+}
+.accordion{
+    border-top: 2px solid rgba(42, 42, 42, 0.12);
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.accordionTitle{
+    font-family: Trebuchet MS;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 22.06px;
+    text-align: left;
+    color: rgba(42, 42, 42, 1);
+}
+.accordionBody{
+    font-family: Trebuchet MS;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.58px;
+    text-align: left;
+    color: rgba(42, 42, 42, 1);
+}
+.buttonInfo{
+    width: 281px;
+    height: 49px;
+    gap: 0px;
+    border-radius: 9px;
+    border: 1px solid rgba(42, 42, 42, 0.19);
+    opacity: 0px;
+    background: rgba(255, 255, 255, 1);
+
+    font-family: Trebuchet MS;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23.22px;
+    color: rgba(42, 42, 42, 1);
+}
+.buttonInfo:hover{
+    border: 1px solid #F9A43F;
+    color: #F9A43F;
+}

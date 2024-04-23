@@ -1,0 +1,36 @@
+.productPage{
+    padding-top: 170px ;
+    padding-bottom: 70px;
+}
+.mainContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.mainTitle{
+    font-family: Trebuchet MS;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 46.45px;
+    text-align: left;
+}
+.mainImgBlock{
+    display: flex; 
+    justify-content: center;
+    width: 574px;
+    height: 397px;
+    background: rgba(255, 255, 255, 1);
+    gap: 0px;
+    border-radius: 9px;
+    border: 1px solid rgba(217, 217, 217, 0.39);
+    opacity: 0px;
+}
+
+.mainImg{
+    width: 367px;
+    height: 380px;
+    gap: 0px;
+    opacity: 0px;
+
+}

@@ -54,7 +54,6 @@ const FilterPlayers = () => {
                         От
                       </label>
                       <input
-                        defaultValue={playersState[0]}
                         value={playersState[0]}
                         className={cls.input}
                         name="min"
@@ -69,7 +68,6 @@ const FilterPlayers = () => {
                         До
                       </label>
                       <input
-                        defaultValue={playersState[1]}
                         value={playersState[1]}
                         className={cls.input}
                         name="max"
@@ -99,7 +97,6 @@ const FilterPlayers = () => {
                     <Slider
                       range
                       value={playersState}
-                      defaultValue={playersState}
                       max={10}
                       min={1}
                       onChange={(value) => onChange(value)}

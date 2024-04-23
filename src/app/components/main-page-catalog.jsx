@@ -10,6 +10,7 @@ const MainCatalog = () => {
   const goToCatalog = ({ target }) => {
     history.push(`/catalog/${target.id}`);
   };
+
   return (
     <>
       <div className="main_catalog">

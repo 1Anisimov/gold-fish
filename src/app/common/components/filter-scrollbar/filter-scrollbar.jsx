@@ -57,7 +57,6 @@ const Component = () => {
                         От
                       </label>
                       <input
-                        defaultValue={priceState[0]}
                         className={cls.input}
                         type="number"
                         name="min"
@@ -70,7 +69,6 @@ const Component = () => {
                         До
                       </label>
                       <input
-                        defaultValue={priceState[1]}
                         className={cls.input}
                         type="number"
                         name="max"
@@ -98,7 +96,6 @@ const Component = () => {
                     <Slider
                       range
                       value={priceState}
-                      defaultValue={priceState}
                       max={10000}
                       onChange={(value) => onChange({ value })}
                     />
