@@ -602,7 +602,32 @@ export const categoriesArray = [
     {name:"Декорации", value:"Scenery", category:"accessories_modeling"},
     {name:"Подставки", value:"Stands", category:"accessories_modeling"},
 
- ]
+
+  ]
+
+const promocodes = [
+  {code:"Q25", sale:25},
+  {code:"Q10", sale:10},
+  {code:"Q50", sale:50},
+  {code:"Q15", sale:15},
+]
+
+const questionAnswerArray = [
+  {title:"Как оформить заказ?", id:1, text:"how"},
+  {title:"Как подобрать игру?", id:2, text:<p>Если в настольной игре собирается принять участие компания, нужно учитывать средний возраст игроков. Есть игры, которые не требуют активности и вряд ли понравятся молодёжи, а подвижные не придутся по душе пожилым людям.</p>},
+  {title:"Как оплатить заказ?", id:3, text:"how"},
+  {title:"Как изменить заказ после оформления?", id:4, text:"how"},
+  {title:"Что делать, если заказ не пришел?", id:5, text:"how"},
+  {title:"Как вернуть товар?", id:6, text:"how"},
+]
+export function getquestionAnswerArray() {
+  return questionAnswerArray
+}
+
+export function getAllPromocodes() {
+  return promocodes
+}
+
 export function getAllProducts () {
     return products;
 }

@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import filtersReducer from "./filters";
 import basketReducer from "./basket";
+import promocodeReducer from "./search";
 
 const rootReducer = combineReducers({
     filter: filtersReducer,
-    basket: basketReducer
+    basket: basketReducer,
+    promocode: promocodeReducer
     });
 
 export function createStore() {

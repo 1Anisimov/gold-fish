@@ -16,13 +16,16 @@
     align-items: start;
 }
 .right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: rgba(255, 255, 255, 1);
     width: 350px;
     gap: 0px;
     border-radius: 9px;
     opacity: 0px;
     box-shadow: 5px 6px 16px 0px rgba(42, 42, 42, 0.16);
-    padding: 31px;
+    padding: 20px;
 }
 .price{
     margin-bottom: 18px;
@@ -57,7 +60,7 @@
     border-radius: 9px;
     opacity: 0px;
     width: 100%;
-
+    padding-left: 10px;
 }
 .promocodeButton{
     background: rgba(202, 202, 202, 1);
@@ -77,6 +80,7 @@
 }
 .promocode{
     margin-bottom: 23px;
+    width: 100%;
 }
 .firstButton{
     margin-bottom: 14px;
@@ -169,4 +173,39 @@
 }
 .tbody{
     border-spacing: 0px 20px;
+}
+
+.basketZeroImage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+.basketZeroTitle{
+    font-family: Trebuchet MS;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 37.16px;
+    text-align: left;
+    color: rgba(202, 202, 202, 1);
+}
+.basketZeroText{
+    font-family: Trebuchet MS;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.58px;
+    text-align: left;
+    color: rgba(0, 0, 0, 1);
+}
+.basketZeroLink{
+    font-family: Trebuchet MS;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.58px;
+    text-align: left;
+    color: rgba(0, 0, 0, 1);
+}
+.basketZeroLink:hover{
+    color: #F9A43F;
 }

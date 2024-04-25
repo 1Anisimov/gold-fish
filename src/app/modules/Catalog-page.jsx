@@ -3,11 +3,22 @@ import FilterCatalog from '../common/components/filter-catalog/filter-catalog';
 import ProductsCatalog from '../common/components/products-catalog-page/products-catalog-page';
 import MainContainer from '../common/components/main-container/main-container';
 import MainContainerBg from '../containers/main-container-bg';
+import banner from '../image/catalog/bannerCatalogPage.png';
+// import MainBreadcrumb from '../common/components/breadcrumb/breadcrumb';
 
 const CatalogPage = () => {
   const [titleCatalog, setTitleCatalog] = useState('Каталог продукции');
   return (
     <>
+      <div className="catalog_page_banner">
+        <img className="catalog_page_banner_image" src={banner} alt="" />
+        <div className="catalog_page_banner_absolute">
+          <h3 className="catalog_page_banner_title">Октябрьский турнир Warhammer 40000</h3>
+          <span className="catalog_page_banner_text">
+            У тебя есть команда и вы готовы принять участие в турнире Warhammer 40000?{' '}
+          </span>
+        </div>
+      </div>
       <MainContainerBg>
         <MainContainer>
           <div className="catalog_page">

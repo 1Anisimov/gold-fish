@@ -243,7 +243,16 @@ font-weight: 700;
   justify-content: center;
 }
 
-
+.bottom_main_container{
+  width: 1100px;
+  max-width: 1100px;
+}
+.bottom_container_bg{
+  background:#2A2A2A;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 .header_container{
   width: 100%;
@@ -649,6 +658,7 @@ background: rgba(42, 42, 42, 1);
 bottom: 0;
 left: 0;
 right: 0;
+
 }
 .footer_top{
   padding: 80px 0;
@@ -896,8 +906,7 @@ font-weight: 700;
 }
 .catalog_page{
   background-color: #f1eeea;
-  margin-top: 120px;
-  padding-top: 70px;
+  margin-top: 57px;
   width: 100%;
 }
 .catalog_page_block{
@@ -988,3 +997,101 @@ font-weight: 700;
   align-content: center;
   padding: 0 0 3px 1px;
 }
+.catalog_page_banner{
+  margin-top: 100px;
+  width: 100%;
+  position: relative;
+
+  
+
+}
+.catalog_page_banner_title{
+  font-family: Trebuchet MS;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 25.54px;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+}
+.catalog_page_banner_text{
+  font-family: Trebuchet MS;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18.58px;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+}
+
+
+.catalog_page_banner_image{
+  width: 100%;
+}
+.catalog_page_banner_absolute{
+  position: absolute;
+  top: 40%;
+  left: 14%;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.my_swiper{
+  
+}
+
+.my_swiper_slide{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1eeea;
+  border: none;
+}
+.my_swiper_slide_w100{
+  background: #fff;
+  margin: 0 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 9px;
+}
+.my_swiper_slide_container{
+  width: 367px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0 50px;
+  padding: 30px 0;
+}
+.swiper-button-prev, .swiper-button-next{
+  position: absolute;
+  color:black;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+/* :root{
+  --swiper-theme-color: black;
+} */

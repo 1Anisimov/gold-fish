@@ -5,6 +5,7 @@ import MainContainerBg from '../../containers/main-container-bg';
 import MainContainer from '../../common/components/main-container/main-container';
 import { ProductPurchaseCard } from '../../common/components/product-purchase-card/product-purchase-card';
 import Tab from '../../common/components/tabs/tabs';
+import Slider from '../../reusable-components/slider';
 
 const Component = ({ productId }) => {
   const product = getProductById(productId);
@@ -17,9 +18,8 @@ const Component = ({ productId }) => {
             <div className={cls.mainContainer}>
               <div className={cls.left}>
                 <div className={cls.mainImgBlock}>
-                  <img className={cls.mainImg} src={product.img} alt="" />
+                  <Slider productId={productId} />
                 </div>
-
                 <Tab />
               </div>
               <div className={cls.right}>

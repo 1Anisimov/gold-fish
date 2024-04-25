@@ -3,6 +3,7 @@ import { ConfigProvider, Tabs } from 'antd';
 const onChange = (key) => {
   console.log(key);
 };
+
 const items = [
   {
     key: '1',
@@ -22,7 +23,7 @@ const items = [
   {
     key: '4',
     label: 'Вопрос-ответ',
-    children: <div>Hello</div>
+    children: <div>hello</div>
   }
 ];
 const Tab = () => (
