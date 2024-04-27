@@ -1,3 +1,4 @@
+import { getNotSaleProducts, getSaleProducts } from '../../API/FakeAPI';
 import MainContainer from '../common/components/main-container/main-container';
 import BlockInfo from '../components/blockInfo';
 import MainCatalog from '../components/main-page-catalog';
@@ -7,24 +8,30 @@ import UpcomingEvents from '../components/upcomingEvents';
 import MainContainerBg from '../containers/main-container-bg';
 
 const MainPage = () => {
+  const productsSale = getSaleProducts();
+  const products = getNotSaleProducts();
   return (
     <>
-      <MainContainerBg>
-        <MainContainer>
-          <div className="main_page">
-            <div className="">
-              <div className="content_page">
+      <div className="main_page">
+        <div className="">
+          <div className="content_page">
+            <MainContainerBg>
+              <MainContainer>
                 <MainCatalog />
-                <TemporarilyBuy title="Успей купить" />
-                <TemporarilyBuy title="Специальные предложения" isSale />
+              </MainContainer>
+            </MainContainerBg>
+            <TemporarilyBuy title="Успей купить" products={productsSale} />
+            <TemporarilyBuy title="Специальные предложения" isSale products={products} />
+            <MainContainerBg>
+              <MainContainer>
                 <UpcomingEvents />
                 <MoreInfo />
                 <BlockInfo />
-              </div>
-            </div>
+              </MainContainer>
+            </MainContainerBg>
           </div>
-        </MainContainer>
-      </MainContainerBg>
+        </div>
+      </div>
     </>
   );
 };

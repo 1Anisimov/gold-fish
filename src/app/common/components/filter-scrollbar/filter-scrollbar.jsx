@@ -16,7 +16,6 @@ const Component = () => {
   const filterLoadingStatus = useSelector(getFiltersLoadingStatus());
   const [openClose, setOpenClose] = useState(true);
   const onChange = (value) => {
-    console.log(value.value);
     dispatch(getPrice(value.value));
   };
 

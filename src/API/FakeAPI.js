@@ -459,7 +459,8 @@ export const products = [
         subcategory: 'Games_for_companies',
         id: "27",
         sale: null,
-        saleProcent: null
+        saleProcent: null,
+        allImg: [image, image, image, image]
       },
       {
         img: image,
@@ -472,7 +473,8 @@ export const products = [
         subcategory: 'Games_for_companies',
         id: "28",
         sale: null,
-        saleProcent: null
+        saleProcent: null,
+        allImg: [image, image, image, image]
       },
       {
         img: image,
@@ -485,7 +487,8 @@ export const products = [
         subcategory: 'Games_for_companies',
         id: "29",
         sale: null,
-        saleProcent: null
+        saleProcent: null,
+        allImg: [image, image, image, image]
       },
       {
         img: imageSecond,
@@ -498,7 +501,8 @@ export const products = [
         subcategory: 'Games_for_two',
         id: "30",
         sale: 4868,
-        saleProcent: 35
+        saleProcent: 35,
+        allImg: [image, image, image, image]
       },
       {
         img: image,
@@ -511,7 +515,8 @@ export const products = [
         subcategory: 'Dominaria_United',
         id: "31",
         sale: 900,
-        saleProcent: 10
+        saleProcent: 10,
+        allImg: [image, image, image, image]
       },
       {
         img: image,
@@ -524,7 +529,8 @@ export const products = [
         subcategory: 'The_Horus_Heresy',
         id: "32",
         sale: 4800,
-        saleProcent: 20
+        saleProcent: 20,
+        allImg: [image, image, image, image]
       },
   ];
 export const categoriesArray = [
@@ -636,4 +642,10 @@ export function getTempBuy() {
 }
 export function getProductById(productId) {
    return products.find((product) => product.id === productId )
+}
+export function getSaleProducts() {
+  return products.filter((product)=> product.sale !== null)
+}
+export function getNotSaleProducts() {
+  return products.filter((product)=> product.sale === null)
 }

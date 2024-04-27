@@ -1,7 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // Import Swiper React components
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
-import image from '../image/tavlei-stena-cshitov.jpg';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -9,10 +8,20 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Navigation } from 'swiper/modules';
-import { getProductById } from '../../API/FakeAPI';
 
-export default function Slider({ productId }) {
-  const product = getProductById(productId);
+export default function Slider({ allImages, currentIndex }) {
+  const [swiperRef, setSwiperRef] = useState({});
+
+  useEffect(() => {
+    if (swiperRef?.slideTo) {
+      swiperRef.slideTo(currentIndex, 1000, false);
+    }
+  }, [swiperRef, currentIndex]);
+
+  // if (currentIndex && currentIndex !== swiperRef.activeIndex) {
+  //   swiperRef.slideTo(currentIndex, 1000, false);
+  // }
+
   return (
     <>
       <Swiper
@@ -20,40 +29,23 @@ export default function Slider({ productId }) {
           '--swiper-navigation-size': '21px',
           '--swiper-theme-color': 'black'
         }}
-        // direction={'vertical'}
+        onInit={(ev) => {
+          setSwiperRef(ev);
+        }}
         navigation={true}
         modules={[Navigation]}
         slidesPerView="auto"
-        className="my_swiper"
-        onSlideChange={() => console.log('change')}>
-        <SwiperSlide className="my_swiper_slide">
-          <div className="my_swiper_slide_w100">
-            <div className="my_swiper_slide_container">
-              <img src={product.img} alt="" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="my_swiper_slide">
-          <div className="my_swiper_slide_w100">
-            <div className="my_swiper_slide_container">
-              <img src={image} alt="" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="my_swiper_slide">
-          <div className="my_swiper_slide_w100">
-            <div className="my_swiper_slide_container">
-              <img src={image} alt="" />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="my_swiper_slide">
-          <div className="my_swiper_slide_w100">
-            <div className="my_swiper_slide_container">
-              <img src={image} alt="" />
-            </div>
-          </div>
-        </SwiperSlide>
+        className="my_swiper">
+        {allImages &&
+          allImages.map((image) => (
+            <SwiperSlide className="my_swiper_slide">
+              <div className="my_swiper_slide_w100">
+                <div className="my_swiper_slide_container">
+                  <img src={image} alt="" />
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
       </Swiper>
     </>
   );

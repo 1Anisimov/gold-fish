@@ -4,11 +4,7 @@ import cardTimer from '../image/time_card.png';
 import cardPlayers from '../image/players_card.png';
 import history from '../utils/history';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  addProductsToBasket,
-  getLoadingStatusBasket,
-  searchProductInBasket
-} from '../store/basket';
+import { addProductsToBasket, searchProductInBasket } from '../store/basket';
 
 const Card = ({ product }) => {
   const dispatch = useDispatch();
@@ -33,15 +29,16 @@ const Card = ({ product }) => {
           {product.sale ? <div className="card_sale">{`-${product.saleProcent}%`}</div> : ''}
           <div className="card_data">
             <div className="card_data_players">
-              <img src={cardPlayers} alt="" />
+              <img className="card_data_timer_players" src={cardPlayers} alt="" />
               <span>{product.players}</span>
             </div>
             <div className="card_data_timer">
-              <img src={cardTimer} alt="" />
+              <img className="card_data_timer_img" src={cardTimer} alt="" />
               <span>{product.time}</span>
             </div>
-
-            <span>{product.age}+</span>
+            <div className="card_data_ages">
+              <span>{product.age}+</span>
+            </div>
           </div>
           <div onClick={goToProductPage} className="card_text">
             {product.name}

@@ -1,44 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { getTempBuy } from '../../API/FakeAPI';
-import Card from '../reusable-components/card';
-import MainContainer from '../common/components/main-container/main-container';
-import MainContainerBg from '../containers/main-container-bg';
+import React from 'react';
+import SliderProducts from '../reusable-components/slider-products';
 
-const TemporarilyBuy = ({ title, isSale }) => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    setProducts(getTempBuy());
-  }, []);
+const TemporarilyBuy = ({ title, isSale, products }) => {
   return (
     <>
-      <MainContainerBg>
-        <MainContainer>
-          <div className="temporarily_buy">
-            <div className="container_main">
-              <h2 className="temporarily_h2">{title}</h2>
-              <div className="temporarily_content">
-                {products.map((product) =>
-                  isSale ? (
-                    product.sale ? (
-                      <div key={product.id}>
-                        <Card product={product} />
-                      </div>
-                    ) : (
-                      ''
-                    )
-                  ) : !product.sale ? (
-                    <div key={product.id}>
-                      <Card product={product} />
-                    </div>
-                  ) : (
-                    ''
-                  )
-                )}
-              </div>
-            </div>
+      <div className="temporarily_buy">
+        <div className="container_main">
+          <div className="temporarily_h2_block">
+            <h2 className="temporarily_h2">{title}</h2>
           </div>
-        </MainContainer>
-      </MainContainerBg>
+          <div className="temporarily_content">
+            <SliderProducts products={products} />
+          </div>
+        </div>
+      </div>
     </>
   );
 };

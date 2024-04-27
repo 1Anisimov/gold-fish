@@ -35,3 +35,12 @@
     opacity: 0px;
 
 }
+.swiperBlock{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.left{
+    width: 100%;
+}

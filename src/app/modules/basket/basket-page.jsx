@@ -25,7 +25,6 @@ const Component = () => {
   const currentPromocode = useSelector(getCurrentPromocode());
   const salePromocode = useSelector(getCurrentSale());
 
-  console.log(products);
   const handleDelete = (productId) => {
     dispatch(removeProductOnBasket(productId));
   };
@@ -39,14 +38,12 @@ const Component = () => {
     history.push(`/catalog/${product.category}/${product.subcategory}/${product.id}/`);
   };
   const changeInputPromocode = ({ target }) => {
-    console.log(target.value);
     dispatch(promocodeSearch(target.value));
   };
   async function checkPromocode() {
     const allPromocodes = getAllPromocodes();
 
     const promocode = allPromocodes.find((item) => item.code === currentPromocode);
-    console.log(promocode);
 
     if (promocode === undefined) {
       dispatch(setSale(null));
