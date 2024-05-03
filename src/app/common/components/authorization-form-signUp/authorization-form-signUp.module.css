@@ -1,0 +1,79 @@
+.emailInput{
+    background-color: azure;
+    height: 45px;
+    width: 100%;
+    border-radius: 9px;
+    overflow: hidden;
+    font-family: Trebuchet MS;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+    padding-left: 10px;
+    color: rgba(42, 42, 42, 1);
+    border: 1px solid rgba(42, 42, 42, 0.38)
+
+}
+.email{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 16px;
+}
+.checkbox{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 16px;
+}
+.inputBlock{
+    padding-top: 2px;
+}
+.labelBlock{
+    padding-bottom: 3px;
+    margin-left: 3px;
+}
+.checkboxItem{
+    width: 21px;
+    height: 21px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.checkboxBlock{
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+.checkboxText{
+    margin-top: 2px;
+    font-family: Trebuchet MS;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    color: rgba(0, 0, 0, 1);
+}
+.checkboxTextLink{
+    text-decoration: underline;
+}
+.p{
+    font-family: Trebuchet MS;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    color: rgba(42, 42, 42, 1);
+    margin-left: 220px;
+}
+.contant{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.formContant{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.registerButton{
+    margin-bottom: 50px;
+}

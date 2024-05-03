@@ -113,6 +113,9 @@ font-weight: 700;
   align-items: center;
   gap: 17px;
 }
+.header_top_icons_profile{
+  color: #F2F2F2;
+}
 .header_top_icons_profile:hover {
   color:#F9A43F
 }
@@ -843,6 +846,9 @@ html{
 }
 .pop-up_catalog_active{
   overflow-y: hidden;
+}
+.w340{
+  width: 340px;
 }
 .pop-up_container{
   width: 100%;

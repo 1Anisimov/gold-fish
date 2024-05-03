@@ -8,9 +8,17 @@ import Footer from './app/components/footer';
 import { CatalogOrProductPage } from './app/pages/catalog-or-product-page';
 import { BasketPage } from './app/modules/basket/basket-page';
 import { TestPage } from './app/pages/test-page';
+import AuthorizationForm from './app/common/components/authorization-form/authorization-form';
 
 const App = () => {
     const [modalActive, setModalActive] = useState(false);
+    const [modalForm, setModalForm] = useState(false);
+  const changeModalForm = () => {
+    if (!modalForm) {
+      
+      setModalForm(true);
+    }
+  };
   const changeModalActive = () => {
     if (!modalActive) {
       setModalActive(true);
@@ -18,7 +26,7 @@ const App = () => {
   };
     return (
     <>
-    <Header onChange={changeModalActive} />
+    <Header onChange={changeModalActive} changeForm={changeModalForm} />
     <Switch>
         <Route path="/catalog/:category?/:subcategory?/:productId?/" component={CatalogOrProductPage} />
         {/* <Route  path="/:category?/:subcategory?/:productId?/" component={CatalogPage}/> */}
@@ -28,6 +36,7 @@ const App = () => {
     </Switch>
     <Footer />
     <ModalCatalog modalActive={modalActive} setModalActive={setModalActive} />
+    <AuthorizationForm modalForm={modalForm} setModalForm={setModalForm} />
     </>
     )
 }

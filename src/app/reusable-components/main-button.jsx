@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MainButton = ({ width, heigth, text, isGradient, big, handleClick }) => {
+const MainButton = ({ width, heigth, text, isGradient, big, handleClick, isDisabled }) => {
   const checkSize = () => {
     if (big) {
       return '23px';
