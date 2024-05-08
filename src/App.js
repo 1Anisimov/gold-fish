@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MainPage from './app/pages/main-page';
 import { Route, Switch } from 'react-router-dom';
-// import CatalogPage from './app/modules/Catalog-page';
 import ModalCatalog from './app/reusable-components/modal-catalog';
 import Header from './app/components/header';
 import Footer from './app/components/footer';
@@ -9,8 +8,23 @@ import { CatalogOrProductPage } from './app/pages/catalog-or-product-page';
 import { BasketPage } from './app/modules/basket/basket-page';
 import { TestPage } from './app/pages/test-page';
 import AuthorizationForm from './app/common/components/authorization-form/authorization-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCategories } from './app/store/categories';
+import { addSubcategories } from './app/store/subcategories';
+import { getMainLoadLoadingStatus, mainLoading } from './app/store/mainLoad';
+import { addProducts } from './app/store/filters';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(addProducts())
+    dispatch(addCategories())
+    dispatch(addSubcategories())
+    dispatch(mainLoading())
+  },[dispatch])
+  
+  const mainLoadingStatus = useSelector(getMainLoadLoadingStatus())
     const [modalActive, setModalActive] = useState(false);
     const [modalForm, setModalForm] = useState(false);
   const changeModalForm = () => {
@@ -25,19 +39,19 @@ const App = () => {
     }
   };
     return (
-    <>
-    <Header onChange={changeModalActive} changeForm={changeModalForm} />
+    <div className={mainLoadingStatus === "READY" ? "" : 'mainContent_or_loader'}>
+    {mainLoadingStatus === "READY" ? (<><Header onChange={changeModalActive} changeForm={changeModalForm} />
     <Switch>
         <Route path="/catalog/:category?/:subcategory?/:productId?/" component={CatalogOrProductPage} />
-        {/* <Route  path="/:category?/:subcategory?/:productId?/" component={CatalogPage}/> */}
         <Route path="/:person?/basket" component={BasketPage} />
         <Route path="/test_page" component={TestPage} />
         <Route path="/" component={MainPage} />
     </Switch>
     <Footer />
     <ModalCatalog modalActive={modalActive} setModalActive={setModalActive} />
-    <AuthorizationForm modalForm={modalForm} setModalForm={setModalForm} />
-    </>
+    <AuthorizationForm modalForm={modalForm} setModalForm={setModalForm} /></>):(<div className='loader'></div>)}
+    
+    </div>
     )
 }
  

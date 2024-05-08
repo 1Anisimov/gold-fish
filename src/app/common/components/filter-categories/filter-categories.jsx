@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import cls from './filter-categories.module.css';
-import { categoriesArray } from '../../../../API/FakeAPI';
+// import { categoriesArray } from '../../../../API/FakeAPI';
 import FilterSubcategory from '../filter-subcategory/filter-subcategory';
 import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getAllCategories, getCategoriesLoadingStatus } from '../../../store/categories';
 
 const FilterCategories = ({ setTitleCatalog }) => {
+  const categoriesArray = useSelector(getAllCategories());
+  const categoriesLoadingStatus = useSelector(getCategoriesLoadingStatus());
+
   const params = useParams();
   const { category } = params;
 
@@ -23,7 +28,7 @@ const FilterCategories = ({ setTitleCatalog }) => {
   return (
     <>
       <div className="accordion" id="accordionExample">
-        {categoriesArray &&
+        {categoriesLoadingStatus === 'READY' &&
           categoriesArray.map((item) => (
             <div className="containerCategories" key={item.value}>
               <div className="accordion-item" style={{ border: 'none' }}>

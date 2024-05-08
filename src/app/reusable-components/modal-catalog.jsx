@@ -3,10 +3,17 @@ import iconClosed from '../image/icons/X_closed_icon.png';
 import { ScrollBlock } from '../hooks/useScrollBlock';
 import { Link } from 'react-router-dom';
 import arrow from '../image/icons/arrow_right_catalog.png';
-import { categoriesArray, subcatigoriesArray } from '../../API/FakeAPI';
 import history from '../utils/history';
+import { useSelector } from 'react-redux';
+import { getAllCategories, getCategoriesLoadingStatus } from '../store/categories';
+import { getAllSubcategories, getSubcategoriesLoadingStatus } from '../store/subcategories';
 
 const ModalCatalog = ({ modalActive, setModalActive }) => {
+  const categoriesArray = useSelector(getAllCategories());
+  const subcatigoriesArray = useSelector(getAllSubcategories());
+  const categoriesLoadingStatus = useSelector(getCategoriesLoadingStatus());
+  const subcategoriesLoadingStatus = useSelector(getSubcategoriesLoadingStatus());
+
   const [subcategory, setSubcategory] = useState('');
   const [blockScroll, allowScroll] = ScrollBlock();
 
@@ -47,7 +54,7 @@ const ModalCatalog = ({ modalActive, setModalActive }) => {
                 </div>
                 <div className="pop-up_catalog_container">
                   <div className="pop-up_catalog_left_bottom">
-                    {categoriesArray &&
+                    {categoriesLoadingStatus === 'READY' &&
                       categoriesArray.map((item) => (
                         <div
                           onMouseEnter={() => setSubcategory(item.value)}
@@ -63,7 +70,7 @@ const ModalCatalog = ({ modalActive, setModalActive }) => {
               <div className="pop-ups_catalog_right">
                 <div className="pop-ups_catalog_right_container">
                   <div className="pop-ups_catalog_right_block">
-                    {subcatigoriesArray &&
+                    {subcategoriesLoadingStatus === 'READY' &&
                       subcatigoriesArray.map((item) =>
                         subcategory === item.category ? (
                           <div className="pop-ups_catalog_right_item">

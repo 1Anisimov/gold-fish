@@ -4,7 +4,6 @@ import ProductsCatalog from '../common/components/products-catalog-page/products
 import MainContainer from '../common/components/main-container/main-container';
 import MainContainerBg from '../containers/main-container-bg';
 import banner from '../image/catalog/bannerCatalogPage.png';
-// import MainBreadcrumb from '../common/components/breadcrumb/breadcrumb';
 
 const CatalogPage = () => {
   const [titleCatalog, setTitleCatalog] = useState('Каталог продукции');

@@ -1,15 +1,19 @@
 import React from 'react';
 import cls from './filter-subcategory.module.css';
-import { subcatigoriesArray } from '../../../../API/FakeAPI';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getAllSubcategories, getSubcategoriesLoadingStatus } from '../../../store/subcategories';
 
 const FilterSubcategory = ({ category, setTitleCatalog }) => {
+  const subcatigoriesArray = useSelector(getAllSubcategories());
+  const subcatigoriesLoadingStatus = useSelector(getSubcategoriesLoadingStatus());
+
   const handleSetTitleCatalog = (name) => {
     setTitleCatalog(name);
   };
   return (
     <>
-      {subcatigoriesArray &&
+      {subcatigoriesLoadingStatus === 'READY' &&
         subcatigoriesArray.map((item) => (
           <div key={item.value}>
             {category === item.category ? (

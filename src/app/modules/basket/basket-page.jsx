@@ -20,6 +20,7 @@ import { getAllPromocodes } from '../../../API/FakeAPI';
 
 const Component = () => {
   const dispatch = useDispatch();
+
   const totalPrice = useSelector(getTotalPriceBasket());
   const products = useSelector(getBasketEntities());
   const currentPromocode = useSelector(getCurrentPromocode());

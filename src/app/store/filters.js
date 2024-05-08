@@ -1,107 +1,92 @@
 import { createSlice } from "@reduxjs/toolkit";
+import productsService from "../services/products.service";
+
+const initialState = {
+    products: [],
+        activeProducts: [],
+        filters: {
+            category: null,
+            age: {
+                18: true,
+                '3,4,5': true,
+                '6,7': true,
+                '8,9,10,11,12': true,
+                '13,14,15': true,
+                '16,17': true
+              },
+            subcategory: null,
+            presence: {
+                are_available: true,
+                to_order: true,
+                not_available: true
+            },
+            price: [1, 10000],
+            players: [1, 10]
+        },
+        isLoading: "LOADING",
+}
 
 const filtersSlice = createSlice({
     name: "filters",
-    initialState: {
-        category: null,
-        isLoading: "LOADING",
-        age: {
-            18: true,
-            '3,4,5': true,
-            '6,7': true,
-            '8,9,10,11,12': true,
-            '13,14,15': true,
-            '16,17': true
-          },
-        subcategory: null,
-        presence: {
-            are_available: true,
-            to_order: true,
-            not_available: true
-          },
-        price: [1, 10000],
-        players: [1, 10]
-
-    },
+    initialState: initialState,
     reducers: {
-        removeCategoryAndSubcategoryRequested: (state) => {
-            state.isLoading = "LOADING";
+        setLoadingStatusLoading: (state) => {
+            state.isLoading = "LOADING"
         },
+
+        // setLoadingStatusReady: (state) => {
+        //     state.isLoading = "READY"
+        // },
+
+        setLoadingStatusError: (state) => {
+            state.isLoading = "ERROR"
+        },
+        
         removeCategoryAndSubcategoryReceved: (state) => {
-            state.category = null;
-            state.subcategory = null;
+            state.filters.category = null;
+            state.filters.subcategory = null;
             state.isLoading = "READY";
-        },
-        removeCategoryAndSubcategoryRequestFile: (state) => {
-            state.isLoading = "ERROR";
         },
 
         //Category
-        filtersCategoryRequested: (state) => {
-            state.isLoading = "LOADING";
-        },
+        
         filtersCategoryReceved: (state, action) => {
-            state.subcategory = null;
-            state.category = action.payload;
+            state.filters.subcategory = null;
+            state.filters.category = action.payload;
             state.isLoading = "READY";
-        },
-        filtersCategoryRequestFile: (state) => {
-            state.isLoading = "ERROR";
         },
         
         //SubCategory
-        filtersSubcategoryRequested: (state) => {
-            state.isLoading = "LOADING";
-        },
+        
         filtersSubcategoryReceved: (state, action) => {
-            state.subcategory = action.payload;
+            state.filters.subcategory = action.payload;
             state.isLoading = "READY";
-        },
-        filtersSubcategoryRequestFile: (state) => {
-            state.isLoading = "ERROR";
-        },
-
-        // Age
-        filtersAgeRequested: (state) => {
-            state.isLoading = "LOADING";
-        },
-        filtersAgeReceved: (state, action) => {
-            state.age = action.payload;
-            state.isLoading = "READY";
-        },
-        filtersAgeRequestFile: (state) => {
-            state.isLoading = "ERROR";
-        },
-
-        //Price
-        filtersPriceRequested: (state) => {
-            state.isLoading = "LOADING";
-        },
-        filtersPriceReceved: (state, action) => {
-            state.price = action.payload;
-            state.isLoading = "READY";
-        },
-        filtersPriceRequestFile: (state) => {
-            state.isLoading = "ERROR";
-        },
-
-        //Presence
-        filtersPresenceRequested: (state) => {
-            state.isLoading = "LOADING";
-        },
-        filtersPresenceReceved: (state, action) => {
-            state.presence = action.payload;
-            state.isLoading = "READY";
-        },
-        filtersPresenceRequestFile: (state) => {
-            state.isLoading = "ERROR";
         },
         
-        filtersRemoveAllRequested: (state) => {
-            state.isLoading = "LOADING";
+
+        // Age
+        
+        filtersAgeReceved: (state, action) => {
+            state.filters.age = action.payload;
+            state.isLoading = "READY";
         },
+        
+        //Price
+        
+        filtersPriceReceved: (state, action) => {
+            state.filters.price = action.payload;
+            state.isLoading = "READY";
+        },
+        
+        //Presence
+        
+        filtersPresenceReceved: (state, action) => {
+            state.filters.presence = action.payload;
+            state.isLoading = "READY";
+        },
+                
         filtersRemoveAllReceved: (state) => {
-            state.age = {
+            state.filters.age = {
                 18: true,
                 '3,4,5': true,
                 '6,7': true,
@@ -109,136 +94,181 @@ const filtersSlice = createSlice({
                 '13,14,15': true,
                 '16,17': true
               };
-            state.category = null;
-            state.subcategory = null;
-            state.presence = {
+            state.filters.category = null;
+            state.filters.subcategory = null;
+            state.filters.presence = {
                 are_available: true,
                 to_order: true,
                 not_available: true
               };
-            state.price = [1, 10000];
-            state.players = [1, 10];
+            state.filters.price = [1, 10000];
+            state.filters.players = [1, 10];
             state.isLoading = "READY";
         },
-        filtersRemoveAllRequestFile: (state) => {
-            state.isLoading = "ERROR";
-        },
-
-        changeAgeCheckboxRequested: (state) => {
-            state.isLoading = "LOADING";
-        },
+        
         changeAgeCheckboxReceved: (state, action) => {
-            state.presence = action.payload;
+            state.filters.presence = action.payload;
             state.isLoading = "READY";
         },
-        changeAgeCheckboxRequestFile: (state) => {
-            state.isLoading = "ERROR";
-        },
-
-        changePlayersRequested: (state) => {
-            state.isLoading = "LOADING";
-        },
+        
         changePlayersReceved: (state, action) => {
-            state.players = action.payload;
+            state.filters.players = action.payload;
             state.isLoading = "READY";
         },
-        changePlayersRequestFile: (state) => {
-            state.isLoading = "ERROR";
-        },
+        
 
-        changePriceInputRequested: (state) => {
-            state.isLoading = "LOADING";
-        },
         changePriceInputMinReceved: (state, action) => {
-            state.price[0] = action.payload;
+            state.filters.price[0] = action.payload;
             state.isLoading = "READY";
         },
         changePriceInputMaxReceved: (state, action) => {
-            state.price[1] = action.payload;
+            state.filters.price[1] = action.payload;
             state.isLoading = "READY";
         },
-        changePriceInputRequestFile: (state) => {
-            state.isLoading = "ERROR";
-        },
-
-        changePlayersInputRequested: (state) => {
-            state.isLoading = "LOADING";
-        },
+        
+        
         changePlayersInputMinReceved: (state, action) => {
-            state.players[0] = action.payload;
+            state.filters.players[0] = action.payload;
             state.isLoading = "READY";
         },
         changePlayersInputMaxReceved: (state, action) => {
-            state.players[1] = action.payload;
+            state.filters.players[1] = action.payload;
             state.isLoading = "READY";
         },
-        changePlayersInputRequestFile: (state) => {
-            state.isLoading = "ERROR";
+        createProductReceved: (state, action) => {
+            state.products = action.payload
+            state.isLoading = "READY"
+        },
+
+        setActiveProductsReceved: (state, action) => {
+            state.activeProducts = action.payload
+            state.isLoading = "READY"
         },
     }
 });
 
 const { reducer: filtersReducer, actions } = filtersSlice;
 const {
-    changePlayersInputRequested,
+    setLoadingStatusLoading,
+    setLoadingStatusError,
+    // setLoadingStatusReady,
+
     changePlayersInputMinReceved,
     changePlayersInputMaxReceved,
-    changePlayersInputRequestFile,
 
-    changePriceInputRequested,
     changePriceInputMinReceved,
     changePriceInputMaxReceved,
-    changePriceInputRequestFile,
 
-    changePlayersRequested,
     changePlayersReceved,
-    changePlayersRequestFile,
 
-    changeAgeCheckboxRequested,
     changeAgeCheckboxReceved,
-    changeAgeCheckboxRequestFile,
 
-    filtersRemoveAllRequested,
     filtersRemoveAllReceved,
-    filtersRemoveAllRequestFile,
 
-    removeCategoryAndSubcategoryRequested,
     removeCategoryAndSubcategoryReceved,
-    removeCategoryAndSubcategoryRequestFile,
 
-    filtersPresenceRequested,
     filtersPresenceReceved,
-    filtersPresenceRequestFile,
 
-    filtersCategoryRequested,
     filtersCategoryReceved,
-    filtersCategoryRequestFile,
 
-    filtersSubcategoryRequested,
     filtersSubcategoryReceved,
-    filtersSubcategoryRequestFile,
 
-    filtersAgeRequested,
     filtersAgeReceved,
-    filtersAgeRequestFile,
 
-    filtersPriceRequested,
     filtersPriceReceved,
-    filtersPriceRequestFile,
+
+    createProductReceved,
+
+    setActiveProductsReceved,
 
  } = actions;
 
+ const handleAgeParams = (age, ageState) => {
+    
+      let ageArray = [];
+      Object.keys(ageState).map((item) => {
+        if (ageState[item]) {
+          ageArray.push(item);
+        }
+        return ageArray;
+      });
+      let str = ageArray.join(',');
+      const newAgeArray = str.split(',');
+
+      return newAgeArray.find((item) => item === age);
+    
+  };
+  const handlePlayersParams = (str) => {
+    const players = str.split('-');
+    const newPlayersArray = [];
+    if (players.length > 1) {
+      for (let i = Number(players[0]); i <= Number(players[1]); i++) {
+        newPlayersArray.push(i);
+      }
+      return newPlayersArray;
+    } else {
+      newPlayersArray.push(Number(players[0]));
+      newPlayersArray.push(Number(players[0]));
+      return newPlayersArray;
+    }
+  };
+
+ 
+
+ export const setActiveProducts = () => async (dispatch, getState) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        const { category, subcategory, age, price, players } = getState().filter.filters
+        const products = getState().filter.products
+
+        if(products.length > 0) {
+            const filteredProducts = products.filter((product) => {
+            
+                return (subcategory !== null && product.subcategory === subcategory) ||
+                 (subcategory === null && category !== null && product.category === category) || 
+                 (subcategory === null && category === null)
+                 ? true : false
+            })
+            const newArray = filteredProducts.filter(
+                (product) =>
+                price[1] >= product.price &&
+                price[0] <= product.price &&
+                age &&
+                  handleAgeParams(product.age, age) &&
+                  players[0] <= handlePlayersParams(product.players)[0] &&
+                  players[1] >=
+                    handlePlayersParams(product.players)[handlePlayersParams(product.players).length - 1]
+              );
+              dispatch(setActiveProductsReceved(newArray))
+        }
+        
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+ }
+ export const addProducts = () => async (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        const content = await productsService.get();
+        dispatch(createProductReceved(content))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+ }
+
+ 
  export const changeAgeCheckbox = () => async (dispatch) => {
-    dispatch(changeAgeCheckboxRequested())
+    dispatch(setLoadingStatusLoading())
     try {
         dispatch(changeAgeCheckboxReceved())
+        dispatch(setActiveProducts())
     } catch (error) {
-        dispatch(changeAgeCheckboxRequestFile())
+        dispatch(setLoadingStatusError())
     }
 }
 
 export const changePlayersInput = (value, name) => async (dispatch) => {
-    dispatch(changePlayersInputRequested())
+    dispatch(setLoadingStatusLoading())
     try {
         if(name === 'min') {
             dispatch(changePlayersInputMinReceved(value))
@@ -246,13 +276,14 @@ export const changePlayersInput = (value, name) => async (dispatch) => {
         if(name === 'max') {
             dispatch(changePlayersInputMaxReceved(value))
         }
+        dispatch(setActiveProducts())
     } catch (error) {
-        dispatch(changePlayersInputRequestFile())
+        dispatch(setLoadingStatusError())
     }
 }
 
 export const changePriceInput = (value, name) => async (dispatch) => {
-    dispatch(changePriceInputRequested())
+    dispatch(setLoadingStatusLoading())
     try {
         if(name === 'min') {
             dispatch(changePriceInputMinReceved(value))
@@ -260,88 +291,99 @@ export const changePriceInput = (value, name) => async (dispatch) => {
         if(name === 'max') {
             dispatch(changePriceInputMaxReceved(value))
         }
+        dispatch(setActiveProducts())
         
     } catch (error) {
-        dispatch(changePriceInputRequestFile())
+        dispatch(setLoadingStatusError())
     }
 }
 
  export const removeAllFilters = () => async (dispatch) => {
-    dispatch(filtersRemoveAllRequested())
+    dispatch(setLoadingStatusLoading())
     try {
         dispatch(filtersRemoveAllReceved())
+        dispatch(setActiveProducts())
     } catch (error) {
-        dispatch(filtersRemoveAllRequestFile())
+        dispatch(setLoadingStatusError())
     }
 }
 
  export const RemoveCategoryAndSubcategory = () => async (dispatch) => {
-    dispatch(removeCategoryAndSubcategoryRequested())
+    dispatch(setLoadingStatusLoading())
     try {
         dispatch(removeCategoryAndSubcategoryReceved())
+        dispatch(setActiveProducts())
     } catch (error) {
-        dispatch(removeCategoryAndSubcategoryRequestFile())
+        dispatch(setLoadingStatusError())
     }
 }
 
  export const getPrice = (payload) => async (dispatch) => {
-    dispatch(filtersPriceRequested())
+    dispatch(setLoadingStatusLoading())
     try {
         dispatch(filtersPriceReceved(payload))
+        dispatch(setActiveProducts())
     } catch (error) {
-        dispatch(filtersPriceRequestFile())
+        dispatch(setLoadingStatusError())
     }
 }
 export const getPresence = (payload) => async (dispatch) => {
-    dispatch(filtersPresenceRequested())
+    dispatch(setLoadingStatusLoading())
     try {
         dispatch(filtersPresenceReceved(payload))
+        dispatch(setActiveProducts())
     } catch (error) {
-        dispatch(filtersPresenceRequestFile())
+        dispatch(setLoadingStatusError())
     }
 }
 
 export const getAge = (payload) => async (dispatch) => {
-    dispatch(filtersAgeRequested())
+    dispatch(setLoadingStatusLoading())
     try {
         dispatch(filtersAgeReceved(payload))
+        dispatch(setActiveProducts())
     } catch (error) {
-        dispatch(filtersAgeRequestFile())
+        dispatch(setLoadingStatusError())
     }
 }
 
 export const getCategory = (payload) => async (dispatch) => {
-    dispatch(filtersCategoryRequested())
+    dispatch(setLoadingStatusLoading())
     try {
         dispatch(filtersCategoryReceved(payload))
+        dispatch(setActiveProducts())
     } catch (error) {
-        dispatch(filtersCategoryRequestFile())
+        dispatch(setLoadingStatusError())
     }
 };
 export const getSubcategory = (payload) => async (dispatch) => {
-    dispatch(filtersSubcategoryRequested())
+    dispatch(setLoadingStatusLoading())
     try {
         dispatch(filtersSubcategoryReceved(payload))
+        dispatch(setActiveProducts())
     } catch (error) {
-        dispatch(filtersSubcategoryRequestFile());
+        dispatch(setLoadingStatusError());
     }
 }
 
 export const changePlayers = (payload) => async (dispatch) => {
-    dispatch(changePlayersRequested())
+    dispatch(setLoadingStatusLoading())
     try {
         dispatch(changePlayersReceved(payload))
+        dispatch(setActiveProducts())
     } catch (error) {
-        dispatch(changePlayersRequestFile());
+        dispatch(setLoadingStatusError());
     }
 }
 
-export const getFiltersState = () => (state) => state.filter;
+export const getAllProducts = () => (state) => state.filter.products
+export const getAllActiveProducts = () => (state) => state.filter.activeProducts
+
 export const getFiltersLoadingStatus = () => (state) => state.filter.isLoading;
-export const getFiltersPrice = () => (state) => state.filter.price;
-export const getFiltersAge = () => (state) => state.filter.age;
-export const getFiltersPresence = () => (state) => state.filter.presence;
-export const getFiltersPlayers = () => (state) => state.filter.players; 
+export const getFiltersPrice = () => (state) => state.filter.filters.price;
+export const getFiltersAge = () => (state) => state.filter.filters.age;
+export const getFiltersPresence = () => (state) => state.filter.filters.presence;
+export const getFiltersPlayers = () => (state) => state.filter.filters.players; 
 
 
 

@@ -635,7 +635,11 @@ export function getAllPromocodes() {
 }
 
 export function getAllProducts () {
-    return products;
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(products)
+    }, 2000)
+  })
 }
 export function getTempBuy() {
     return productsTempBuy;
@@ -648,4 +652,20 @@ export function getSaleProducts() {
 }
 export function getNotSaleProducts() {
   return products.filter((product)=> product.sale === null)
+}
+
+export const getCategories = () => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(categoriesArray)
+    }, 2000)
+  })
+}
+
+export const getSubcategories = () => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(subcatigoriesArray)
+    }, 2000)
+  })
 }

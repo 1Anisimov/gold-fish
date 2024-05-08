@@ -1,3 +1,4 @@
+import React from 'react';
 import { getNotSaleProducts, getSaleProducts } from '../../API/FakeAPI';
 import MainContainer from '../common/components/main-container/main-container';
 import BlockInfo from '../components/blockInfo';
