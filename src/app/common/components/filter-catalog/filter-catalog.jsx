@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import cls from './filter-catalog.module.css';
 import { Link, useParams } from 'react-router-dom';
 import { FilterSlider } from '../filter-scrollbar/filter-scrollbar';
@@ -19,6 +19,7 @@ import {
 } from '../../../store/filters';
 import history from '../../../utils/history';
 import FilterPlayers from '../filter-players/filter-players';
+import { getShowAllCategory, showAllCategory } from '../../../store/categories';
 
 const FilterCatalog = ({ setTitleCatalog }) => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const FilterCatalog = ({ setTitleCatalog }) => {
   const ageState = useSelector(getFiltersAge());
   const presenceState = useSelector(getFiltersPresence());
   const filterLoadingStatus = useSelector(getFiltersLoadingStatus());
+  const isShowAllCategory = useSelector(getShowAllCategory());
 
   useEffect(() => {
     if (category) {
@@ -41,14 +43,12 @@ const FilterCatalog = ({ setTitleCatalog }) => {
     }
   }, [category, subcategory, dispatch]);
 
-  const [allCategory, setAllCategory] = useState(true);
-
-  const handleDropDown = (set) => {
-    set((prevState) => !prevState);
+  const handleDropDown = () => {
+    dispatch(showAllCategory(!isShowAllCategory));
   };
   const handleOpenAllCategories = (title) => {
-    if (!allCategory) {
-      setAllCategory((prevState) => !prevState);
+    if (!isShowAllCategory) {
+      dispatch(showAllCategory(!isShowAllCategory));
     }
     setTitleCatalog(title);
     dispatch(RemoveCategoryAndSubcategory());
@@ -103,7 +103,7 @@ const FilterCatalog = ({ setTitleCatalog }) => {
                         to="/catalog/"
                         className={cls.buttonBlock}
                         style={
-                          allCategory
+                          isShowAllCategory
                             ? {
                                 textDecoration: 'underline',
                                 outline: 'none',
@@ -115,19 +115,19 @@ const FilterCatalog = ({ setTitleCatalog }) => {
                       </Link>
                     </div>
                     <button
-                      onClick={() => handleDropDown(setAllCategory)}
-                      className={'accordion-button' + (allCategory ? ' ' : ' collapsed')}
+                      onClick={() => handleDropDown()}
+                      className={'accordion-button' + (isShowAllCategory ? ' ' : ' collapsed')}
                       style={{ border: 'none', boxShadow: 'none', backgroundColor: '#fff' }}
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseTwo"
-                      aria-expanded={allCategory ? 'true' : 'false'}
+                      aria-expanded={isShowAllCategory ? 'true' : 'false'}
                       aria-controls="collapseTwo"></button>
                   </div>
                 </h2>
                 <div
                   id="collapseTwo"
-                  className={'accordion-collapse collapse' + (allCategory ? ' show' : '')}
+                  className={'accordion-collapse collapse' + (isShowAllCategory ? ' show' : '')}
                   data-bs-parent="#accordionExample">
                   <div className="accordion-body">
                     <FilterCategories setTitleCatalog={setTitleCatalog} />

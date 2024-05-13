@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FilterCatalog from '../common/components/filter-catalog/filter-catalog';
 import ProductsCatalog from '../common/components/products-catalog-page/products-catalog-page';
 import MainContainer from '../common/components/main-container/main-container';
@@ -7,6 +7,9 @@ import banner from '../image/catalog/bannerCatalogPage.png';
 
 const CatalogPage = () => {
   const [titleCatalog, setTitleCatalog] = useState('Каталог продукции');
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className="catalog_page_banner">

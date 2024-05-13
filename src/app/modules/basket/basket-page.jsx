@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import cls from './basket-page.module.css';
 import MainContainerBg from '../../containers/main-container-bg';
 import MainContainer from '../../common/components/main-container/main-container';
@@ -20,6 +20,9 @@ import { getAllPromocodes } from '../../../API/FakeAPI';
 
 const Component = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const totalPrice = useSelector(getTotalPriceBasket());
   const products = useSelector(getBasketEntities());

@@ -1,27 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import cls from './filter-categories.module.css';
-// import { categoriesArray } from '../../../../API/FakeAPI';
 import FilterSubcategory from '../filter-subcategory/filter-subcategory';
 import { Link, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getAllCategories, getCategoriesLoadingStatus } from '../../../store/categories';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getActiveCategory,
+  getAllCategories,
+  getCategoriesLoadingStatus,
+  getOpenCategory,
+  setActiveCategory,
+  setOpenCategory
+} from '../../../store/categories';
 
 const FilterCategories = ({ setTitleCatalog }) => {
+  const dispatch = useDispatch();
   const categoriesArray = useSelector(getAllCategories());
   const categoriesLoadingStatus = useSelector(getCategoriesLoadingStatus());
+  const openCategory = useSelector(getOpenCategory());
+  const activeCategory = useSelector(getActiveCategory());
 
   const params = useParams();
   const { category } = params;
 
-  const [activeCategory, setActiveCategory] = useState(category);
+  useEffect(() => {
+    dispatch(setActiveCategory(category));
+    dispatch(setOpenCategory(category));
+  }, [dispatch, category]);
 
   const handleOpenCategory = ({ target }) => {
-    activeCategory === target.id ? setActiveCategory('') : setActiveCategory(target.id);
+    console.log('targetOpen', target.id);
+    console.log('openCategory', openCategory);
+    openCategory === target.id
+      ? dispatch(setOpenCategory(null))
+      : dispatch(setOpenCategory(target.id));
   };
   const handleOpenCategoryLink =
     (title) =>
     ({ target }) => {
-      activeCategory === target.id ? setActiveCategory('') : setActiveCategory(target.id);
+      dispatch(setActiveCategory(target.id));
+
+      target.id === openCategory
+        ? dispatch(setOpenCategory(null))
+        : dispatch(setOpenCategory(target.id));
       setTitleCatalog(title);
     };
 
@@ -52,7 +72,7 @@ const FilterCategories = ({ setTitleCatalog }) => {
                       id={item.value}
                       onClick={handleOpenCategory}
                       className={
-                        'accordion-button' + (item.value === activeCategory ? ' ' : ' collapsed')
+                        'accordion-button' + (item.value === openCategory ? ' ' : ' collapsed')
                       }
                       style={{
                         border: 'none',
@@ -62,14 +82,15 @@ const FilterCategories = ({ setTitleCatalog }) => {
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#collapseTwo"
-                      aria-expanded={item.value === activeCategory ? 'true' : 'false'}
+                      aria-expanded={item.value === openCategory ? 'true' : 'false'}
                       aria-controls="collapseTwo"></button>
                   </div>
                 </h2>
                 <div
                   id="collapseTwo"
                   className={
-                    'accordion-collapse collapse' + (activeCategory === item.value ? ' show' : '')
+                    'accordion-collapse collapse' +
+                    (openCategory === item.value || openCategory === item.value ? ' show' : '')
                   }
                   data-bs-parent="#accordionExample">
                   <div className="accordion-body">

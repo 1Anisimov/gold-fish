@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { getNotSaleProducts, getSaleProducts } from '../../API/FakeAPI';
 import MainContainer from '../common/components/main-container/main-container';
 import BlockInfo from '../components/blockInfo';
@@ -11,6 +11,11 @@ import MainContainerBg from '../containers/main-container-bg';
 const MainPage = () => {
   const productsSale = getSaleProducts();
   const products = getNotSaleProducts();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <div className="main_page">
