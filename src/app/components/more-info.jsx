@@ -12,6 +12,7 @@ const MoreInfo = () => {
         <div className="container_main">
           <h2 className="more_info_title">Больше интересной информации</h2>
           <div className="more_info_block">
+            {/* // TODO: через массив */}
             <MoreInfoCard
               img={imageCard1}
               title="Аэронавтика Империалис: 

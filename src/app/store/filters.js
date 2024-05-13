@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import productsService from "../services/products.service";
 
-const initialState = {
-    products: [],
+const initialStateFilters = {
+        products: [],
         activeProducts: [],
+        activePaginatedPage: 1,
+        
+        paginatedProducts: [],
         filters: {
             category: null,
             age: {
@@ -28,15 +31,15 @@ const initialState = {
 
 const filtersSlice = createSlice({
     name: "filters",
-    initialState: initialState,
+    initialState: initialStateFilters,
     reducers: {
         setLoadingStatusLoading: (state) => {
             state.isLoading = "LOADING"
         },
 
-        // setLoadingStatusReady: (state) => {
-        //     state.isLoading = "READY"
-        // },
+        setLoadingStatusReady: (state) => {
+            state.isLoading = "READY"
+        },
 
         setLoadingStatusError: (state) => {
             state.isLoading = "ERROR"
@@ -86,7 +89,11 @@ const filtersSlice = createSlice({
         },
                 
         filtersRemoveAllReceved: (state) => {
-            state.filters.age = {
+            
+            
+            state.paginatedProducts = [];
+            state.filters.category = null;
+            state.filters.age= {
                 18: true,
                 '3,4,5': true,
                 '6,7': true,
@@ -94,16 +101,15 @@ const filtersSlice = createSlice({
                 '13,14,15': true,
                 '16,17': true
               };
-            state.filters.category = null;
-            state.filters.subcategory = null;
-            state.filters.presence = {
+              state.filters.subcategory= null;
+              state.filters.presence= {
                 are_available: true,
                 to_order: true,
                 not_available: true
-              };
-            state.filters.price = [1, 10000];
-            state.filters.players = [1, 10];
-            state.isLoading = "READY";
+                };
+            state.filters.price= [1, 10000];
+            state.filters.players= [1, 10];
+            state.isLoading= "READY";
         },
         
         changeAgeCheckboxReceved: (state, action) => {
@@ -144,6 +150,16 @@ const filtersSlice = createSlice({
             state.activeProducts = action.payload
             state.isLoading = "READY"
         },
+
+        
+        changePaginatedProductsReceved: (state, action) => {
+            state.paginatedProducts = action.payload;
+            state.isLoading = "READY";
+        },
+        setActivePaginatedPageReceved: (state, action) => {
+            state.activePaginatedPage = action.payload;
+            state.isLoading = "READY";
+        }
     }
 });
 
@@ -181,7 +197,24 @@ const {
 
     setActiveProductsReceved,
 
+    
+    setActivePaginatedPageReceved,
+
  } = actions;
+
+ 
+
+
+export const setActivePaginatedPage = (payload) => async (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        dispatch(setActivePaginatedPageReceved(payload))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+ }
+
+
 
  const handleAgeParams = (age, ageState) => {
     
@@ -240,6 +273,8 @@ const {
                     handlePlayersParams(product.players)[handlePlayersParams(product.players).length - 1]
               );
               dispatch(setActiveProductsReceved(newArray))
+              dispatch(setActivePaginatedPageReceved(1))
+            
         }
         
     } catch (error) {
@@ -298,11 +333,12 @@ export const changePriceInput = (value, name) => async (dispatch) => {
     }
 }
 
- export const removeAllFilters = () => async (dispatch) => {
+ export const removeAllFilters = () => async (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
     try {
         dispatch(filtersRemoveAllReceved())
         dispatch(setActiveProducts())
+        
     } catch (error) {
         dispatch(setLoadingStatusError())
     }
@@ -378,6 +414,9 @@ export const changePlayers = (payload) => async (dispatch) => {
 
 export const getAllProducts = () => (state) => state.filter.products
 export const getAllActiveProducts = () => (state) => state.filter.activeProducts
+export const getNumberOfProductsOnPage = () => (state) => state.filter.numberOfProductsOnPageArray
+export const getActivePaginatedPage = () => (state) => state.filter.activePaginatedPage
+export const getActivePaginatedProducts = () => (state) => state.filter.paginatedProducts
 
 export const getFiltersLoadingStatus = () => (state) => state.filter.isLoading;
 export const getFiltersPrice = () => (state) => state.filter.filters.price;

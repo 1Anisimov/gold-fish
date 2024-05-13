@@ -10,7 +10,7 @@ const MainCatalog = () => {
   const goToCatalog = ({ target }) => {
     history.push(`/catalog/${target.id}`);
   };
-
+  // TODO: *попробовать сделать через массив(хотя бы четыре карточки справа)
   return (
     <>
       <div className="main_catalog">

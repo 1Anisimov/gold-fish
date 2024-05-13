@@ -11,24 +11,30 @@ import { getAllSubcategories, getSubcategoriesLoadingStatus } from '../store/sub
 const ModalCatalog = ({ modalActive, setModalActive }) => {
   const categoriesArray = useSelector(getAllCategories());
   const subcatigoriesArray = useSelector(getAllSubcategories());
+  // TODO убрать (оба)
   const categoriesLoadingStatus = useSelector(getCategoriesLoadingStatus());
   const subcategoriesLoadingStatus = useSelector(getSubcategoriesLoadingStatus());
 
+  // TODO перенести в редакс и переименовать в category(или activeCategory)
   const [subcategory, setSubcategory] = useState('');
   const [blockScroll, allowScroll] = ScrollBlock();
 
   modalActive ? blockScroll() : allowScroll();
+
   const handleGoInCatalog = () => {
     setModalActive(false);
   };
+
   const goToCategories = (value) => {
     history.push(`/catalog/${value}/`);
     setModalActive(false);
   };
+
   const goToSubcategories = (value) => {
     history.push(`/catalog/${subcategory}/${value}/`);
     setModalActive(false);
   };
+
   return (
     <>
       {modalActive && (
@@ -54,6 +60,7 @@ const ModalCatalog = ({ modalActive, setModalActive }) => {
                 </div>
                 <div className="pop-up_catalog_container">
                   <div className="pop-up_catalog_left_bottom">
+                    {/* // TODO убрать проверку статуса(она на компонент выше) */}
                     {categoriesLoadingStatus === 'READY' &&
                       categoriesArray.map((item) => (
                         <div
@@ -70,6 +77,7 @@ const ModalCatalog = ({ modalActive, setModalActive }) => {
               <div className="pop-ups_catalog_right">
                 <div className="pop-ups_catalog_right_container">
                   <div className="pop-ups_catalog_right_block">
+                    {/* // TODO убрать проверку статуса(она на компонент выше) */}
                     {subcategoriesLoadingStatus === 'READY' &&
                       subcatigoriesArray.map((item) =>
                         subcategory === item.category ? (
@@ -77,7 +85,7 @@ const ModalCatalog = ({ modalActive, setModalActive }) => {
                             <span onClick={() => goToSubcategories(item.value)}>{item.name}</span>
                           </div>
                         ) : (
-                          ''
+                          <></>
                         )
                       )}
                   </div>

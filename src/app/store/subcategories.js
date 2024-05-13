@@ -15,7 +15,7 @@ const subcategoriesSlice = createSlice({
             state.entity = action.payload
             state.isLoading = "READY"
         },
-        createSubcategoriesRequestFile: (state) => {
+        createSubcategoriesRequestFailed: (state) => {
             state.isLoading = "ERROR"
         },
     }
@@ -26,7 +26,7 @@ const {
 
     createSubcategoriesRequested,
     createSubcategoriesReceved,
-    createSubcategoriesRequestFile,
+    createSubcategoriesRequestFailed,
 
  } = actions;
 
@@ -36,7 +36,7 @@ const {
         const content = await subcategoriesService.get();
         dispatch(createSubcategoriesReceved(content))
     } catch (error) {
-        dispatch(createSubcategoriesRequestFile())
+        dispatch(createSubcategoriesRequestFailed())
     }
  }
 

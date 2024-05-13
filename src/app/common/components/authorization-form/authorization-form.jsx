@@ -8,6 +8,7 @@ const AuthorizationForm = ({ modalForm, setModalForm }) => {
   const [blockScroll, allowScroll] = ScrollBlock();
 
   modalForm ? blockScroll() : allowScroll();
+
   return (
     <>
       {modalForm && (

@@ -29,6 +29,7 @@ const {
  export const mainLoading = () => async (dispatch, getState) => {
     dispatch(mainLoadRequested())
     try {
+        // TODO убрать таймаут
         setTimeout(() => {
         if(getState().filter.isLoading === "READY" && getState().categories.isLoading === "READY" && getState().subcategories.isLoading === "READY") {
             dispatch(mainLoadReceved())

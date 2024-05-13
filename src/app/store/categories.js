@@ -15,6 +15,7 @@ const categoriesSlice = createSlice({
             state.entity = action.payload
             state.isLoading = "READY"
         },
+        // TODO поменять на failed
         createCategoriesRequestFile: (state) => {
             state.isLoading = "ERROR"
         },

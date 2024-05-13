@@ -21,10 +21,12 @@ const App = () => {
     dispatch(addProducts())
     dispatch(addCategories())
     dispatch(addSubcategories())
+    // TODO избавиться и получать статусы на этой странице
     dispatch(mainLoading())
   },[dispatch])
   
   const mainLoadingStatus = useSelector(getMainLoadLoadingStatus())
+    // TODO перенести в редакс
     const [modalActive, setModalActive] = useState(false);
     const [modalForm, setModalForm] = useState(false);
   const changeModalForm = () => {
@@ -38,19 +40,26 @@ const App = () => {
       setModalActive(true);
     }
   };
+  // TODO обработать ошибки загрузки
     return (
+      // TODO добавить лоадинг страницу сюда и избавиться от mainLoadingStatus
     <div className={mainLoadingStatus === "READY" ? "" : 'mainContent_or_loader'}>
-    {mainLoadingStatus === "READY" ? (<><Header onChange={changeModalActive} changeForm={changeModalForm} />
-    <Switch>
-        <Route path="/catalog/:category?/:subcategory?/:productId?/" component={CatalogOrProductPage} />
-        <Route path="/:person?/basket" component={BasketPage} />
-        <Route path="/test_page" component={TestPage} />
-        <Route path="/" component={MainPage} />
-    </Switch>
-    <Footer />
-    <ModalCatalog modalActive={modalActive} setModalActive={setModalActive} />
-    <AuthorizationForm modalForm={modalForm} setModalForm={setModalForm} /></>):(<div className='loader'></div>)}
-    
+    {mainLoadingStatus === "READY"
+      ? <>
+          <Header onChange={changeModalActive} changeForm={changeModalForm} />
+          <Switch>
+            <Route path="/catalog/:category?/:subcategory?/:productId?/" component={CatalogOrProductPage} />
+            <Route path="/:person?/basket" component={BasketPage} />
+            <Route path="/test_page" component={TestPage} />
+            <Route exact path="/" component={MainPage} />
+          </Switch>
+          <Footer />
+          {/* // TODO перенести в Header(оба) */}
+          <ModalCatalog modalActive={modalActive} setModalActive={setModalActive} />
+          <AuthorizationForm modalForm={modalForm} setModalForm={setModalForm} />
+        </>
+      : <div className='loader'></div>
+      }
     </div>
     )
 }
