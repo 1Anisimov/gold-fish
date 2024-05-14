@@ -191,7 +191,7 @@ font-weight: 700;
 .button-gradient {
   background: linear-gradient(184.53deg, #F9A43F 5.27%, #FB791B 91.78%);
   line-height: 18.58px;  
-  border:#F9A43F;
+  border: 2px solid #F9A43F;
   border-radius: 9px;
   /* background: #F9A43F; */
   color: #FFF;
@@ -200,15 +200,17 @@ font-weight: 700;
   font-weight: 700;
   line-height: normal;
   cursor: pointer;
+  transition: all 0.6s ease;
 }
 .button-gradient:hover {
-  border: 2px solid #F9A43F;;
+  border: 2px solid #F9A43F;
   color: #F9A43F;
   font-family: "Trebuchet MS";
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   background: #FFF;
+  transition: all 0.6s ease;
 }
 
 .button-white {
@@ -220,13 +222,15 @@ font-weight: 700;
   font-weight: 700;
   line-height: normal;
   cursor: pointer;
+  transition: all 0.6s ease;
 }
 .button-white:hover {
-  border:#F9A43F;
+  border:2px solid #F9A43F;
   background: linear-gradient(184.53deg, #F9A43F 5.27%, #FB791B 91.78%);
   color: #FFF;
   font-family: "Trebuchet MS";
   font-weight: 700;
+  transition: all 0.6s ease;
 }
 .info_container {
   display: flex;
@@ -488,7 +492,8 @@ font-weight: 700;
   border: none;
 }
 .card:hover {
-  box-shadow: 5px 6px 16px 10px rgba(42, 42, 42, 0.16);
+  /* box-shadow: 5px 6px 16px 10px rgba(42, 42, 42, 0.16); */
+  box-shadow: 2px 2px 5px 0px rgba(42, 42, 42, 0.16);
 }
 .card_text {
   display: flex;
@@ -618,16 +623,24 @@ font-weight: 700;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 }
 .upcoming_events_bottom {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 150px;
   bottom: 0;
   background: rgba(42, 42, 42, 0.5);
   color: #FFF;
   padding: 25px;
+  transition: all 0.5s ease;
 }
+
 .upcoming_events_left:hover .upcoming_events_bottom {
-  top: 0;
+  height: 100%;
+  transition: all 0.5s ease;
 }
 .upcoming_events_bottom_block {
   display: flex;
@@ -638,6 +651,9 @@ color: rgba(249, 164, 63, 1);
 font-family: Trebuchet MS;
 font-size: 19px;
 font-weight: 700;
+}
+.fullText_upcoming_events{
+  margin-top: 30px;
 }
 .upcoming_events_bottom_block_span{
   font-family: Open Sans;
@@ -659,6 +675,7 @@ font-weight: 700;
   justify-content: space-between;
 }
 .more_info_card{
+  cursor: pointer;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
@@ -696,6 +713,10 @@ font-weight: 700;
 }
 
 .footer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 background: rgba(42, 42, 42, 1);
 bottom: 0;
 left: 0;
@@ -704,13 +725,45 @@ right: 0;
 }
 .footer_top{
   padding: 80px 0;
-display: flex;
-justify-content: space-between;
-align-items: start;
-font-family: Trebuchet MS;
+  display: flex;
+  
+  justify-content: space-between;
+  align-items: start;
+  font-family: Trebuchet MS;
   font-size: 16px;
   font-weight: 400;
   color: rgba(255, 255, 255, 1);
+}
+.footer_top_title{
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+}
+.footer_top_title:hover{
+  color: #F9A43F;
+}
+.footer_top_part_2_categories{
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+}
+.footer_top_part_2_categories:hover{
+  text-decoration: underline;
+  color: #F9A43F;
+}
+
+.footer_top_item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-basis: 0;
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+
+.footer_top_part_1{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  
 }
 
 .footer_top_part_1_logo{
@@ -726,7 +779,7 @@ font-family: Trebuchet MS;
 .footer_top_part_2{
   display: flex;
   flex-direction: column;
-align-items: start;
+align-items: center;
 }
 .footer_top_part_2_title{
   font-family: Trebuchet MS;
@@ -735,13 +788,16 @@ align-items: start;
   color: rgba(255, 255, 255, 1);
 }
 .footer_top_part_2_list{
+  width: 170px;
   display: flex;
   flex-direction: column;
   align-items: start;
+  text-align: left;
   font-family: Trebuchet MS;
   font-size: 16px;
   font-weight: 400;
   color: rgba(255, 255, 255, 1);
+
 }
 .footer_top_part_3_list{
   display: flex;
@@ -750,14 +806,16 @@ align-items: start;
 }
 .footer_top_part_3{
   font-family: Trebuchet MS;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 19px;
+  font-weight: 700;
   color: rgba(255, 255, 255, 1);
 }
 .footer_top_part_4_list{
   display: flex;
   flex-direction: column;
   align-items: start;
+  font-size: 19px;
+  font-weight: 700;
 }
 .footer_top_part_5{
   display: flex;
@@ -779,10 +837,11 @@ align-items: start;
   flex-direction: column;
   align-items: end;
 }
-.footer_top_item{
-  flex-basis: 20%;
-}
+
 .footer_bottom{
+  display: flex;
+  justify-content: center;
+  width: 100%;
   border-top:1px solid rgba(255, 255, 255, 0.25) ;
 }
 .footer_bottom_block{
@@ -824,6 +883,10 @@ align-items: start;
 }
 .derection{
   text-decoration-line: underline;
+  cursor: pointer;
+}
+.derection:hover{
+  color: rgba(255, 255, 255, 1);
 }
 .pop-up_catalog{
   position: fixed;
@@ -1291,6 +1354,8 @@ font-weight: 700;
 .mainContent_or_loader{
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 .product_catalog_loaderBlock{
   width: 100%;

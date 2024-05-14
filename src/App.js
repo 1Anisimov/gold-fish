@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCategories } from './app/store/categories';
 import { addSubcategories } from './app/store/subcategories';
 import { getMainLoadLoadingStatus, mainLoading } from './app/store/mainLoad';
-import { addProducts } from './app/store/filters';
+import { addProducts } from './app/store/products';
 
 const App = () => {
   const dispatch = useDispatch();

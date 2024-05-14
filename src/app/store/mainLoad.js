@@ -31,7 +31,7 @@ const {
     try {
         // TODO убрать таймаут
         setTimeout(() => {
-        if(getState().filter.isLoading === "READY" && getState().categories.isLoading === "READY" && getState().subcategories.isLoading === "READY") {
+        if(getState().products.isLoading === "READY" && getState().categories.isLoading === "READY" && getState().subcategories.isLoading === "READY") {
             dispatch(mainLoadReceved())
         }
         }, 3000)

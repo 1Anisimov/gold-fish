@@ -7,7 +7,7 @@ import {
   getFiltersLoadingStatus,
   getFiltersPrice,
   getPrice
-} from '../../../store/filters';
+} from '../../../store/products';
 import { memo } from 'react';
 
 const Component = () => {

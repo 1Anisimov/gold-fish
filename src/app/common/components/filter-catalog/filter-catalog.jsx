@@ -16,7 +16,7 @@ import {
   getPresence,
   getSubcategory,
   removeAllFilters
-} from '../../../store/filters';
+} from '../../../store/products';
 import history from '../../../utils/history';
 import FilterPlayers from '../filter-players/filter-players';
 import { getShowAllCategory, showAllCategory } from '../../../store/categories';

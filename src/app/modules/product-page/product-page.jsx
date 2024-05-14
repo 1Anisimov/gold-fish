@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import cls from './product-page.module.css';
 import { getProductById } from '../../../API/FakeAPI';
 import MainContainerBg from '../../containers/main-container-bg';
@@ -10,6 +10,9 @@ import VerticalSlider from '../../reusable-components/vertical-slider';
 
 const Component = ({ productId }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const product = getProductById(productId);
   return (

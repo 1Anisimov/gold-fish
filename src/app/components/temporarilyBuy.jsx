@@ -1,7 +1,7 @@
 import React from 'react';
 import SliderProducts from '../reusable-components/slider-products';
 import { useSelector } from 'react-redux';
-import { getFiltersLoadingStatus } from '../store/filters';
+import { getFiltersLoadingStatus } from '../store/products';
 
 const TemporarilyBuy = ({ title, isSale, products }) => {
   const productsLoadingStatus = useSelector(getFiltersLoadingStatus());

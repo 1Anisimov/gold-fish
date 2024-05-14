@@ -5,6 +5,7 @@ import logoMir from '../image/icons/MIR_icon_footer.png';
 import logoMc from '../image/icons/MC_icon_footer.png';
 import BottomContainerBg from '../containers/bottom-container-bg';
 import BottomContainer from '../containers/bottom-container';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -23,36 +24,70 @@ const Footer = () => {
                 </span>
               </div>
               <div className="footer_top_item footer_top_part_2">
-                <span className="footer_top_part_2_title">Каталог</span>
                 <div className="footer_top_part_2_list">
-                  <span>Warhammer 40000</span>
-                  <span>Настольные игры</span>
-                  <span>Magic: the Gathering</span>
-                  <span>Аксессуары для игр</span>
-                  <span>Краски </span>
-                  <span>Аксессуары для моделизма</span>
+                  <Link className="footer_top_title footer_top_part_2_title" to={`/catalog`}>
+                    Каталог
+                  </Link>
+                  <Link className="footer_top_part_2_categories" to={`/catalog/warhammer`}>
+                    Warhammer 40000
+                  </Link>
+                  <Link className="footer_top_part_2_categories" to={`/catalog/board_games`}>
+                    Настольные игры
+                  </Link>
+                  <Link className="footer_top_part_2_categories" to={`/catalog/magic`}>
+                    Magic: the Gathering
+                  </Link>
+                  <Link className="footer_top_part_2_categories" to={`/catalog/accessories_game`}>
+                    Аксессуары для игр
+                  </Link>
+                  <Link className="footer_top_part_2_categories" to={`/catalog/paints`}>
+                    Краски{' '}
+                  </Link>
+                  <Link
+                    className="footer_top_part_2_categories"
+                    to={`/catalog/accessories_modeling`}>
+                    Аксессуары для моделизма
+                  </Link>
                 </div>
               </div>
               <div className="footer_top_item footer_top_part_3">
                 <div className="footer_top_part_3_list">
-                  <span>Правила клуба</span>
-                  <span>Мероприятия</span>
-                  <span>О нас</span>
-                  <span>Контакты</span>
-                  <span>Блог</span>
+                  <Link className="footer_top_title" to={`/`}>
+                    Правила клуба
+                  </Link>
+                  <Link className="footer_top_title" to={`/`}>
+                    Мероприятия
+                  </Link>
+                  <Link className="footer_top_title" to={`/`}>
+                    О нас
+                  </Link>
+                  <Link className="footer_top_title" to={`/`}>
+                    Контакты
+                  </Link>
+                  <Link className="footer_top_title" to={`/`}>
+                    Блог
+                  </Link>
                 </div>
               </div>
               <div className="footer_top_item footer_top_part_4">
                 <div className="footer_top_part_4_list">
-                  <span>Оплата и достака</span>
-                  <span>Гарантия и возврат</span>
+                  <Link className="footer_top_title" to={`/`}>
+                    Оплата и достака
+                  </Link>
+                  <Link className="footer_top_title" to={`/`}>
+                    Гарантия и возврат
+                  </Link>
                 </div>
               </div>
               <div className="footer_top_item footer_top_part_5">
                 <button className="footer_top_part_5_button">Заказать звонок</button>
                 <div className="footer_top_part_5_list">
-                  <span>+7 (495) 911-10-11</span>
-                  <span>msk@magicgoldfish.ru</span>
+                  <Link className="footer_top_title" to={`/`}>
+                    +7 (495) 911-10-11
+                  </Link>
+                  <Link className="footer_top_title" to={`/`}>
+                    msk@magicgoldfish.ru
+                  </Link>
                 </div>
                 <div></div>
               </div>

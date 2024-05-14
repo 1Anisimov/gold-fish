@@ -29,8 +29,8 @@ const initialStateFilters = {
         isLoading: "LOADING",
 }
 
-const filtersSlice = createSlice({
-    name: "filters",
+const productsSlice = createSlice({
+    name: "products",
     initialState: initialStateFilters,
     reducers: {
         setLoadingStatusLoading: (state) => {
@@ -163,7 +163,7 @@ const filtersSlice = createSlice({
     }
 });
 
-const { reducer: filtersReducer, actions } = filtersSlice;
+const { reducer: productsReducer, actions } = productsSlice;
 const {
     setLoadingStatusLoading,
     setLoadingStatusError,
@@ -251,8 +251,8 @@ export const setActivePaginatedPage = (payload) => async (dispatch) => {
  export const setActiveProducts = () => async (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
     try {
-        const { category, subcategory, age, price, players } = getState().filter.filters
-        const products = getState().filter.products
+        const { category, subcategory, age, price, players } = getState().products.filters
+        const products = getState().products.products
 
         if(products.length > 0) {
             const filteredProducts = products.filter((product) => {
@@ -412,19 +412,19 @@ export const changePlayers = (payload) => async (dispatch) => {
     }
 }
 
-export const getAllProducts = () => (state) => state.filter.products
-export const getAllActiveProducts = () => (state) => state.filter.activeProducts
-export const getNumberOfProductsOnPage = () => (state) => state.filter.numberOfProductsOnPageArray
-export const getActivePaginatedPage = () => (state) => state.filter.activePaginatedPage
-export const getActivePaginatedProducts = () => (state) => state.filter.paginatedProducts
+export const getAllProducts = () => (state) => state.products.products
+export const getAllActiveProducts = () => (state) => state.products.activeProducts
+export const getNumberOfProductsOnPage = () => (state) => state.products.numberOfProductsOnPageArray
+export const getActivePaginatedPage = () => (state) => state.products.activePaginatedPage
+export const getActivePaginatedProducts = () => (state) => state.products.paginatedProducts
 
-export const getFiltersLoadingStatus = () => (state) => state.filter.isLoading;
-export const getFiltersPrice = () => (state) => state.filter.filters.price;
-export const getFiltersAge = () => (state) => state.filter.filters.age;
-export const getFiltersPresence = () => (state) => state.filter.filters.presence;
-export const getFiltersPlayers = () => (state) => state.filter.filters.players; 
-
-
+export const getFiltersLoadingStatus = () => (state) => state.products.isLoading;
+export const getFiltersPrice = () => (state) => state.products.filters.price;
+export const getFiltersAge = () => (state) => state.products.filters.age;
+export const getFiltersPresence = () => (state) => state.products.filters.presence;
+export const getFiltersPlayers = () => (state) => state.products.filters.players; 
 
 
-export default filtersReducer;
+
+
+export default productsReducer;

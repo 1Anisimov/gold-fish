@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const CardEvents = ({ title, date, text, img }) => {
+const CardEvents = ({ title, date, text, fullText, img, price, start }) => {
+  const [textContent, setTextContent] = useState(text);
+  const changeTextContentHover = () => {
+    textContent === text ? setTextContent(fullText) : setTextContent(text);
+  };
   return (
     <>
-      <div className="upcoming_events_left">
+      <div
+        onMouseEnter={changeTextContentHover}
+        onMouseLeave={changeTextContentHover}
+        className="upcoming_events_left">
         <img src={img} alt="" />
         <div className="upcoming_events_bottom">
           <div className="upcoming_events_bottom_block">
@@ -11,7 +18,17 @@ const CardEvents = ({ title, date, text, img }) => {
             <span className="upcoming_events_bottom_block_span">{date}</span>
           </div>
 
-          <div className="upcoming_events_bottom_text">{text}</div>
+          <div className="upcoming_events_bottom_text">
+            {textContent}
+            {textContent === fullText ? (
+              <div className="fullText_upcoming_events">
+                <p>{start}</p>
+                <p>{price}</p>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
       </div>
     </>

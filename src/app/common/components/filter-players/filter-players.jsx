@@ -7,7 +7,7 @@ import {
   changePlayersInput,
   getFiltersLoadingStatus,
   getFiltersPlayers
-} from '../../../store/filters';
+} from '../../../store/products';
 
 const FilterPlayers = () => {
   const dispatch = useDispatch();

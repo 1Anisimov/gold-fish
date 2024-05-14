@@ -8,7 +8,7 @@ import {
   getFiltersLoadingStatus,
   setActivePaginatedPage,
   setActiveProducts
-} from '../../../store/filters';
+} from '../../../store/products';
 import changePaginationPage from '../../../utils/changePaginationPage';
 
 const ProductsCatalog = () => {
