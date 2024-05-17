@@ -1,0 +1,64 @@
+.page{
+    margin-top: 200px;
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
+.notProducts{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Trebuchet MS;
+    font-size: 22px;
+    font-weight: 700;
+}
+.comeToCatalog{
+    font-size: 19px;
+    font-weight: 400;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #a2a2a2;
+}
+.comeToCatalog:hover{
+    color: #F9A43F;
+}
+.paginationBlock{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+.paginationContent{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.paginationItem{
+    color: rgba(42, 42, 42, 1);
+    padding: 0 8px 0 8px;
+    cursor: pointer;
+    font-family: Trebuchet MS;
+    font-size: 19px;
+    font-weight: 700;
+}
+.paginationItem:hover{
+    color: rgba(249, 164, 63, 1);
+}
+.paginationItemActive{
+    border: 1px solid rgba(42, 42, 42, 1);
+    border-radius: 7px;
+}
+.paginationItemActive:hover{
+    color: rgba(42, 42, 42, 1);
+}
+.cardBlock{
+    margin-bottom: 10px;
+    /* padding-left: 10px; */
+    gap: 10px;
+    flex-basis: 25%;
+}

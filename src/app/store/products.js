@@ -5,6 +5,8 @@ const initialStateFilters = {
         products: [],
         activeProducts: [],
         activePaginatedPage: 1,
+        activePaginatedPageOnFound: 1,
+        foundProducts: [],
         
         paginatedProducts: [],
         filters: {
@@ -159,6 +161,15 @@ const productsSlice = createSlice({
         setActivePaginatedPageReceved: (state, action) => {
             state.activePaginatedPage = action.payload;
             state.isLoading = "READY";
+        },
+
+        setFoundProductsReceved: (state, action) => {
+            state.foundProducts = action.payload;
+            state.isLoading = "READY"
+        },
+        setActivePaginationPageOnFoundReceved: (state, action) => {
+            state.activePaginatedPageOnFound = action.payload
+            state.isLoading = "READY"
         }
     }
 });
@@ -200,10 +211,29 @@ const {
     
     setActivePaginatedPageReceved,
 
+    setFoundProductsReceved,
+    setActivePaginationPageOnFoundReceved,
+
  } = actions;
 
  
+export const setFoundProducts = (payload) => async (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        dispatch(setFoundProductsReceved(payload))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+}
 
+export const setActivePaginatedPageOnFound = (payload) => async (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        dispatch(setActivePaginationPageOnFoundReceved(payload))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+ }
 
 export const setActivePaginatedPage = (payload) => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
@@ -416,7 +446,9 @@ export const getAllProducts = () => (state) => state.products.products
 export const getAllActiveProducts = () => (state) => state.products.activeProducts
 export const getNumberOfProductsOnPage = () => (state) => state.products.numberOfProductsOnPageArray
 export const getActivePaginatedPage = () => (state) => state.products.activePaginatedPage
+export const getActivePaginatedPageOnFound = () => (state) => state.products.activePaginatedPageOnFound
 export const getActivePaginatedProducts = () => (state) => state.products.paginatedProducts
+export const getFoundProducts = () => (state) => state.products.foundProducts
 
 export const getFiltersLoadingStatus = () => (state) => state.products.isLoading;
 export const getFiltersPrice = () => (state) => state.products.filters.price;

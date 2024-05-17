@@ -1,18 +1,66 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import logoGoldFish from '../image/logo_goldFish.png';
 import logoSearch from '../image/icons/input_search_icon.png';
 import { Link } from 'react-router-dom';
 import HeaderContainer from '../common/components/header-container/header-container';
 import HeaderTopContainerBg from '../containers/header-top-container-bg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getBasketEntities } from '../store/basket';
+import { getAllProducts, setFoundProducts } from '../store/products';
+import history from '../utils/history';
 
 const HeaderTop = ({ changeForm }) => {
+  const dispatch = useDispatch();
+
   const basketEntities = useSelector(getBasketEntities());
+  const products = useSelector(getAllProducts());
+
+  const [valueSearch, setValueSearch] = useState('');
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
+
+  const findProducts = ({ target }) => {
+    setValueSearch(target.value);
+    setIsOpenSearch(true);
+  };
+
+  const handleShowAll = () => {
+    history.push('/foundProducts');
+    setIsOpenSearch(false);
+  };
+
+  const filteredProducts = (valueSearch) => {
+    const newArray = products.filter((p) => {
+      return p.name
+        .toLowerCase()
+        .trim()
+        .includes(valueSearch ? valueSearch.toLowerCase().trim() : '');
+    });
+    return newArray;
+  };
+
+  const filteredProductsActive = useMemo(() => filteredProducts(valueSearch), [valueSearch]);
+
+  useEffect(() => {
+    console.log(filteredProductsActive);
+    dispatch(setFoundProducts(filteredProductsActive));
+  }, [filteredProductsActive, dispatch]);
+
+  const fiveFilteredProducts = filteredProductsActive.slice(0, 5);
+  console.log(fiveFilteredProducts);
+
+  const removeValueSearch = () => {
+    setIsOpenSearch(false);
+  };
+
   return (
     <>
       <HeaderTopContainerBg>
         <HeaderContainer>
+          {filteredProductsActive.length > 0 && isOpenSearch ? (
+            <div onClick={removeValueSearch} className="header_top__blockInputBlock_out"></div>
+          ) : (
+            <> </>
+          )}
           <div className="header_top__bg">
             <div className="container_main">
               <div className="header_top">
@@ -21,11 +69,62 @@ const HeaderTop = ({ changeForm }) => {
                     <img src={logoGoldFish} alt="" className="header_top_logo" />
                   </Link>
                 </div>
-                <div className="header_top__blockInput">
-                  <input type="text" className="header_top_input" placeholder="Найти игру" />
-                  <button className="header_top_input_button">
-                    <img src={logoSearch} alt="" />
-                  </button>
+                <div className="header_top__blockInputBlock">
+                  <div className="header_top__blockInput">
+                    <input
+                      onChange={findProducts}
+                      onFocus={findProducts}
+                      type="text"
+                      className="header_top_input"
+                      placeholder="Найти игру"
+                    />
+                    <button className="header_top_input_button" onClick={handleShowAll}>
+                      <img src={logoSearch} alt="" />
+                    </button>
+                  </div>
+                  {valueSearch.length > 1 && isOpenSearch ? (
+                    <div autoFocus className="searchProductsBlock">
+                      {fiveFilteredProducts && fiveFilteredProducts.length > 0 ? (
+                        fiveFilteredProducts.map((product) => (
+                          <div className="searchProductsItem">
+                            <div className="searchProductsImage">
+                              <img className="searchProductsImage" src={product.img} alt="" />
+                            </div>
+                            <div className="searchProductsTextBlock">
+                              <div className="searchProductsName">
+                                <Link
+                                  className="searchProductsName"
+                                  to={`/catalog/${product.category}/${product.subcategory}/${product.id}`}
+                                  onClick={removeValueSearch}>
+                                  {product.name}
+                                </Link>
+                              </div>
+                              <div className="searchProductsPrice">
+                                {product.sale ? `${product.sale} ` : `${product.price} `}
+                                <span className="searchProductsPrice_P">₽</span>
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <></>
+                      )}
+                      {fiveFilteredProducts && fiveFilteredProducts.length > 0 ? (
+                        <div className="searchProductsItem">
+                          <Link
+                            to={`/foundProducts`}
+                            onClick={removeValueSearch}
+                            className="searchProductsName">
+                            Все результаты
+                          </Link>
+                        </div>
+                      ) : (
+                        <div className="searchProductsItemNotFound">Товары не найдены</div>
+                      )}
+                    </div>
+                  ) : (
+                    <> </>
+                  )}
                 </div>
                 <div className="header_top_number">
                   <svg

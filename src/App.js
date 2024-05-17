@@ -13,6 +13,7 @@ import { addCategories } from './app/store/categories';
 import { addSubcategories } from './app/store/subcategories';
 import { getMainLoadLoadingStatus, mainLoading } from './app/store/mainLoad';
 import { addProducts } from './app/store/products';
+import foundProductsPage from './app/pages/found-products-page/found-products-page';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ const App = () => {
       ? <>
           <Header onChange={changeModalActive} changeForm={changeModalForm} />
           <Switch>
+          <Route path="/foundProducts" component={foundProductsPage} />
             <Route path="/catalog/:category?/:subcategory?/:productId?/" component={CatalogOrProductPage} />
             <Route path="/:person?/basket" component={BasketPage} />
             <Route path="/test_page" component={TestPage} />
