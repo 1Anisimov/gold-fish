@@ -41,15 +41,22 @@ const HeaderTop = ({ changeForm }) => {
   const filteredProductsActive = useMemo(() => filteredProducts(valueSearch), [valueSearch]);
 
   useEffect(() => {
-    console.log(filteredProductsActive);
     dispatch(setFoundProducts(filteredProductsActive));
   }, [filteredProductsActive, dispatch]);
 
   const fiveFilteredProducts = filteredProductsActive.slice(0, 5);
-  console.log(fiveFilteredProducts);
 
   const removeValueSearch = () => {
     setIsOpenSearch(false);
+  };
+
+  const copyTextToClipboard = async ({ target }) => {
+    try {
+      await navigator.clipboard.writeText(target.innerText);
+      alert('Текст успешно скопирован в буфер обмена!');
+    } catch (err) {
+      alert('Ошибка:', err);
+    }
   };
 
   return (
@@ -137,7 +144,9 @@ const HeaderTop = ({ changeForm }) => {
                       d="M19.25 16.875C17.5 18.5625 17.5 20.25 15.75 20.25C14 20.25 12.25 18.5625 10.5 16.875C8.75 15.1875 7 13.5 7 11.8125C7 10.125 8.75 10.125 10.5 8.4375C12.25 6.75 7 1.6875 5.25 1.6875C3.5 1.6875 0 6.75 0 6.75C0 10.125 3.59625 16.9678 7 20.25C10.4038 23.5322 17.5 27 21 27C21 27 26.25 23.625 26.25 21.9375C26.25 20.25 21 15.1875 19.25 16.875Z"
                       fill="currentColor"></path>
                   </svg>
-                  <span>+7 (495) 911-10-11</span>
+                  <span style={{ cursor: 'pointer' }} id="textField" onClick={copyTextToClipboard}>
+                    +7 (495) 911-10-11
+                  </span>
                 </div>
                 <div className="header_top_icons">
                   <button style={{ backgroundColor: '#2A2A2A' }} onClick={changeForm}>

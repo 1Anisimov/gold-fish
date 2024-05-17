@@ -24,9 +24,17 @@ const Component = ({ productId }) => {
             <div className={cls.mainContainer}>
               <div className={cls.left}>
                 <div className={cls.swiperBlock}>
-                  <VerticalSlider setCurrentIndex={setCurrentIndex} allImages={product.allImg} />
+                  <VerticalSlider
+                    currentIndex={currentIndex}
+                    setCurrentIndex={setCurrentIndex}
+                    allImages={product.allImg}
+                  />
                   <div className={cls.mainImgBlock}>
-                    <Slider currentIndex={currentIndex} allImages={product.allImg} />
+                    <Slider
+                      setCurrentIndex={setCurrentIndex}
+                      currentIndex={currentIndex}
+                      allImages={product.allImg}
+                    />
                   </div>
                 </div>
                 <Tab />

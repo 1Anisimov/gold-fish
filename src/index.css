@@ -1204,6 +1204,7 @@ font-weight: 700;
 }
 
 .swiper-slide {
+
   text-align: center;
   font-size: 18px;
   background: #fff;
@@ -1335,6 +1336,37 @@ font-weight: 700;
   position: absolute;
   bottom: 0;
   left: 36%;
+}
+.relative{
+  width: 650px;
+  max-width: 600px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1eeea;
+  margin-right: 20px;
+}
+.goris_slider_container{
+  height: 100%;
+  width: 550px;
+  background-color: #f1eeea;
+}
+
+.gorisantal_prev{
+  background: rgba(42, 42, 42, 0);
+  position: absolute;
+  left: 20px;
+  top: 45%;
+  z-index: 1000;
+}
+.gorisantal_next{
+  background: rgba(42, 42, 42, 0);
+  position: absolute;
+  right: 20px;
+  top: 45%;
+  z-index: 1000;
+
 }
 
 .vertical_slider_container{

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -13,9 +13,19 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Navigation } from 'swiper/modules';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSliderPageIndex, setSliderPageIndex } from '../store/productPage';
 
-export default function VerticalSlider({ allImages, setCurrentIndex }) {
+export default function VerticalSlider({ allImages }) {
+  const dispatch = useDispatch();
   const [swiperRef, setSwiperRef] = useState({});
+  const sliderActiveIndex = useSelector(getSliderPageIndex());
+
+  useEffect(() => {
+    if (swiperRef?.slideTo) {
+      swiperRef.slideTo(sliderActiveIndex, 1000, false);
+    }
+  }, [swiperRef, sliderActiveIndex]);
 
   const prev = () => {
     swiperRef.slidePrev();
@@ -26,7 +36,7 @@ export default function VerticalSlider({ allImages, setCurrentIndex }) {
   };
   const clickOnImage = ({ target }) => {
     swiperRef.activeIndex = Number(target.id);
-    setCurrentIndex(swiperRef.activeIndex);
+    dispatch(setSliderPageIndex(swiperRef.activeIndex));
   };
 
   return (
@@ -50,7 +60,7 @@ export default function VerticalSlider({ allImages, setCurrentIndex }) {
                   <div className="swiper_slide_100px">
                     <div
                       className={
-                        swiperRef.activeIndex === index
+                        sliderActiveIndex === index
                           ? 'swiper_slide_85px_active'
                           : 'swiper_slide_85px'
                       }>

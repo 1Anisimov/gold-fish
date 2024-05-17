@@ -5,6 +5,7 @@ import categoriesReducer from "./categories";
 import subcategoriesReducer from "./subcategories";
 import mainLoadReducer from "./mainLoad";
 import productsReducer from "./products";
+import productPageReducer from "./productPage";
 
 const rootReducer = combineReducers({
     products: productsReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     promocode: promocodeReducer,
     categories: categoriesReducer,
     subcategories: subcategoriesReducer,
-    mainLoad: mainLoadReducer
+    mainLoad: mainLoadReducer,
+    productPage: productPageReducer,
     });
 
 export function createStore() {
