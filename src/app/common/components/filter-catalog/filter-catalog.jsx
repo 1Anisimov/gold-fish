@@ -15,13 +15,14 @@ import {
   getFiltersPresence,
   getPresence,
   getSubcategory,
-  removeAllFilters
+  removeAllFilters,
+  setTitleCatalog
 } from '../../../store/products';
 import history from '../../../utils/history';
 import FilterPlayers from '../filter-players/filter-players';
 import { getShowAllCategory, showAllCategory } from '../../../store/categories';
 
-const FilterCatalog = ({ setTitleCatalog }) => {
+const FilterCatalog = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const { category, subcategory } = params;
@@ -50,7 +51,7 @@ const FilterCatalog = ({ setTitleCatalog }) => {
     if (!isShowAllCategory) {
       dispatch(showAllCategory(!isShowAllCategory));
     }
-    setTitleCatalog(title);
+    dispatch(setTitleCatalog(title));
     dispatch(RemoveCategoryAndSubcategory());
   };
 
@@ -130,7 +131,7 @@ const FilterCatalog = ({ setTitleCatalog }) => {
                   className={'accordion-collapse collapse' + (isShowAllCategory ? ' show' : '')}
                   data-bs-parent="#accordionExample">
                   <div className="accordion-body">
-                    <FilterCategories setTitleCatalog={setTitleCatalog} />
+                    <FilterCategories />
                   </div>
                 </div>
               </div>

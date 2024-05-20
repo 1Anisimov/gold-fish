@@ -11,6 +11,7 @@ const initialStateFilters = {
         productsLoadingStatus: "LOADING",
 
         paginatedProducts: [],
+        titleCatalog: "Каталог продукции",
         filters: {
             category: null,
             age: {
@@ -182,6 +183,10 @@ const productsSlice = createSlice({
             state.isLoading = "READY";
         },
 
+        setTitleCatalogReceved: (state, action) => {
+            state.titleCatalog = action.payload;
+            state.isLoading = "READY";
+        }
         
     }
 });
@@ -227,10 +232,19 @@ const {
     setFoundProductsReceved,
     setActivePaginationPageOnFoundReceved,
 
-    setValueSearchReceved,    
+    setValueSearchReceved,  
+    setTitleCatalogReceved,  
 
  } = actions;
 
+ export const setTitleCatalog = (payload) => async (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        dispatch(setTitleCatalogReceved(payload))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+}
  
  export const setValueSearch = (payload) => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
@@ -468,6 +482,8 @@ export const changePlayers = (payload) => async (dispatch) => {
         dispatch(setLoadingStatusError());
     }
 }
+
+export const getTitleCatalog = () => (state) => state.products.titleCatalog
 
 export const getProductsLoadingStatus = () => (state) => state.products.productsLoadingStatus
 export const getAllProducts = () => (state) => state.products.products

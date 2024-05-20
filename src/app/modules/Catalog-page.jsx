@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import FilterCatalog from '../common/components/filter-catalog/filter-catalog';
 import ProductsCatalog from '../common/components/products-catalog-page/products-catalog-page';
 import MainContainer from '../common/components/main-container/main-container';
 import MainContainerBg from '../containers/main-container-bg';
 import banner from '../image/catalog/bannerCatalogPage.png';
+import { useSelector } from 'react-redux';
+import { getTitleCatalog } from '../store/products';
 
 const CatalogPage = () => {
-  const [titleCatalog, setTitleCatalog] = useState('Каталог продукции');
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const titleCatalog = useSelector(getTitleCatalog());
+
   return (
     <>
       <div className="catalog_page_banner">
@@ -27,7 +31,7 @@ const CatalogPage = () => {
             <div className="container_main">
               <h2 className="first_title">{titleCatalog}</h2>
               <div className="catalog_page_block">
-                <FilterCatalog setTitleCatalog={setTitleCatalog} />
+                <FilterCatalog />
                 <ProductsCatalog />
               </div>
             </div>

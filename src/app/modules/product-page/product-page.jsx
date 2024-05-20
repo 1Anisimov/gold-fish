@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect } from 'react';
 import cls from './product-page.module.css';
 import { getProductById } from '../../../API/FakeAPI';
 import MainContainerBg from '../../containers/main-container-bg';
@@ -9,7 +9,6 @@ import Slider from '../../reusable-components/slider';
 import VerticalSlider from '../../reusable-components/vertical-slider';
 
 const Component = ({ productId }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -24,17 +23,9 @@ const Component = ({ productId }) => {
             <div className={cls.mainContainer}>
               <div className={cls.left}>
                 <div className={cls.swiperBlock}>
-                  <VerticalSlider
-                    currentIndex={currentIndex}
-                    setCurrentIndex={setCurrentIndex}
-                    allImages={product.allImg}
-                  />
+                  <VerticalSlider allImages={product.allImg} />
                   <div className={cls.mainImgBlock}>
-                    <Slider
-                      setCurrentIndex={setCurrentIndex}
-                      currentIndex={currentIndex}
-                      allImages={product.allImg}
-                    />
+                    <Slider allImages={product.allImg} />
                   </div>
                 </div>
                 <Tab />

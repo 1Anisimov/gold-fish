@@ -11,8 +11,9 @@ import {
   setActiveCategory,
   setOpenCategory
 } from '../../../store/categories';
+import { setTitleCatalog } from '../../../store/products';
 
-const FilterCategories = ({ setTitleCatalog }) => {
+const FilterCategories = () => {
   const dispatch = useDispatch();
   const categoriesArray = useSelector(getAllCategories());
   const categoriesLoadingStatus = useSelector(getCategoriesLoadingStatus());
@@ -42,7 +43,7 @@ const FilterCategories = ({ setTitleCatalog }) => {
       target.id === openCategory
         ? dispatch(setOpenCategory(null))
         : dispatch(setOpenCategory(target.id));
-      setTitleCatalog(title);
+      dispatch(setTitleCatalog(title));
     };
 
   return (
@@ -94,7 +95,7 @@ const FilterCategories = ({ setTitleCatalog }) => {
                   }
                   data-bs-parent="#accordionExample">
                   <div className="accordion-body">
-                    <FilterSubcategory category={item.value} setTitleCatalog={setTitleCatalog} />
+                    <FilterSubcategory category={item.value} />
                   </div>
                 </div>
               </div>
