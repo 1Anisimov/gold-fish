@@ -1,45 +1,54 @@
-import React, { useState } from 'react';
+import React from 'react';
 import iconClosed from '../image/icons/X_closed_icon.png';
 import { ScrollBlock } from '../hooks/useScrollBlock';
 import { Link } from 'react-router-dom';
 import arrow from '../image/icons/arrow_right_catalog.png';
 import history from '../utils/history';
-import { useSelector } from 'react-redux';
-import { getAllCategories, getCategoriesLoadingStatus } from '../store/categories';
-import { getAllSubcategories, getSubcategoriesLoadingStatus } from '../store/subcategories';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCategories } from '../store/categories';
+import { getAllSubcategories } from '../store/subcategories';
+import {
+  SetActiveCategoryOnModalCatalog,
+  getModalCatalog,
+  getModalCatalogActiveCategory,
+  setModalCatalog
+} from '../store/modals';
 
-const ModalCatalog = ({ modalActive, setModalActive }) => {
+const ModalCatalog = () => {
+  const dispatch = useDispatch();
+
+  const modalActive = useSelector(getModalCatalog());
   const categoriesArray = useSelector(getAllCategories());
   const subcatigoriesArray = useSelector(getAllSubcategories());
-  // TODO убрать (оба)
-  const categoriesLoadingStatus = useSelector(getCategoriesLoadingStatus());
-  const subcategoriesLoadingStatus = useSelector(getSubcategoriesLoadingStatus());
+  const activeCategory = useSelector(getModalCatalogActiveCategory());
 
-  // TODO перенести в редакс и переименовать в category(или activeCategory)
-  const [subcategory, setSubcategory] = useState('');
   const [blockScroll, allowScroll] = ScrollBlock();
 
   modalActive ? blockScroll() : allowScroll();
 
   const handleGoInCatalog = () => {
-    setModalActive(false);
+    dispatch(setModalCatalog(false));
   };
 
   const goToCategories = (value) => {
     history.push(`/catalog/${value}/`);
-    setModalActive(false);
+    dispatch(setModalCatalog(false));
   };
 
   const goToSubcategories = (value) => {
-    history.push(`/catalog/${subcategory}/${value}/`);
-    setModalActive(false);
+    history.push(`/catalog/${activeCategory}/${value}/`);
+    dispatch(setModalCatalog(false));
+  };
+
+  const handleChangeActiveCategory = (category) => {
+    dispatch(SetActiveCategoryOnModalCatalog(category));
   };
 
   return (
     <>
       {modalActive && (
         <div
-          onClick={() => setModalActive(false)}
+          onClick={() => dispatch(setModalCatalog(false))}
           className={modalActive ? 'pop-up_catalog pop-up_catalog_active' : 'pop-up_catalog'}>
           <div className="pop-up_container">
             <div className="pop-up_catalog_content">
@@ -47,7 +56,7 @@ const ModalCatalog = ({ modalActive, setModalActive }) => {
                 <div className="pop-up_catalog_container pop-up_catalog_container_border ">
                   <img
                     className="pop-up_catalog_closed"
-                    onClick={() => setModalActive(false)}
+                    onClick={() => dispatch(setModalCatalog(false))}
                     src={iconClosed}
                     alt=""
                   />
@@ -60,34 +69,30 @@ const ModalCatalog = ({ modalActive, setModalActive }) => {
                 </div>
                 <div className="pop-up_catalog_container">
                   <div className="pop-up_catalog_left_bottom">
-                    {/* // TODO убрать проверку статуса(она на компонент выше) */}
-                    {categoriesLoadingStatus === 'READY' &&
-                      categoriesArray.map((item) => (
-                        <div
-                          onMouseEnter={() => setSubcategory(item.value)}
-                          onClick={() => goToCategories(item.value)}
-                          className="pop-up_catalog_left_categories">
-                          <span className="links ">{item.name}</span>
-                          <img src={arrow} alt="" />
-                        </div>
-                      ))}
+                    {categoriesArray.map((item) => (
+                      <div
+                        onMouseEnter={() => handleChangeActiveCategory(item.value)}
+                        onClick={() => goToCategories(item.value)}
+                        className="pop-up_catalog_left_categories">
+                        <span className="links ">{item.name}</span>
+                        <img src={arrow} alt="" />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
               <div className="pop-ups_catalog_right">
                 <div className="pop-ups_catalog_right_container">
                   <div className="pop-ups_catalog_right_block">
-                    {/* // TODO убрать проверку статуса(она на компонент выше) */}
-                    {subcategoriesLoadingStatus === 'READY' &&
-                      subcatigoriesArray.map((item) =>
-                        subcategory === item.category ? (
-                          <div className="pop-ups_catalog_right_item">
-                            <span onClick={() => goToSubcategories(item.value)}>{item.name}</span>
-                          </div>
-                        ) : (
-                          <></>
-                        )
-                      )}
+                    {subcatigoriesArray.map((item) =>
+                      activeCategory === item.category ? (
+                        <div className="pop-ups_catalog_right_item">
+                          <span onClick={() => goToSubcategories(item.value)}>{item.name}</span>
+                        </div>
+                      ) : (
+                        <></>
+                      )
+                    )}
                   </div>
                 </div>
               </div>

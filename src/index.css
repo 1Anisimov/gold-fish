@@ -478,17 +478,20 @@ font-weight: 700;
 .main_catalog_block_right_top {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   margin-bottom: 13px;
 }
 .main_catalog_block_right_bottom {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
+
 }
 .main_catalog_block_right_item {
   position: relative;
   font-family: Trebuchet MS;
-font-size: 18px;
-font-weight: 700;
+  font-size: 18px;
+  font-weight: 700;
   color: white;
   overflow: hidden;
   border-radius: 20px;
@@ -502,30 +505,14 @@ font-weight: 700;
   background: linear-gradient(180deg, #2A2A2A 0%, #2A2A2A 100%);
 
 }
-.main_catalog_block_right_1 {
+.main_catalog_block_right {
   color: white;
 }
-.main_catalog_block_right_2 {
-  color: white;
-}
-.main_catalog_block_right_3 {
-  color: white;
-}
-.main_catalog_block_right_4 {
-  color: white;
-}
-.main_catalog_block_right_1:hover {
+
+.main_catalog_block_right:hover {
   color: #F9A43F;
 }
-.main_catalog_block_right_2:hover {
-  color: #F9A43F;
-}
-.main_catalog_block_right_3:hover {
-  color: #F9A43F;
-}
-.main_catalog_block_right_4:hover {
-  color: #F9A43F;
-}
+
 .block_info {
   margin-top: 50px;
 }

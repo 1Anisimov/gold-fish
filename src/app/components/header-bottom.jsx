@@ -2,8 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import HeaderContainer from '../common/components/header-container/header-container';
 import HeaderBottomContainerBg from '../containers/header-bottom-container-bg';
+import { useDispatch } from 'react-redux';
+import { setModalCatalog } from '../store/modals';
 
-const HeaderBottom = ({ onChange }) => {
+const HeaderBottom = () => {
+  const dispatch = useDispatch();
+
+  const handleOpenCatalog = () => {
+    dispatch(setModalCatalog(true));
+  };
+
   return (
     <>
       <HeaderBottomContainerBg>
@@ -12,7 +20,7 @@ const HeaderBottom = ({ onChange }) => {
             <div className="container_main">
               <div className="header_bottom_container">
                 <button
-                  onClick={onChange}
+                  onClick={handleOpenCatalog}
                   className="header_bottom_item header_bottom_catalog links">
                   <svg
                     className="me-3"

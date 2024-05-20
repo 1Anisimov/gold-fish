@@ -3,9 +3,9 @@ import basketReducer from "./basket";
 import promocodeReducer from "./search";
 import categoriesReducer from "./categories";
 import subcategoriesReducer from "./subcategories";
-import mainLoadReducer from "./mainLoad";
 import productsReducer from "./products";
 import productPageReducer from "./productPage";
+import modalsReducer from "./modals";
 
 const rootReducer = combineReducers({
     products: productsReducer,
@@ -13,8 +13,8 @@ const rootReducer = combineReducers({
     promocode: promocodeReducer,
     categories: categoriesReducer,
     subcategories: subcategoriesReducer,
-    mainLoad: mainLoadReducer,
     productPage: productPageReducer,
+    modals: modalsReducer,
     });
 
 export function createStore() {

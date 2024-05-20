@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import logoGoldFish from '../image/logo_goldFish.png';
 import logoSearch from '../image/icons/input_search_icon.png';
 import { Link } from 'react-router-dom';
@@ -6,20 +6,26 @@ import HeaderContainer from '../common/components/header-container/header-contai
 import HeaderTopContainerBg from '../containers/header-top-container-bg';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBasketEntities } from '../store/basket';
-import { getAllProducts, setFoundProducts } from '../store/products';
+import {
+  getAllProducts,
+  getValueSearch,
+  setFoundProducts,
+  setValueSearch
+} from '../store/products';
 import history from '../utils/history';
+import { setModalRegisterForm } from '../store/modals';
 
-const HeaderTop = ({ changeForm }) => {
+const HeaderTop = () => {
   const dispatch = useDispatch();
 
   const basketEntities = useSelector(getBasketEntities());
   const products = useSelector(getAllProducts());
+  const valueSearch = useSelector(getValueSearch());
 
-  const [valueSearch, setValueSearch] = useState('');
   const [isOpenSearch, setIsOpenSearch] = useState(false);
 
   const findProducts = ({ target }) => {
-    setValueSearch(target.value);
+    dispatch(setValueSearch(target.value));
     setIsOpenSearch(true);
   };
 
@@ -40,13 +46,13 @@ const HeaderTop = ({ changeForm }) => {
 
   const filteredProductsActive = useMemo(() => filteredProducts(valueSearch), [valueSearch]);
 
-  useEffect(() => {
-    dispatch(setFoundProducts(filteredProductsActive));
-  }, [filteredProductsActive, dispatch]);
-
   const fiveFilteredProducts = filteredProductsActive.slice(0, 5);
 
   const removeValueSearch = () => {
+    setIsOpenSearch(false);
+  };
+  const setAllResults = () => {
+    dispatch(setFoundProducts(filteredProductsActive));
     setIsOpenSearch(false);
   };
 
@@ -57,6 +63,10 @@ const HeaderTop = ({ changeForm }) => {
     } catch (err) {
       alert('Ошибка:', err);
     }
+  };
+
+  const handleOpenModalForm = () => {
+    dispatch(setModalRegisterForm(true));
   };
 
   return (
@@ -120,7 +130,7 @@ const HeaderTop = ({ changeForm }) => {
                         <div className="searchProductsItem">
                           <Link
                             to={`/foundProducts`}
-                            onClick={removeValueSearch}
+                            onClick={setAllResults}
                             className="searchProductsName">
                             Все результаты
                           </Link>
@@ -149,7 +159,7 @@ const HeaderTop = ({ changeForm }) => {
                   </span>
                 </div>
                 <div className="header_top_icons">
-                  <button style={{ backgroundColor: '#2A2A2A' }} onClick={changeForm}>
+                  <button style={{ backgroundColor: '#2A2A2A' }} onClick={handleOpenModalForm}>
                     <svg
                       className="header_top_icons_profile"
                       xmlns="http://www.w3.org/2000/svg"

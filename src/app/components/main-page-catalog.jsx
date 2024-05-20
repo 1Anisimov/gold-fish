@@ -27,7 +27,7 @@ const MainCatalog = () => {
             </div>
             <div className="main_catalog_block_right">
               <div className="main_catalog_block_right_top">
-                <div className="main_catalog_block_right_item main_catalog_block_right_1">
+                <div className="main_catalog_block_right_item main_catalog_block_right">
                   <img src={imageOne} alt="" id="warhammer" onClick={goToCatalog} />
                   <div
                     className="main_catalog_block_right_text"
@@ -36,7 +36,7 @@ const MainCatalog = () => {
                     Варгеймы
                   </div>
                 </div>
-                <div className="main_catalog_block_right_item main_catalog_block_right_2">
+                <div className="main_catalog_block_right_item main_catalog_block_right">
                   <img src={imageTwo} alt="" id="paints" onClick={goToCatalog} />
                   <div className="main_catalog_block_right_text" id="paints" onClick={goToCatalog}>
                     Краски
@@ -44,13 +44,13 @@ const MainCatalog = () => {
                 </div>
               </div>
               <div className="main_catalog_block_right_bottom">
-                <div className="main_catalog_block_right_item main_catalog_block_right_3">
+                <div className="main_catalog_block_right_item main_catalog_block_right">
                   <img src={imageThree} alt="" id="magic" onClick={goToCatalog} />
                   <div className="main_catalog_block_right_text" id="magic" onClick={goToCatalog}>
                     Magic:the Cathering
                   </div>
                 </div>
-                <div className="main_catalog_block_right_item main_catalog_block_right_4">
+                <div className="main_catalog_block_right_item main_catalog_block_right">
                   <img src={imageFour} alt="" id="" onClick={goToCatalog} />
                   <div className="main_catalog_block_right_text" id="" onClick={goToCatalog}>
                     Весь каталог

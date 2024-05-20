@@ -1,13 +1,17 @@
+import ModalCatalog from '../reusable-components/modal-catalog';
 import HeaderBottom from './header-bottom';
 import HeaderTop from './header-top';
+import AuthorizationForm from '../common/components/authorization-form/authorization-form';
 
-const Header = ({ onChange, changeForm }) => {
+const Header = () => {
   return (
     <>
       <div className="header">
-        <HeaderTop changeForm={changeForm} />
-        <HeaderBottom onChange={onChange} />
+        <HeaderTop />
+        <HeaderBottom />
       </div>
+      <ModalCatalog />
+      <AuthorizationForm />
     </>
   );
 };

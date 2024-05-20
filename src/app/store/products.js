@@ -7,7 +7,9 @@ const initialStateFilters = {
         activePaginatedPage: 1,
         activePaginatedPageOnFound: 1,
         foundProducts: [],
-        
+        valueSearch: "",
+        productsLoadingStatus: "LOADING",
+
         paginatedProducts: [],
         filters: {
             category: null,
@@ -35,6 +37,10 @@ const productsSlice = createSlice({
     name: "products",
     initialState: initialStateFilters,
     reducers: {
+        setProductsLoadingStatus: (state, action) => {
+            state.productsLoadingStatus = action.payload;
+        },
+
         setLoadingStatusLoading: (state) => {
             state.isLoading = "LOADING"
         },
@@ -170,12 +176,19 @@ const productsSlice = createSlice({
         setActivePaginationPageOnFoundReceved: (state, action) => {
             state.activePaginatedPageOnFound = action.payload
             state.isLoading = "READY"
-        }
+        },
+        setValueSearchReceved: (state, action) => {
+            state.valueSearch = action.payload;
+            state.isLoading = "READY";
+        },
+
+        
     }
 });
 
 const { reducer: productsReducer, actions } = productsSlice;
 const {
+    setProductsLoadingStatus,
     setLoadingStatusLoading,
     setLoadingStatusError,
     // setLoadingStatusReady,
@@ -214,9 +227,20 @@ const {
     setFoundProductsReceved,
     setActivePaginationPageOnFoundReceved,
 
+    setValueSearchReceved,    
+
  } = actions;
 
  
+ export const setValueSearch = (payload) => async (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        dispatch(setValueSearchReceved(payload))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+}
+
 export const setFoundProducts = (payload) => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
     try {
@@ -313,11 +337,14 @@ export const setActivePaginatedPage = (payload) => async (dispatch) => {
  }
  export const addProducts = () => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
+    dispatch(setProductsLoadingStatus("LOADING"))
     try {
         const content = await productsService.get();
         dispatch(createProductReceved(content))
+        dispatch(setProductsLoadingStatus("READY"))
     } catch (error) {
         dispatch(setLoadingStatusError())
+        dispatch(setProductsLoadingStatus("ERROR"))
     }
  }
 
@@ -442,13 +469,18 @@ export const changePlayers = (payload) => async (dispatch) => {
     }
 }
 
+export const getProductsLoadingStatus = () => (state) => state.products.productsLoadingStatus
 export const getAllProducts = () => (state) => state.products.products
+
 export const getAllActiveProducts = () => (state) => state.products.activeProducts
+
 export const getNumberOfProductsOnPage = () => (state) => state.products.numberOfProductsOnPageArray
 export const getActivePaginatedPage = () => (state) => state.products.activePaginatedPage
 export const getActivePaginatedPageOnFound = () => (state) => state.products.activePaginatedPageOnFound
 export const getActivePaginatedProducts = () => (state) => state.products.paginatedProducts
+
 export const getFoundProducts = () => (state) => state.products.foundProducts
+export const getValueSearch = () => (state) => state.products.valueSearch
 
 export const getFiltersLoadingStatus = () => (state) => state.products.isLoading;
 export const getFiltersPrice = () => (state) => state.products.filters.price;

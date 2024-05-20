@@ -3,11 +3,21 @@ import cls from './authorization-form.module.css';
 import TabsAuthorization from '../tabs-authorization/tabs-authorization';
 import iconClosed from '../../../image/icons/X_closed_icon.png';
 import { ScrollBlock } from '../../../hooks/useScrollBlock';
+import { useDispatch, useSelector } from 'react-redux';
+import { getModalRegisterForm, setModalRegisterForm } from '../../../store/modals';
 
-const AuthorizationForm = ({ modalForm, setModalForm }) => {
+const AuthorizationForm = () => {
+  const dispatch = useDispatch();
+
+  const modalForm = useSelector(getModalRegisterForm());
+
   const [blockScroll, allowScroll] = ScrollBlock();
 
   modalForm ? blockScroll() : allowScroll();
+
+  const handleCloseModal = () => {
+    dispatch(setModalRegisterForm(false));
+  };
 
   return (
     <>
@@ -16,7 +26,7 @@ const AuthorizationForm = ({ modalForm, setModalForm }) => {
           <div className={cls.container}>
             <div className={cls.content}>
               <img
-                onClick={() => setModalForm(false)}
+                onClick={() => handleCloseModal(false)}
                 className={cls.iconClosed}
                 src={iconClosed}
                 alt=""
