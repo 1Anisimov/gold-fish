@@ -11,6 +11,7 @@ import { addCategories, getCategoriesLoadingStatus } from './app/store/categorie
 import { addSubcategories, getSubcategoriesLoadingStatus } from './app/store/subcategories';
 import { addProducts, getProductsLoadingStatus } from './app/store/products';
 import foundProductsPage from './app/pages/found-products-page/found-products-page';
+import UserPage from './app/modules/user-page/user-page';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const App = () => {
           <Route path="/foundProducts" component={foundProductsPage} />
             <Route path="/catalog/:category?/:subcategory?/:productId?/" component={CatalogOrProductPage} />
             <Route path="/:person?/basket" component={BasketPage} />
-            <Route path="/test_page" component={TestPage} />
+            <Route path="/user/:userId?/" component={UserPage} />
             <Route exact path="/" component={MainPage} />
           </Switch>
           <Footer />

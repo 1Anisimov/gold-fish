@@ -1,0 +1,38 @@
+.medalsBlock{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+}
+
+.blockContent{
+    display: flex;
+    align-items: center;
+}
+.imageBlock{
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 9px;
+    box-shadow: 5px 6px 16px 0px rgba(42, 42, 42, 0.16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.textBlock{
+    font-size: 22px;
+    font-weight: 700;
+    margin-left: 30px;
+}
+
+
+.status{
+    font-size: 22px;
+    font-weight: 400;
+
+}
+.money{
+    position: absolute;
+    right: 0;
+}

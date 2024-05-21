@@ -1,6 +1,7 @@
 import image from "../app/image/image 12.png"
 import { nanoid } from 'nanoid'
 import imageSecond from "../app/image/tavlei-stena-cshitov.jpg"
+import profileImg from "../app/image/img_events_2.png";
 
 export const productsTempBuy = [
     {
@@ -626,6 +627,16 @@ const questionAnswerArray = [
   {title:"Что делать, если заказ не пришел?", id:5, text:"how"},
   {title:"Как вернуть товар?", id:6, text:"how"},
 ]
+
+const currentUser = {
+  name: 'Александр',
+  grade: 'Профессионал',
+  gradeProgress: 1200,
+  img: profileImg,
+  card: 'silver',
+  sale: 10
+}
+
 export function getquestionAnswerArray() {
   return questionAnswerArray
 }
@@ -666,6 +677,14 @@ export const getSubcategories = () => {
   return new Promise((res, rej) => {
     setTimeout(() => {
       res(subcatigoriesArray)
+    }, 2000)
+  })
+}
+
+export const getCurrentUserFakeApi = () => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(currentUser)
     }, 2000)
   })
 }

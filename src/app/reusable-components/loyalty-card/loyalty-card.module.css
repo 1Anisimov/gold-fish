@@ -1,0 +1,86 @@
+.loyaltyCard{
+    width: 445px;
+    height: 252px;
+    min-width: 445px;
+    min-height: 252px;
+    border-radius: 17px;
+    border: 5px solid rgba(42, 42, 42, 1);
+    box-shadow: 5px 6px 16px 0px rgba(42, 42, 42, 0.16);
+}
+.loyaltyCardColorCuprum{
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    border: 5px solid #CD7F32
+}
+.loyaltyCardColorSilver{
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    border:5px solid #ABB1B1;
+}
+.loyaltyCardColorGold{
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    border: 5px solid #FFD700;
+    /* border-image: 5px solid linear-gradient(90deg, rgba(34,36,0,1) 0%, rgba(207,211,16,1) 0%, rgba(255,222,0,1) 63%); */
+
+}
+
+.loyaltyCardContentCuprum{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(42, 42, 42, 0.78) 0%, #2A2A2A 100%);
+    overflow: hidden;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loyaltyCardContentSilver{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(42, 42, 42, 0.76) 0%, #2A2A2A 100%);
+    overflow: hidden;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loyaltyCardContentGold{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #2A2A2A 0%, rgba(42, 42, 42, 0.88) 100%);
+    overflow: hidden;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blockContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.saleTextCuprum{
+    font-size: 33px;
+    font-weight: 700;
+    /* color: linear-gradient(288.23deg, #CD7F32 10.03%, #E2AB75 99.83%); */
+    color: #CD7F32;
+}
+.saleTextSilver{
+    font-size: 33px;
+    font-weight: 700;
+    /* color: linear-gradient(280.5deg, #C7CECE 3%, #EEF1F1 97%); */
+
+    color: #ABB1B1;
+}
+.saleTextGold{
+    font-size: 33px;
+    font-weight: 700;
+    /* color: linear-gradient(98.8deg, #FFD700 10.08%, #DAA520 103.27%); */;
+    color: #FFD700;
+}

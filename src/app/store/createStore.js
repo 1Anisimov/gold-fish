@@ -6,6 +6,7 @@ import subcategoriesReducer from "./subcategories";
 import productsReducer from "./products";
 import productPageReducer from "./productPage";
 import modalsReducer from "./modals";
+import currentUserReducer from "./currentUser";
 
 const rootReducer = combineReducers({
     products: productsReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     subcategories: subcategoriesReducer,
     productPage: productPageReducer,
     modals: modalsReducer,
+    currentUser: currentUserReducer
     });
 
 export function createStore() {
