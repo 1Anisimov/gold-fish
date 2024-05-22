@@ -5,7 +5,6 @@ import Header from './app/components/header';
 import Footer from './app/components/footer';
 import { CatalogOrProductPage } from './app/pages/catalog-or-product-page';
 import { BasketPage } from './app/modules/basket/basket-page';
-import { TestPage } from './app/pages/test-page';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCategories, getCategoriesLoadingStatus } from './app/store/categories';
 import { addSubcategories, getSubcategoriesLoadingStatus } from './app/store/subcategories';
@@ -52,7 +51,7 @@ const App = () => {
           <Route path="/foundProducts" component={foundProductsPage} />
             <Route path="/catalog/:category?/:subcategory?/:productId?/" component={CatalogOrProductPage} />
             <Route path="/:person?/basket" component={BasketPage} />
-            <Route path="/user/:userId?/" component={UserPage} />
+            <Route path="/user/:userId?/:settings?/" component={UserPage} />
             <Route exact path="/" component={MainPage} />
           </Switch>
           <Footer />

@@ -1,7 +1,7 @@
 .userPage{
     margin-top: 180px;
     margin-bottom: 50px;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     color: rgba(42, 42, 42, 1);
     font-family: Trebuchet MS;
 }

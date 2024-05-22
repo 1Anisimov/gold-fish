@@ -13,7 +13,9 @@ import {
   setValueSearch
 } from '../store/products';
 import history from '../utils/history';
-import { setModalRegisterForm } from '../store/modals';
+
+// TODO Важно не удалить
+// import { setModalRegisterForm } from '../store/modals';
 
 const HeaderTop = () => {
   const dispatch = useDispatch();
@@ -66,7 +68,9 @@ const HeaderTop = () => {
   };
 
   const handleOpenModalForm = () => {
-    dispatch(setModalRegisterForm(true));
+    // TODO ВАЖНО НЕ УДАЛИТЬ
+    // dispatch(setModalRegisterForm(true));
+    history.push('/user/1');
   };
 
   return (

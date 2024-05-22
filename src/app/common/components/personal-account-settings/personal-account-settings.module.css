@@ -1,0 +1,117 @@
+.mainContent{
+    font-family: Trebuchet MS;
+    color: rgba(0, 0, 0, 1);
+
+    width: 100%;
+    margin-left: 30px;
+}
+
+.info{
+    display: flex;
+}
+
+.imageBlock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.content{
+    width: 500px;
+    max-width: 500px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.stringBlock{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.nameText{
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.infoTitle{
+    font-size: 19px;
+    font-weight: 700;
+}
+.stringBlockText{
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.buttonBlockText{
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+
+.changeFormBlock{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(42, 42, 42, 0.7);
+    z-index: 10000;
+}
+
+.changeFormContent{
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    width: 427px;
+    /* height: 370px; */
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 5px 6px 16px 0px rgba(42, 42, 42, 0.16);
+}
+.changeFormContainer{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.changeFormTitle{
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.input{
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(42, 42, 42, 0.38);
+    width: 341px;
+    height: 45px;
+    border-radius: 9px;
+    font-size: 23px;
+    padding-left: 10px;
+}
+.inputActive{
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(42, 42, 42, 1);
+    width: 341px;
+    height: 45px;
+    border-radius: 9px;
+    font-size: 23px;
+    padding-left: 10px;
+}
+.changeFormInputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.changeFormInput{
+    margin-bottom: 20px;    
+}

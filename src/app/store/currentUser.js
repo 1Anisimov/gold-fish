@@ -1,22 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 import currentUserService from "../services/currentUser.service";
-// import profileImg from '../image/img_events_2.png'
 
-// const initialState = {
-//     name: 'Александр',
-//     grade: 'Любитель',
-//     gradeProgress: 1200,
-//     img: profileImg,
-//     card: 'silver',
-//     sale: 10
-// }
 
 
 const currentUserSlice = createSlice({
     name: "currentUser",
     initialState: {
         isLoading: "LOADING",
-        userInfo: null
+        user: {
+            userInfo: {
+                name: null,
+                secondName: null,
+                number: null,
+                mail: null,
+                grade: null,
+                gradeProgress: null,
+                img: null,
+                card: null,
+                sale: null,
+                totalPurchase : null
+              }
+        },
+        
     },
     reducers: {
         setLoadingStatusLoading: (state) => {
@@ -30,7 +35,8 @@ const currentUserSlice = createSlice({
         // },
 
         setCurrentUserReceved: (state, action) => {
-            state.userInfo = action.payload;
+            state.user = action.payload;
+            
             state.isLoading = "READY";
         }
     }
@@ -56,7 +62,10 @@ const {
  }
 
 
-export const getCurrentUser = () => (state) => state.currentUser.userInfo
+export const getCurrentUser = () => (state) => state.currentUser.user.userInfo
+// export const getCurrentUserMedals = () => (state) => state.currentUser.user.medals
+export const getCurrentUserTotalPurchase = () => (state) => state.currentUser.user.userInfo.totalPurchase
+
 export const getLoadingStatus = () => (state) => state.currentUser.isLoading
  
 

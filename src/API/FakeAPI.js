@@ -629,12 +629,20 @@ const questionAnswerArray = [
 ]
 
 const currentUser = {
-  name: 'Александр',
-  grade: 'Профессионал',
-  gradeProgress: 1200,
-  img: profileImg,
-  card: 'silver',
-  sale: 10
+  userInfo: {
+    id: "1",
+    name: 'Александр',
+    secondName: 'Анисимов',
+    number: "+7 912 523 42 78",
+    mail: "anisimov2002kurgan@mail.ru",
+    grade: 'Новичок',
+    gradeProgress: 1200,
+    img: profileImg,
+    card: 'cuprum',
+    sale: 10,
+    totalPurchase : 2200
+  }
+  
 }
 
 export function getquestionAnswerArray() {
