@@ -19,24 +19,24 @@ const MainPage = () => {
   return (
     <>
       <div className="main_page">
-        <div className="">
-          <div className="content_page">
-            <MainContainerBg>
-              <MainContainer>
-                <MainCatalog />
-              </MainContainer>
-            </MainContainerBg>
-            <TemporarilyBuy title="Успей купить" products={productsSale} />
-            <TemporarilyBuy title="Специальные предложения" isSale products={products} />
-            <MainContainerBg>
-              <MainContainer>
-                <UpcomingEvents />
-                <MoreInfo />
-                <BlockInfo />
-              </MainContainer>
-            </MainContainerBg>
-          </div>
-        </div>
+        {/* <div className="">
+          <div className="content_page"> */}
+        <MainContainerBg>
+          <MainContainer>
+            <MainCatalog />
+          </MainContainer>
+        </MainContainerBg>
+        <TemporarilyBuy title="Успей купить" products={productsSale} />
+        <TemporarilyBuy title="Специальные предложения" isSale products={products} />
+        <MainContainerBg>
+          <MainContainer>
+            <UpcomingEvents />
+            <MoreInfo />
+            <BlockInfo />
+          </MainContainer>
+        </MainContainerBg>
+        {/* </div>
+        </div> */}
       </div>
     </>
   );

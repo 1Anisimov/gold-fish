@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import cls from './personal-account-settings.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getChangedUserInfo,
   getCurrentUser,
   setChangedUserInfoMail,
   setChangedUserInfoName,
