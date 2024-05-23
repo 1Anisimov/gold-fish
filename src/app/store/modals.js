@@ -4,6 +4,7 @@ const modalsSlice = createSlice({
     name: "modals",
     initialState: {
         isLoading: "LOADING",
+        mainModal: false,
         modalCatalog: false,
         modalRegisterForm: false,
         modalCatalogActiveCategory: null,
@@ -30,6 +31,10 @@ const modalsSlice = createSlice({
         setModalCatalogActiveCategoryReceved: (state, action) => {
             state.modalCatalogActiveCategory = action.payload;
             state.isLoading = "READY";
+        },
+        setMainModalReceved: (state, action) => {
+            state.mainModal = action.payload;
+            state.isLoading = "READY";
         }
     }
 });
@@ -44,11 +49,20 @@ const {
     setModalRegisterFormReceved,
 
     setModalCatalogActiveCategoryReceved,
+    setMainModalReceved,
 
  } = actions;
 
- 
- export const SetActiveCategoryOnModalCatalog = (payload) => async (dispatch) => {
+ export const setMainModal = (payload) => async (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        dispatch(setMainModalReceved(payload))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+ }
+
+ export const setActiveCategoryOnModalCatalog = (payload) => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
     try {
         dispatch(setModalCatalogActiveCategoryReceved(payload))
@@ -75,6 +89,7 @@ const {
     }
  }
 
+ export const getMainModal = () => (state) => state.modals.mainModal
  export const getModalRegisterForm = () => (state) => state.modals.modalRegisterForm;
  export const getModalCatalog = () => (state) => state.modals.modalCatalog;
  export const getModalCatalogActiveCategory = () => (state) => state.modals.modalCatalogActiveCategory

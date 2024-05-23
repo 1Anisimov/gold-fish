@@ -641,8 +641,13 @@ const currentUser = {
     card: 'cuprum',
     sale: 10,
     totalPurchase : 2200
+  },
+  changedUserInfo: {
+    name: null,
+    secondName: null,
+    number: null,
+    mail: null,
   }
-  
 }
 
 export function getquestionAnswerArray() {

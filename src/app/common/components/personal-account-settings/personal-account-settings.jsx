@@ -1,109 +1,127 @@
 import React, { useState } from 'react';
 import cls from './personal-account-settings.module.css';
-import { useSelector } from 'react-redux';
-import { getCurrentUser } from '../../../store/currentUser';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getChangedUserInfo,
+  getCurrentUser,
+  setChangedUserInfoMail,
+  setChangedUserInfoName,
+  setChangedUserInfoNumber,
+  setChangedUserInfoSecondName,
+  setUserInfo
+} from '../../../store/currentUser';
 import iconChange from '../../../image/icons/icon_change_button.png';
 import { ScrollBlock } from '../../../hooks/useScrollBlock';
 import MainButton from '../../../reusable-components/main-button';
+import Modal from '../../../reusable-components/main-modal/main-modal';
+import { getMainModal, setMainModal } from '../../../store/modals';
 
 const PersonalAccountSettings = () => {
+  const dispatch = useDispatch();
+
   const currentUser = useSelector(getCurrentUser());
-  const [openClosed, setOpenClosed] = useState(false);
+  const isModalActive = useSelector(getMainModal());
+
   const [changeName, setChangeName] = useState('');
 
   const [blockScroll, allowScroll] = ScrollBlock();
 
-  openClosed ? blockScroll() : allowScroll();
+  isModalActive ? blockScroll() : allowScroll();
 
   const changeOpenClosed = (id) => {
     setChangeName(id);
-    setOpenClosed(true);
-  };
-
-  const closeChanged = ({ target }) => {
-    if (target.id === 'closed') {
-      setOpenClosed(false);
-    }
+    dispatch(setMainModal(true));
   };
 
   const handleChangeData = ({ target }) => {
     if (target.id === 'name') {
-      console.log('name', target.value);
+      dispatch(setChangedUserInfoName(target.value.trim()));
     }
     if (target.id === 'secondName') {
-      console.log('secondName', target.value);
+      dispatch(setChangedUserInfoSecondName(target.value.trim()));
     }
     if (target.id === 'number') {
-      console.log('number', target.value);
+      dispatch(setChangedUserInfoNumber(target.value.trim()));
     }
     if (target.id === 'mail') {
-      console.log('mail', target.value);
+      dispatch(setChangedUserInfoMail(target.value.trim()));
     }
+  };
+
+  const submitTheForm = () => {
+    dispatch(setUserInfo(changeName));
+    dispatch(setMainModal(false));
   };
 
   return (
     <div className={cls.mainContent}>
-      {openClosed ? (
-        <div id="closed" onClick={closeChanged} className={cls.changeFormBlock}>
-          <div className={cls.changeFormContent}>
-            <div className={cls.changeFormContainer}>
-              <h3 className={cls.changeFormTitle}>Изменить данные</h3>
-              {changeName === 'name' ? (
-                <div className={cls.changeFormInputs}>
-                  <div className={cls.changeFormInput}>
-                    <label htmlFor="">Ваше имя:</label>
-                    <input
-                      autoFocus
-                      id="name"
-                      onChange={handleChangeData}
-                      className={cls.input}
-                      type="text"
-                    />
-                  </div>
-                  <div className={cls.changeFormInput}>
-                    <label htmlFor="">Ваша фамилия:</label>
-                    <input
-                      id="secondName"
-                      onChange={handleChangeData}
-                      className={cls.input}
-                      type="text"
-                    />
-                  </div>
-                </div>
-              ) : changeName === 'number' ? (
-                <div className={cls.changeFormInputs}>
-                  <div className={cls.changeFormInput}>
-                    <label htmlFor="">Ваш номер:</label>
-                    <input
-                      autoFocus
-                      id="number"
-                      onChange={handleChangeData}
-                      className={cls.input}
-                      type="text"
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div className={cls.changeFormInputs}>
-                  <div className={cls.changeFormInput}>
-                    <label htmlFor="">Ваш E-mail:</label>
-                    <input
-                      autoFocus
-                      id="mail"
-                      onChange={handleChangeData}
-                      className={cls.input}
-                      type="text"
-                    />
-                  </div>
-                </div>
-              )}
-
-              <div className={cls.changeFormButton}>
-                <MainButton isGradient width="274" heigth="53" text="Сохранить" handleClick={''} />
+      {isModalActive ? (
+        <Modal>
+          <h3 className={cls.changeFormTitle}>Изменить данные</h3>
+          {changeName === 'name' ? (
+            <div className={cls.changeFormInputs}>
+              <div className={cls.changeFormInput}>
+                <label htmlFor="">Ваше имя:</label>
+                <input
+                  defaultValue={currentUser.name}
+                  autoFocus
+                  id="name"
+                  onChange={handleChangeData}
+                  className={cls.input}
+                  type="text"
+                />
+              </div>
+              <div className={cls.changeFormInput}>
+                <label htmlFor="">Ваша фамилия:</label>
+                <input
+                  defaultValue={currentUser.secondName}
+                  id="secondName"
+                  onChange={handleChangeData}
+                  className={cls.input}
+                  type="text"
+                />
               </div>
             </div>
+          ) : changeName === 'number' ? (
+            <div className={cls.changeFormInputs}>
+              <div className={cls.changeFormInput}>
+                <label htmlFor="">Ваш номер:</label>
+                <input
+                  defaultValue={currentUser.number}
+                  autoFocus
+                  id="number"
+                  onChange={handleChangeData}
+                  className={cls.input}
+                  type="text"
+                />
+              </div>
+            </div>
+          ) : (
+            <div className={cls.changeFormInputs}>
+              <div className={cls.changeFormInput}>
+                <label htmlFor="">Ваш E-mail:</label>
+                <input
+                  defaultValue={currentUser.mail}
+                  autoFocus
+                  id="mail"
+                  onChange={handleChangeData}
+                  className={cls.input}
+                  type="text"
+                />
+              </div>
+            </div>
+          )}
+
+          <div className={cls.changeFormButton}>
+            <MainButton
+              isGradient
+              width="274"
+              heigth="53"
+              text="Сохранить"
+              handleClick={submitTheForm}
+            />
           </div>
-        </div>
+        </Modal>
       ) : (
         <></>
       )}
@@ -148,6 +166,26 @@ const PersonalAccountSettings = () => {
                 <span className={cls.buttonBlockText}>Изменить</span>
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+      <div className={cls.question}>
+        <h3 className={cls.questionTitle}>Остались вопросы?</h3>
+        <div className={cls.questionBlock}>
+          <div className={cls.questionBlockInput}>
+            <label htmlFor="">Ваше имя:</label>
+            <input placeholder="Имя" className={cls.questionInput} type="text" />
+          </div>
+          <div className={cls.questionBlockInput}>
+            <label htmlFor="">Ваш телефон:</label>
+            <input placeholder="+7 ___ __ __" className={cls.questionInput} type="text" />
+          </div>
+          <div className={cls.questionBlockInput}>
+            <label htmlFor="">Ваш комментарий:</label>
+            <textarea placeholder="Комментарий" className={cls.questionInputTextarea} type="text" />
+          </div>
+          <div className={cls.questionButton}>
+            <MainButton text="Заказать звонок" isGradient heigth="46" />
           </div>
         </div>
       </div>

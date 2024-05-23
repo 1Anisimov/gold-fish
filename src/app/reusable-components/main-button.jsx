@@ -14,7 +14,7 @@ const MainButton = ({ width, heigth, text, isGradient, big, handleClick, isDisab
         className={isGradient ? 'button-gradient' : 'button-white'}
         style={{
           height: heigth + 'px',
-          width: width + 'px',
+          width: width ? width + 'px' : '100%',
           fontSize: checkSize()
         }}>
         <span>{text}</span>

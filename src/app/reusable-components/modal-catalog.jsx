@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategories } from '../store/categories';
 import { getAllSubcategories } from '../store/subcategories';
 import {
-  SetActiveCategoryOnModalCatalog,
+  setActiveCategoryOnModalCatalog,
   getModalCatalog,
   getModalCatalogActiveCategory,
   setModalCatalog
@@ -41,7 +41,7 @@ const ModalCatalog = () => {
   };
 
   const handleChangeActiveCategory = (category) => {
-    dispatch(SetActiveCategoryOnModalCatalog(category));
+    dispatch(setActiveCategoryOnModalCatalog(category));
   };
 
   return (

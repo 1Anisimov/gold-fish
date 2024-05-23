@@ -1,0 +1,39 @@
+.changeFormBlock{
+    position: absolute;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    min-height: 100vh;
+    background: rgba(42, 42, 42, 0.7);
+    z-index: 10000;
+}
+.changeFormBlockContainer{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.changeFormContent{
+    position: fixed;
+    align-self: center;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    width: 427px;
+    /* height: 370px; */
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 5px 6px 16px 0px rgba(42, 42, 42, 0.16);
+}
+.changeFormContainer{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
