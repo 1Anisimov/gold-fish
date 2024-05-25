@@ -9,6 +9,7 @@ import UpcomingEvents from '../components/upcomingEvents';
 import MainContainerBg from '../containers/main-container-bg';
 
 const MainPage = () => {
+  // TODO импортить из редакса
   const productsSale = getSaleProducts();
   const products = getNotSaleProducts();
 
@@ -21,6 +22,7 @@ const MainPage = () => {
       <div className="main_page">
         {/* <div className="">
           <div className="content_page"> */}
+        {/* // TODO заменить два на один */}
         <MainContainerBg>
           <MainContainer>
             <MainCatalog />

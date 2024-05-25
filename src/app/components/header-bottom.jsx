@@ -14,6 +14,7 @@ const HeaderBottom = () => {
 
   return (
     <>
+      {/* // TODO сделать один контейнер оболочки вместо двух */}
       <HeaderBottomContainerBg>
         <HeaderContainer>
           {/* <div className="header_bottom"> */}
@@ -22,6 +23,7 @@ const HeaderBottom = () => {
             <button
               onClick={handleOpenCatalog}
               className="header_bottom_item header_bottom_catalog links">
+              {/* // TODO svg в отдельный файл */}
               <svg
                 className="me-3"
                 width="16"
@@ -36,18 +38,18 @@ const HeaderBottom = () => {
               <span>Каталог</span>
             </button>
             <Link to="/catalog/warhammer" className="header_bottom_nav_item  links">
-              Wharhammer
+              Warhammer
             </Link>
             <Link to="/catalog/magic" className="header_bottom_nav_item  links">
               Magic:the Cathering
             </Link>
-            <Link to={''} className="header_bottom_nav_item  links">
+            <Link to="" className="header_bottom_nav_item  links">
               Мероприятия
             </Link>
-            <Link to={''} className="header_bottom_nav_item  links">
+            <Link to="" className="header_bottom_nav_item  links">
               О центре
             </Link>
-            <Link to={''} className="header_bottom_nav_item  links">
+            <Link to="" className="header_bottom_nav_item  links">
               Контакты
             </Link>
 

@@ -45,6 +45,7 @@ const Component = () => {
     dispatch(promocodeSearch(target.value));
   };
   async function checkPromocode() {
+    // TODO перенести логику в редакс
     const allPromocodes = getAllPromocodes();
 
     const promocode = allPromocodes.find((item) => item.code === currentPromocode);
@@ -94,11 +95,10 @@ const Component = () => {
                         </td>
                         <td>
                           <div className={cls.productPrice}>
-                            {product.sale ? (
-                              <span className={cls.productText}>{`${product.sale} ₽`}</span>
-                            ) : (
-                              <span className={cls.productText}>{`${product.price} ₽`}</span>
-                            )}
+                            <span
+                              className={
+                                cls.productText
+                              }>{`${product.sale ? product.sale : product.price} ₽`}</span>
                           </div>
                         </td>
                         <td>

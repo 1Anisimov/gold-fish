@@ -29,6 +29,7 @@ const AuthorizationFormSignUp = () => {
     <div className={cls.signIn}>
       <div className={cls.contant}>
         <form className={cls.formContant} action="login">
+          {/* // TODO поменять на массив и проходиться по нему */}
           <div className={cls.email}>
             <label htmlFor="name">Имя</label>
             <input

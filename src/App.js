@@ -48,7 +48,7 @@ const App = () => {
        <>
           <Header />
           <Switch>
-          <Route path="/foundProducts" component={foundProductsPage} />
+            <Route path="/foundProducts" component={foundProductsPage} />
             <Route path="/catalog/:category?/:subcategory?/:productId?/" component={CatalogOrProductPage} />
             <Route path="/:person?/basket" component={BasketPage} />
             <Route path="/user/:userId?/:settings?/" component={UserPage} />

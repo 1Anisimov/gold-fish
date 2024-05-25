@@ -7,6 +7,7 @@ const initialStateFilters = {
         activePaginatedPage: 1,
         activePaginatedPageOnFound: 1,
         foundProducts: [],
+        foundProductsOnPage: [],
         valueSearch: "",
         productsLoadingStatus: "LOADING",
 
@@ -174,6 +175,10 @@ const productsSlice = createSlice({
             state.foundProducts = action.payload;
             state.isLoading = "READY"
         },
+        setFoundProductsOnPageReceved: (state, action) => {
+            state.foundProductsOnPage = action.payload;
+            state.isLoading = "READY"
+        },
         setActivePaginationPageOnFoundReceved: (state, action) => {
             state.activePaginatedPageOnFound = action.payload
             state.isLoading = "READY"
@@ -196,7 +201,6 @@ const {
     setProductsLoadingStatus,
     setLoadingStatusLoading,
     setLoadingStatusError,
-    // setLoadingStatusReady,
 
     changePlayersInputMinReceved,
     changePlayersInputMaxReceved,
@@ -205,8 +209,6 @@ const {
     changePriceInputMaxReceved,
 
     changePlayersReceved,
-
-    changeAgeCheckboxReceved,
 
     filtersRemoveAllReceved,
 
@@ -230,6 +232,8 @@ const {
     setActivePaginatedPageReceved,
 
     setFoundProductsReceved,
+    setFoundProductsOnPageReceved,
+
     setActivePaginationPageOnFoundReceved,
 
     setValueSearchReceved,  
@@ -255,10 +259,27 @@ const {
     }
 }
 
-export const setFoundProducts = (payload) => async (dispatch) => {
+export const setFoundProductsOnPage = () => async (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
     try {
-        dispatch(setFoundProductsReceved(payload))
+        const {foundProducts} = getState().products
+        dispatch(setFoundProductsOnPageReceved(foundProducts))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+}
+
+export const setFoundProducts = () => async (dispatch, getState) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        const { products, valueSearch } = getState().products;
+        const newArray = products.filter((p) => {
+            return p.name
+              .toLowerCase()
+              .trim()
+              .includes(valueSearch ? valueSearch.toLowerCase().trim() : '');
+          });
+        dispatch(setFoundProductsReceved(newArray))
     } catch (error) {
         dispatch(setLoadingStatusError())
     }
@@ -281,8 +302,6 @@ export const setActivePaginatedPage = (payload) => async (dispatch) => {
         dispatch(setLoadingStatusError())
     }
  }
-
-
 
  const handleAgeParams = (age, ageState) => {
     
@@ -341,14 +360,13 @@ export const setActivePaginatedPage = (payload) => async (dispatch) => {
                     handlePlayersParams(product.players)[handlePlayersParams(product.players).length - 1]
               );
               dispatch(setActiveProductsReceved(newArray))
-              dispatch(setActivePaginatedPageReceved(1))
-            
+              dispatch(setActivePaginatedPageReceved(1))   
         }
-        
     } catch (error) {
         dispatch(setLoadingStatusError())
     }
  }
+
  export const addProducts = () => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
     dispatch(setProductsLoadingStatus("LOADING"))
@@ -361,17 +379,6 @@ export const setActivePaginatedPage = (payload) => async (dispatch) => {
         dispatch(setProductsLoadingStatus("ERROR"))
     }
  }
-
- 
- export const changeAgeCheckbox = () => async (dispatch) => {
-    dispatch(setLoadingStatusLoading())
-    try {
-        dispatch(changeAgeCheckboxReceved())
-        dispatch(setActiveProducts())
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
-}
 
 export const changePlayersInput = (value, name) => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
@@ -486,15 +493,13 @@ export const changePlayers = (payload) => async (dispatch) => {
 export const getTitleCatalog = () => (state) => state.products.titleCatalog
 
 export const getProductsLoadingStatus = () => (state) => state.products.productsLoadingStatus
-export const getAllProducts = () => (state) => state.products.products
 
 export const getAllActiveProducts = () => (state) => state.products.activeProducts
 
-export const getNumberOfProductsOnPage = () => (state) => state.products.numberOfProductsOnPageArray
 export const getActivePaginatedPage = () => (state) => state.products.activePaginatedPage
 export const getActivePaginatedPageOnFound = () => (state) => state.products.activePaginatedPageOnFound
-export const getActivePaginatedProducts = () => (state) => state.products.paginatedProducts
 
+export const getFoundProductsOnFoundProductsPage = () => (state) => state.products.foundProductsOnPage
 export const getFoundProducts = () => (state) => state.products.foundProducts
 export const getValueSearch = () => (state) => state.products.valueSearch
 

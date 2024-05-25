@@ -41,7 +41,7 @@ const SliderProducts = ({ products }) => {
             className="products_swiper">
             {products &&
               products.map((product) => (
-                <SwiperSlide className="swiper_slide_block">
+                <SwiperSlide key={product.id} className="swiper_slide_block">
                   <div className="swiper_slide_255px">
                     <Card product={product} />
                   </div>

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import logoGoldFish from '../image/logo_goldFish.png';
 import logoSearch from '../image/icons/input_search_icon.png';
 import { Link } from 'react-router-dom';
@@ -7,28 +7,37 @@ import HeaderTopContainerBg from '../containers/header-top-container-bg';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBasketEntities } from '../store/basket';
 import {
-  getAllProducts,
+  getFoundProducts,
   getValueSearch,
   setFoundProducts,
+  setFoundProductsOnPage,
   setValueSearch
 } from '../store/products';
 import history from '../utils/history';
+import { useDebounce } from '../hooks/useDebounce';
 
 // TODO Важно не удалить
 // import { setModalRegisterForm } from '../store/modals';
-
+// TODO отрефакторить компонент(разбить логику на отдельно поиск, телефон и убрать svg в отдельные файлы)
 const HeaderTop = () => {
   const dispatch = useDispatch();
 
   const basketEntities = useSelector(getBasketEntities());
-  const products = useSelector(getAllProducts());
   const valueSearch = useSelector(getValueSearch());
+  const filteredProductsActive = useSelector(getFoundProducts());
 
   const [isOpenSearch, setIsOpenSearch] = useState(false);
+
+  const requestData = useCallback(() => {
+    dispatch(setFoundProducts());
+  }, [dispatch]);
+
+  const debouncedFunc = useDebounce(requestData, 500);
 
   const findProducts = ({ target }) => {
     dispatch(setValueSearch(target.value));
     setIsOpenSearch(true);
+    debouncedFunc();
   };
 
   const handleShowAll = () => {
@@ -36,28 +45,17 @@ const HeaderTop = () => {
     setIsOpenSearch(false);
   };
 
-  const filteredProducts = (valueSearch) => {
-    const newArray = products.filter((p) => {
-      return p.name
-        .toLowerCase()
-        .trim()
-        .includes(valueSearch ? valueSearch.toLowerCase().trim() : '');
-    });
-    return newArray;
-  };
-
-  const filteredProductsActive = useMemo(() => filteredProducts(valueSearch), [valueSearch]);
-
   const fiveFilteredProducts = filteredProductsActive.slice(0, 5);
 
   const removeValueSearch = () => {
     setIsOpenSearch(false);
   };
   const setAllResults = () => {
-    dispatch(setFoundProducts(filteredProductsActive));
+    dispatch(setFoundProductsOnPage());
     setIsOpenSearch(false);
   };
 
+  // TODO создать мини компонент вместо этого(что то типа модалки с тестом Скопировано)
   const copyTextToClipboard = async ({ target }) => {
     try {
       await navigator.clipboard.writeText(target.innerText);
@@ -82,8 +80,6 @@ const HeaderTop = () => {
           ) : (
             <> </>
           )}
-          {/* <div className="header_top__bg"> */}
-          {/* <div className="container_main"> */}
           <div className="header_top">
             <div className="header_top_logo">
               <Link to="/">
@@ -107,7 +103,7 @@ const HeaderTop = () => {
                 <div autoFocus className="searchProductsBlock">
                   {fiveFilteredProducts && fiveFilteredProducts.length > 0 ? (
                     fiveFilteredProducts.map((product) => (
-                      <div className="searchProductsItem">
+                      <div key={product.id} className="searchProductsItem">
                         <div className="searchProductsImage">
                           <img className="searchProductsImage" src={product.img} alt="" />
                         </div>
@@ -210,8 +206,6 @@ const HeaderTop = () => {
               </div>
             </div>
           </div>
-          {/* </div> */}
-          {/* </div> */}
         </HeaderContainer>
       </HeaderTopContainerBg>
     </>

@@ -9,6 +9,37 @@ import { getCurrentUser } from '../../../store/currentUser';
 const PersonalAccount = () => {
   const user = useSelector(getCurrentUser());
 
+  const getUserGradeInfoBySum = (sum) => {
+    if (sum < 1000) {
+      return {
+        name: '',
+        grade: null,
+        progress: sum / (1000 / 100),
+        maxSum: 1000,
+        sale: 0
+      };
+    }
+  };
+
+  const userGrade = {
+    new: {
+      minSum: 0,
+      name: ''
+    },
+    beginner: {
+      minSum: 1000,
+      name: 'Новичок'
+    },
+    amateur: {
+      minSum: 5000,
+      name: 'Любитель'
+    },
+    professional: {
+      minSum: 10000,
+      name: 'Профессионал'
+    }
+  };
+
   const calculateMaxValueOnGrade = (userGrade) => {
     if (userGrade === null) {
       return 1000;

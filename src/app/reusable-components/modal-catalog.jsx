@@ -71,6 +71,7 @@ const ModalCatalog = () => {
                   <div className="pop-up_catalog_left_bottom">
                     {categoriesArray.map((item) => (
                       <div
+                        key={item.value}
                         onMouseEnter={() => handleChangeActiveCategory(item.value)}
                         onClick={() => goToCategories(item.value)}
                         className="pop-up_catalog_left_categories">
@@ -86,11 +87,11 @@ const ModalCatalog = () => {
                   <div className="pop-ups_catalog_right_block">
                     {subcatigoriesArray.map((item) =>
                       activeCategory === item.category ? (
-                        <div className="pop-ups_catalog_right_item">
+                        <div key={item.value} className="pop-ups_catalog_right_item">
                           <span onClick={() => goToSubcategories(item.value)}>{item.name}</span>
                         </div>
                       ) : (
-                        <></>
+                        <div key={item.value}></div>
                       )
                     )}
                   </div>

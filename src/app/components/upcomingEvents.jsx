@@ -31,7 +31,7 @@ const UpcomingEvents = () => {
                 title="Турнир Warhammer"
                 date="9 ноября 2021 г. 18:30"
                 text="Готов сразиться в ожесточенной битве Warhammer? Нет? Мы тебя
-              обязтально научим!"
+              обязатально научим!"
                 img={imgRight}
               />
             </div>

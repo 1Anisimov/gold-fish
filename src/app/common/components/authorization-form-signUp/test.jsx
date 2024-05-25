@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export const useDebounce = (value, onClick) => {
+export const useDebounce = ({ value, onClick }) => {
   const ref = useRef();
 
   useEffect(() => {

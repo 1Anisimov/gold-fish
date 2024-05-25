@@ -8,16 +8,19 @@ import MainButton from '../reusable-components/main-button';
 const MoreInfo = () => {
   const moreInfoCardArray = [
     {
+      id: 1,
       img: imageCard1,
       title: 'Аэронавтика Империалис: введение в игру',
       text: 'Детально ознакомимся с правилами игры'
     },
     {
+      id: 2,
       img: imageCard2,
       title: 'Лучшие настолки в Steam для игры с друзьми на карантине',
       text: 'По рейтингу 2021'
     },
     {
+      id: 3,
       img: imageCard3,
       title: 'Желанные, но маловероятные релизы',
       text: 'Небольшой список «а вот бы...»'
@@ -32,7 +35,7 @@ const MoreInfo = () => {
           <div className="more_info_block">
             {moreInfoCardArray &&
               moreInfoCardArray.map((item) => (
-                <MoreInfoCard img={item.img} title={item.title} text={item.text} />
+                <MoreInfoCard key={item.id} img={item.img} title={item.title} text={item.text} />
               ))}
           </div>
           <div className="more_info_button">

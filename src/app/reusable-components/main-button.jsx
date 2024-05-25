@@ -1,12 +1,6 @@
 import React from 'react';
 
 const MainButton = ({ width, heigth, text, isGradient, big, handleClick, isDisabled }) => {
-  const checkSize = () => {
-    if (big) {
-      return '23px';
-    }
-    return '16px';
-  };
   return (
     <>
       <button
@@ -15,7 +9,7 @@ const MainButton = ({ width, heigth, text, isGradient, big, handleClick, isDisab
         style={{
           height: heigth + 'px',
           width: width ? width + 'px' : '100%',
-          fontSize: checkSize()
+          fontSize: big ? '23px' : '16px'
         }}>
         <span>{text}</span>
       </button>

@@ -42,6 +42,7 @@ const UserPage = () => {
                 </Link>
               </div>
             </div>
+            {/* // TODO вместо params перенести страницу в App */}
             {settings ? <PersonalAccountSettings /> : <PersonalAccount />}
             {/* <PersonalAccount /> */}
           </div>

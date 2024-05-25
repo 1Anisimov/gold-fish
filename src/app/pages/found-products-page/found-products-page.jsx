@@ -4,7 +4,7 @@ import MainContainer from '../../common/components/main-container/main-container
 import cls from './found-products-page.module.css';
 import {
   getActivePaginatedPageOnFound,
-  getFoundProducts,
+  getFoundProductsOnFoundProductsPage,
   setActivePaginatedPageOnFound
 } from '../../store/products';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,10 +14,12 @@ import { Link } from 'react-router-dom';
 
 const FoundProductsPage = () => {
   const dispatch = useDispatch();
+
   const activePaginatedPage = useSelector(getActivePaginatedPageOnFound());
-  const activeProducts = useSelector(getFoundProducts());
+  const activeProducts = useSelector(getFoundProductsOnFoundProductsPage());
+
   const numberOfProductsOnPage = 12;
-  console.log(activeProducts);
+
   useEffect(() => {
     dispatch(setActivePaginatedPageOnFound(1));
   }, [dispatch, activeProducts]);
@@ -55,7 +57,7 @@ const FoundProductsPage = () => {
         <div className={cls.page}>
           {currentPaginationProducts.length > 0 ? (
             currentPaginationProducts.map((product) => (
-              <div className={cls.cardBlock}>
+              <div key={product.id} className={cls.cardBlock}>
                 <Card product={product} />
               </div>
             ))
