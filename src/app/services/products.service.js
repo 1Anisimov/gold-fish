@@ -1,4 +1,4 @@
-import { getAllProducts } from "../../API/FakeAPI";
+import { getAllProducts, getNotSaleProducts, getSaleProducts } from "../../API/FakeAPI";
 import httpService from "./http.service";
 
 
@@ -11,6 +11,14 @@ const productsService = {
     },
     get: async () => {
         const data = await getAllProducts();
+        return data;
+    },
+    getAllSaleProducts: async () => {
+        const data = await getSaleProducts();
+        return data;
+    },
+    getAllSpecialProducts: async () => {
+        const data = await getNotSaleProducts();
         return data;
     }
 }

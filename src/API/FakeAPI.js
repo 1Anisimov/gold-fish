@@ -665,18 +665,37 @@ export function getAllProducts () {
     }, 2000)
   })
 }
+
+export function getSaleProducts () {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(products.filter((product)=> product.sale !== null))
+    }, 2000)
+  })
+}
+
+export function getNotSaleProducts () {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(products.filter((product)=> product.sale === null))
+    }, 2000)
+  })
+}
+
 export function getTempBuy() {
     return productsTempBuy;
 }
 export function getProductById(productId) {
    return products.find((product) => product.id === productId )
 }
-export function getSaleProducts() {
-  return products.filter((product)=> product.sale !== null)
-}
-export function getNotSaleProducts() {
-  return products.filter((product)=> product.sale === null)
-}
+
+// export function getSaleProducts() {
+//   return products.filter((product)=> product.sale !== null)
+// }
+
+// export function getNotSaleProducts() {
+//   return products.filter((product)=> product.sale === null)
+// }
 
 export const getCategories = () => {
   return new Promise((res, rej) => {

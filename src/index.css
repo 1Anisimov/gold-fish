@@ -268,11 +268,12 @@ font-weight: 700;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  background: #FFF;
+  background: none;
   transition: all 0.6s ease;
 }
 
 .button-white {
+  background: none;
   border-radius: 9px;
   border: 2px solid #F9A43F;
   color: #F9A43F;
@@ -382,6 +383,7 @@ font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
+  background: none;
 }
 .header_bottom_nav {
   display: flex;

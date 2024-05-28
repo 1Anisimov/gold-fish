@@ -3,6 +3,8 @@ import productsService from "../services/products.service";
 
 const initialStateFilters = {
         products: [],
+        saleProducts: [],
+        specialProducts: [],
         activeProducts: [],
         activePaginatedPage: 1,
         activePaginatedPageOnFound: 1,
@@ -191,6 +193,16 @@ const productsSlice = createSlice({
         setTitleCatalogReceved: (state, action) => {
             state.titleCatalog = action.payload;
             state.isLoading = "READY";
+        },
+
+        setSaleProductsReceved: (state, action) => {
+            state.saleProducts = action.payload;
+            state.isLoading = "READY";
+        },
+
+        setSpecialProductsReceved: (state, action) => {
+            state.specialProducts = action.payload;
+            state.isLoading = "READY";
         }
         
     }
@@ -239,7 +251,30 @@ const {
     setValueSearchReceved,  
     setTitleCatalogReceved,  
 
+    setSaleProductsReceved,
+    setSpecialProductsReceved,
+
  } = actions;
+
+ export const setAllSpecialProducts = () => async (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        const content = await productsService.getAllSpecialProducts();
+        dispatch(setSpecialProductsReceved(content))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+}
+
+ export const setAllSaleProducts = () => async (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        const content = await productsService.getAllSaleProducts();
+        dispatch(setSaleProductsReceved(content))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+}
 
  export const setTitleCatalog = (payload) => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
@@ -495,6 +530,8 @@ export const getTitleCatalog = () => (state) => state.products.titleCatalog
 export const getProductsLoadingStatus = () => (state) => state.products.productsLoadingStatus
 
 export const getAllActiveProducts = () => (state) => state.products.activeProducts
+export const getSaleProducts = () => (state) => state.products.saleProducts
+export const getSpecialProducts = () => (state) => state.products.specialProducts
 
 export const getActivePaginatedPage = () => (state) => state.products.activePaginatedPage
 export const getActivePaginatedPageOnFound = () => (state) => state.products.activePaginatedPageOnFound
