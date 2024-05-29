@@ -10,7 +10,14 @@ const MainCatalog = () => {
   const goToCatalog = ({ target }) => {
     history.push(`/catalog/${target.id}`);
   };
-  // TODO: *попробовать сделать через массив(хотя бы четыре карточки справа)
+
+  const catalogBlockItems = [
+    { id: 'warhammer', text: 'Варгеймы', img: imageOne },
+    { id: 'paints', text: 'Краски', img: imageTwo },
+    { id: 'magic', text: 'Magic:the Cathering', img: imageThree },
+    { id: '', text: 'Весь каталог', img: imageFour }
+  ];
+
   return (
     <>
       <div className="main_catalog">
@@ -26,37 +33,18 @@ const MainCatalog = () => {
               </div>
             </div>
             <div className="main_catalog_block_right">
-              <div className="main_catalog_block_right_top">
-                <div className="main_catalog_block_right_item main_catalog_block_right">
-                  <img src={imageOne} alt="" id="warhammer" onClick={goToCatalog} />
-                  <div
-                    className="main_catalog_block_right_text"
-                    id="warhammer"
-                    onClick={goToCatalog}>
-                    Варгеймы
+              {catalogBlockItems &&
+                catalogBlockItems.map((item) => (
+                  <div className="main_catalog_block_right_item ">
+                    <img src={item.img} alt="" id={item.id} onClick={goToCatalog} />
+                    <div
+                      className="main_catalog_block_right_text"
+                      id={item.id}
+                      onClick={goToCatalog}>
+                      {item.text}
+                    </div>
                   </div>
-                </div>
-                <div className="main_catalog_block_right_item main_catalog_block_right">
-                  <img src={imageTwo} alt="" id="paints" onClick={goToCatalog} />
-                  <div className="main_catalog_block_right_text" id="paints" onClick={goToCatalog}>
-                    Краски
-                  </div>
-                </div>
-              </div>
-              <div className="main_catalog_block_right_bottom">
-                <div className="main_catalog_block_right_item main_catalog_block_right">
-                  <img src={imageThree} alt="" id="magic" onClick={goToCatalog} />
-                  <div className="main_catalog_block_right_text" id="magic" onClick={goToCatalog}>
-                    Magic:the Cathering
-                  </div>
-                </div>
-                <div className="main_catalog_block_right_item main_catalog_block_right">
-                  <img src={imageFour} alt="" id="" onClick={goToCatalog} />
-                  <div className="main_catalog_block_right_text" id="" onClick={goToCatalog}>
-                    Весь каталог
-                  </div>
-                </div>
-              </div>
+                ))}
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -11,13 +11,15 @@ import {
 import { useDebounce } from '../../../hooks/useDebounce';
 import history from '../../../utils/history';
 import logoSearch from '../../../image/icons/input_search_icon.png';
+import { getSearchOpenOrClose, setSearchOpenOrClose } from '../../../store/modals';
 
 const Search = () => {
   const dispatch = useDispatch();
+
   const valueSearch = useSelector(getValueSearch());
   const filteredProductsActive = useSelector(getFoundProducts());
-
-  const [isOpenSearch, setIsOpenSearch] = useState(false);
+  console.log(filteredProductsActive);
+  const isOpenSearch = useSelector(getSearchOpenOrClose());
 
   const requestData = useCallback(() => {
     dispatch(setFoundProducts());
@@ -27,23 +29,24 @@ const Search = () => {
 
   const findProducts = ({ target }) => {
     dispatch(setValueSearch(target.value));
-    setIsOpenSearch(true);
+
+    dispatch(setSearchOpenOrClose(true));
     debouncedFunc();
   };
 
   const handleShowAll = () => {
     history.push('/foundProducts');
-    setIsOpenSearch(false);
+    dispatch(setSearchOpenOrClose(false));
   };
 
   const fiveFilteredProducts = filteredProductsActive.slice(0, 5);
 
   const removeValueSearch = () => {
-    setIsOpenSearch(false);
+    dispatch(setSearchOpenOrClose(false));
   };
   const setAllResults = () => {
     dispatch(setFoundProductsOnPage());
-    setIsOpenSearch(false);
+    dispatch(setSearchOpenOrClose(false));
   };
 
   return (
@@ -60,7 +63,7 @@ const Search = () => {
           <img src={logoSearch} alt="" />
         </button>
       </div>
-      {valueSearch.length > 1 && isOpenSearch ? (
+      {valueSearch.length > 0 && isOpenSearch && fiveFilteredProducts ? (
         <div autoFocus className="searchProductsBlock">
           {fiveFilteredProducts && fiveFilteredProducts.length > 0 ? (
             fiveFilteredProducts.map((product) => (

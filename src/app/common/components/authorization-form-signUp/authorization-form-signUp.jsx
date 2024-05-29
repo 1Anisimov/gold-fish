@@ -22,54 +22,34 @@ const AuthorizationFormSignUp = () => {
       [target.name]: target.value === 'on' ? true : false
     }));
   };
-  const pushRegisterForm = () => {
+  const pushRegisterForm = (e) => {
+    e.preventDefault();
     console.log(registerForm);
   };
+  const registerFormInputsArray = [
+    { htmlfor: 'name', type: 'name', name: 'name', placeholder: 'Имя' },
+    { htmlfor: 'secondName', type: 'text', name: 'secondName', placeholder: 'Фамилия' },
+    { htmlfor: 'email', type: 'email', name: 'email', placeholder: 'E-mail' },
+    { htmlfor: 'password', type: 'password', name: 'password', placeholder: 'Пароль' }
+  ];
   return (
     <div className={cls.signIn}>
       <div className={cls.contant}>
         <form className={cls.formContant} action="login">
-          {/* // TODO поменять на массив и проходиться по нему */}
-          <div className={cls.email}>
-            <label htmlFor="name">Имя</label>
-            <input
-              onChange={handleChangeRegisterForm}
-              className={cls.emailInput}
-              type="name"
-              name="name"
-              placeholder="Имя"
-            />
-          </div>
-          <div className={cls.email}>
-            <label htmlFor="secondName">Фамилия</label>
-            <input
-              onChange={handleChangeRegisterForm}
-              className={cls.emailInput}
-              type="text"
-              name="secondName"
-              placeholder="Фамилия"
-            />
-          </div>
-          <div className={cls.email}>
-            <label htmlFor="email">E-mail</label>
-            <input
-              onChange={handleChangeRegisterForm}
-              className={cls.emailInput}
-              type="email"
-              name="email"
-              placeholder="E-mail"
-            />
-          </div>
-          <div className={cls.email}>
-            <label htmlFor="password">Пароль</label>
-            <input
-              placeholder="Пароль"
-              onChange={handleChangeRegisterForm}
-              className={cls.emailInput}
-              type="password"
-              name="password"
-            />
-          </div>
+          {registerFormInputsArray &&
+            registerFormInputsArray.map((item) => (
+              <div className={cls.email}>
+                <label htmlFor={item.htmlfor}>{item.placeholder}</label>
+                <input
+                  placeholder={item.placeholder}
+                  onChange={handleChangeRegisterForm}
+                  className={cls.emailInput}
+                  type={item.type}
+                  name={item.name}
+                />
+              </div>
+            ))}
+
           <div className={cls.checkbox}>
             <div className={cls.checkboxBlock}>
               <div className={cls.inputBlock}>

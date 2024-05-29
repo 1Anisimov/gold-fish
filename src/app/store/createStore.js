@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import basketReducer from "./basket";
-import promocodeReducer from "./search";
+import promocodeReducer from "./promocodes";
 import categoriesReducer from "./categories";
 import subcategoriesReducer from "./subcategories";
 import productsReducer from "./products";

@@ -39,7 +39,7 @@
 }
 .totalPrice{
     font-family: Trebuchet MS;
-    font-size: 33px;
+    font-size: 26px;
     font-weight: 700;
     line-height: 38.32px;
     text-align: left;
@@ -208,4 +208,8 @@
 }
 .basketZeroLink:hover{
     color: #F9A43F;
+}
+
+.productPrice{
+    white-space: nowrap
 }

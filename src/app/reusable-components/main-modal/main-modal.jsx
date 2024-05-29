@@ -3,7 +3,7 @@ import cls from './main-modal.module.css';
 import { useDispatch } from 'react-redux';
 import { setMainModal } from '../../store/modals';
 
-const Modal = ({ children }) => {
+const Modal = ({ children, handleClick }) => {
   const dispatch = useDispatch();
 
   const closeChanged = ({ target }) => {

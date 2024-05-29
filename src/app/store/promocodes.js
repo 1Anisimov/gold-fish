@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+import promocodesService from "../services/promocodes.service";
 
 const promocodeSlice = createSlice({
     name: "promocode",
     initialState: {
         isLoading: "LOADING",
         entity: null,
-        sale: null
+        sale: null,
+        allPromocodes: []
     },
     reducers: {
         promocodeSearchRequested: (state) => {
@@ -29,6 +31,11 @@ const promocodeSlice = createSlice({
         setSaleRequestFile: (state) => {
             state.isLoading = "ERROR";
         },
+
+        downloadAllPromocodesReceved: (state, action) => {
+            state.allPromocodes = action.payload;
+            state.isLoading = "READY";
+        }
     }
 });
 
@@ -42,12 +49,37 @@ const {
     promocodeSearchReceved,
     promocodeSearchRequestFile,
 
+    downloadAllPromocodesReceved,
+
  } = actions;
 
- export const setSale = (payload) => async (dispatch) => {
+ export const downloadAllPromocodes = () => async (dispatch) => {
     dispatch(setSaleRequested())
     try {
-        dispatch(setSaleReceved(payload));
+        const content = await promocodesService.get();
+        dispatch(downloadAllPromocodesReceved(content))
+
+    } catch (error) {
+        dispatch(setSaleRequestFile())
+    }
+ }
+
+ export const setSale = () => async (dispatch, getState) => {
+    dispatch(setSaleRequested())
+    try {
+        const {allPromocodes, entity} = getState().promocode;
+        const promocode = allPromocodes.find((item) => item.code === entity)
+        console.log(promocode)
+        if (promocode === undefined) {
+            dispatch(setSaleReceved(null));
+          } else {
+            allPromocodes.forEach((item) => {
+                if (item.code === entity) {
+                  dispatch(setSaleReceved(item.sale));
+                }
+              });
+          }
+        // dispatch(setSaleReceved(payload));
     } catch (error) {
         dispatch(setSaleRequestFile())
     }

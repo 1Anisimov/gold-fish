@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
-import cls from './user-page.module.css';
+import cls from './user-page-settings.module.css';
 import MainContainerBg from '../../containers/main-container-bg';
-
+import { MenuOnUserPage } from '../../common/components/menu-on-user-page/menu-on-user-page';
+import PersonalAccountSettings from '../../common/components/personal-account-settings/personal-account-settings';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getCurrentUserLoadingStatus,
   getLoadingStatus,
   setCurrentUser
 } from '../../store/currentUser';
-import PersonalAccount from '../../common/components/personal-account/personal-account';
-import { MenuOnUserPage } from '../../common/components/menu-on-user-page/menu-on-user-page';
 
-const UserPage = () => {
+const UserPageSettings = () => {
   const dispatch = useDispatch();
 
+  const loadingStatus = useSelector(getLoadingStatus());
   const currentUserLoadingStatus = useSelector(getCurrentUserLoadingStatus());
 
   useEffect(() => {
@@ -23,15 +23,13 @@ const UserPage = () => {
     }
   }, [dispatch, currentUserLoadingStatus]);
 
-  const loadingStatus = useSelector(getLoadingStatus());
-
   return loadingStatus === 'READY' ? (
     <MainContainerBg>
       <div className={cls.userPage}>
         <h3 className={cls.mainTitle}>Личный кабинет</h3>
         <div className={cls.mainContainer}>
           <MenuOnUserPage />
-          <PersonalAccount />
+          <PersonalAccountSettings />
         </div>
       </div>
     </MainContainerBg>
@@ -42,4 +40,4 @@ const UserPage = () => {
   );
 };
 
-export default UserPage;
+export default UserPageSettings;

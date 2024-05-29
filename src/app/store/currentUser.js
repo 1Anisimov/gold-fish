@@ -25,7 +25,8 @@ const currentUserSlice = createSlice({
                 secondName: null,
                 number: null,
                 mail: null,
-              }
+              },
+              userLoadingStatus: "LOADING"
         },
         
     },
@@ -39,9 +40,11 @@ const currentUserSlice = createSlice({
         // setLoadingStatusReady: (state) => {
         //     state.isLoading = "READY";
         // },
+        
 
         setCurrentUserReceved: (state, action) => {
             state.user = action.payload;
+            state.user.userLoadingStatus = "READY"
             state.isLoading = "READY";
         },
 
@@ -159,7 +162,7 @@ const {
 
 export const getCurrentUser = () => (state) => state.currentUser.user.userInfo
 export const getChangedUserInfo = () => (state) => state.currentUser.user.changedUserInfo
-// export const getCurrentUserMedals = () => (state) => state.currentUser.user.medals
+export const getCurrentUserLoadingStatus = () => (state) => state.currentUser.user.userLoadingStatus
 export const getCurrentUserTotalPurchase = () => (state) => state.currentUser.user.userInfo.totalPurchase
 
 export const getLoadingStatus = () => (state) => state.currentUser.isLoading

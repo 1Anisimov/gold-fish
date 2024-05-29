@@ -655,7 +655,11 @@ export function getquestionAnswerArray() {
 }
 
 export function getAllPromocodes() {
-  return promocodes
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(promocodes)
+    }, 2000)
+  })
 }
 
 export function getAllProducts () {

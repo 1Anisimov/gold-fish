@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import FilterCatalog from '../common/components/filter-catalog/filter-catalog';
 import ProductsCatalog from '../common/components/products-catalog-page/products-catalog-page';
-import MainContainer from '../common/components/main-container/main-container';
 import MainContainerBg from '../containers/main-container-bg';
 import banner from '../image/catalog/bannerCatalogPage.png';
 import { useSelector } from 'react-redux';
@@ -26,17 +25,15 @@ const CatalogPage = () => {
         </div>
       </div>
       <MainContainerBg>
-        <MainContainer>
-          <div className="catalog_page">
-            <div className="container_main">
-              <h2 className="first_title">{titleCatalog}</h2>
-              <div className="catalog_page_block">
-                <FilterCatalog />
-                <ProductsCatalog />
-              </div>
+        <div className="catalog_page">
+          <div className="container_main">
+            <h2 className="first_title">{titleCatalog}</h2>
+            <div className="catalog_page_block">
+              <FilterCatalog />
+              <ProductsCatalog />
             </div>
           </div>
-        </MainContainer>
+        </div>
       </MainContainerBg>
     </>
   );

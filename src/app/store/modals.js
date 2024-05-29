@@ -8,6 +8,7 @@ const modalsSlice = createSlice({
         modalCatalog: false,
         modalRegisterForm: false,
         modalCatalogActiveCategory: null,
+        search: false
     },
     reducers: {
         setLoadingStatusLoading: (state) => {
@@ -35,7 +36,13 @@ const modalsSlice = createSlice({
         setMainModalReceved: (state, action) => {
             state.mainModal = action.payload;
             state.isLoading = "READY";
-        }
+        },
+
+        setSearchOpenOrCloseReceved: (state, action) => {
+            state.search = action.payload;
+            state.isLoading = "READY";
+        },
+
     }
 });
 
@@ -51,7 +58,21 @@ const {
     setModalCatalogActiveCategoryReceved,
     setMainModalReceved,
 
+    setSearchOpenOrCloseReceved,
+
+
  } = actions;
+
+ 
+
+ export const setSearchOpenOrClose = (payload) => async (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        dispatch(setSearchOpenOrCloseReceved(payload))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+ }
 
  export const setMainModal = (payload) => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
@@ -92,6 +113,7 @@ const {
  export const getMainModal = () => (state) => state.modals.mainModal
  export const getModalRegisterForm = () => (state) => state.modals.modalRegisterForm;
  export const getModalCatalog = () => (state) => state.modals.modalCatalog;
+ export const getSearchOpenOrClose = () => (state) => state.modals.search;
  export const getModalCatalogActiveCategory = () => (state) => state.modals.modalCatalogActiveCategory
 
 

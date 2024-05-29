@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import MainContainer from '../common/components/main-container/main-container';
 import BlockInfo from '../components/blockInfo';
 import MainCatalog from '../components/main-page-catalog';
 import MoreInfo from '../components/more-info';
@@ -30,9 +29,7 @@ const MainPage = () => {
     <>
       <div className="main_page">
         <MainContainerBg>
-          <MainContainer>
-            <MainCatalog />
-          </MainContainer>
+          <MainCatalog />
         </MainContainerBg>
         {saleProducts && saleProducts.length > 0 ? (
           <TemporarilyBuy title="Успей купить" products={saleProducts} />
@@ -45,11 +42,9 @@ const MainPage = () => {
           <></>
         )}
         <MainContainerBg>
-          <MainContainer>
-            <UpcomingEvents />
-            <MoreInfo />
-            <BlockInfo />
-          </MainContainer>
+          <UpcomingEvents />
+          <MoreInfo />
+          <BlockInfo />
         </MainContainerBg>
       </div>
     </>

@@ -81,6 +81,9 @@ font-weight: 700;
 .header_top_number:hover {
   color:#F9A43F
 }
+.header_top_number:hover .button_pop-up_my {
+  color:#F9A43F
+}
 .header_top__blockInputBlock_out{
   position: fixed;
   top: 0;
@@ -88,6 +91,23 @@ font-weight: 700;
   width: 100%;
   height: 100%;
   background: rgba(42, 42, 42, 0);
+}
+
+.button_pop-up_my{
+  color: rgba(255, 255, 255, 1);
+  background: rgba(42, 42, 42, 0);
+  border: none;
+  font-family: Trebuchet MS;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+
+}
+.button_pop-up_my:hover{
+  color:#F9A43F;
+  background: rgba(42, 42, 42, 0.01);
+  border: none;
 }
 
 .header_top__blockInputBlock{
@@ -450,6 +470,7 @@ margin-bottom: 30px;
   cursor: pointer;
 }
 .main_catalog_block_left {
+  min-width: 530px;
 position: relative;
 border-radius: 20px;
 overflow: hidden;
@@ -471,8 +492,10 @@ font-weight: 700;
 }
 .main_catalog_block_right {
   display: flex;
-  flex-direction: column;
-  flex-basis: 50%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  padding-left: 20px;
 }
 .main_catalog_block_right_top {
   display: flex;
@@ -487,6 +510,8 @@ font-weight: 700;
 
 }
 .main_catalog_block_right_item {
+  width: 255px;
+  height: 175px;
   position: relative;
   font-family: Trebuchet MS;
   font-size: 18px;
@@ -494,8 +519,13 @@ font-weight: 700;
   color: white;
   overflow: hidden;
   border-radius: 20px;
-
+  display: flex;
+  align-self: baseline;
 }
+.main_catalog_block_right_item:hover{
+  color: #F9A43F;
+}
+
 .main_catalog_block_right_text {
   width: 100%;
   padding: 10px 10px 10px 20px;
