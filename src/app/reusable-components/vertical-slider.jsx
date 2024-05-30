@@ -16,7 +16,7 @@ import { Navigation } from 'swiper/modules';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSliderPageIndex, setSliderPageIndex } from '../store/productPage';
 
-export default function VerticalSlider({ allImages }) {
+export default function VerticalSlider({ product }) {
   const dispatch = useDispatch();
   const [swiperRef, setSwiperRef] = useState({});
   const sliderActiveIndex = useSelector(getSliderPageIndex());
@@ -41,43 +41,53 @@ export default function VerticalSlider({ allImages }) {
 
   return (
     <>
-      <div className="vertical_slider_mainContainer">
-        <div className="vertical_slider_container">
-          <Swiper
-            direction={'vertical'}
-            VerticalClass="swiper-pagination-vertical"
-            onInit={(ev) => {
-              setSwiperRef(ev);
-            }}
-            slidesPerView={3}
-            spaceBetween={10}
-            navigation={false}
-            modules={[Navigation]}
-            className="vertical_swiper">
-            {allImages &&
-              allImages.map((image, index) => (
-                <SwiperSlide className="swiper_slide_block">
-                  <div className="swiper_slide_100px">
-                    <div
-                      className={
-                        sliderActiveIndex === index
-                          ? 'swiper_slide_85px_active'
-                          : 'swiper_slide_85px'
-                      }>
-                      <img id={index} onClick={clickOnImage} src={image} alt="" />
+      {product?.allImg && product?.allImg.length > 0 ? (
+        <div className="vertical_slider_mainContainer">
+          <div className="vertical_slider_container">
+            <Swiper
+              direction={'vertical'}
+              VerticalClass="swiper-pagination-vertical"
+              onInit={(ev) => {
+                setSwiperRef(ev);
+              }}
+              slidesPerView={3}
+              spaceBetween={10}
+              navigation={false}
+              modules={[Navigation]}
+              className="vertical_swiper">
+              {product?.allImg &&
+                product?.allImg.map((image, index) => (
+                  <SwiperSlide className="swiper_slide_block">
+                    <div className="swiper_slide_100px">
+                      <div
+                        className={
+                          sliderActiveIndex === index
+                            ? 'swiper_slide_85px_active'
+                            : 'swiper_slide_85px'
+                        }>
+                        <img id={index} onClick={clickOnImage} src={image} alt="" />
+                      </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-          </Swiper>
-          <button onClick={() => prev()} className="vertical_prev">
-            <img src={vectorTop} alt="" />
-          </button>
-          <button onClick={() => next()} className="vertical_next">
-            <img src={vectorBottom} alt="" />
-          </button>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+            {product?.allImg && product?.allImg.length > 3 ? (
+              <>
+                <button onClick={() => prev()} className="vertical_prev">
+                  <img src={vectorTop} alt="" />
+                </button>
+                <button onClick={() => next()} className="vertical_next">
+                  <img src={vectorBottom} alt="" />
+                </button>
+              </>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 }

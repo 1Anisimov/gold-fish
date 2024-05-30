@@ -1,0 +1,14 @@
+.links{
+    text-decoration: none;
+    
+    color: gray;
+}
+.linkActive{
+    text-decoration: none;
+    color: rgba(42, 42, 42, 1);
+    cursor: default;
+}
+
+.links:hover{
+    color: rgba(42, 42, 42, 1);
+}

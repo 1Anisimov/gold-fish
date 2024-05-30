@@ -35,7 +35,7 @@ const MainCatalog = () => {
             <div className="main_catalog_block_right">
               {catalogBlockItems &&
                 catalogBlockItems.map((item) => (
-                  <div className="main_catalog_block_right_item ">
+                  <div key={item.id} className="main_catalog_block_right_item ">
                     <img src={item.img} alt="" id={item.id} onClick={goToCatalog} />
                     <div
                       className="main_catalog_block_right_text"

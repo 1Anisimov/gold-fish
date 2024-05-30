@@ -5,6 +5,7 @@ import MainContainerBg from '../containers/main-container-bg';
 import banner from '../image/catalog/bannerCatalogPage.png';
 import { useSelector } from 'react-redux';
 import { getTitleCatalog } from '../store/products';
+import MainNavigation from '../common/components/main-navigation/main-navigation';
 
 const CatalogPage = () => {
   useEffect(() => {
@@ -27,6 +28,7 @@ const CatalogPage = () => {
       <MainContainerBg>
         <div className="catalog_page">
           <div className="container_main">
+            <MainNavigation />
             <h2 className="first_title">{titleCatalog}</h2>
             <div className="catalog_page_block">
               <FilterCatalog />

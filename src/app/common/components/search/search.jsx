@@ -18,7 +18,6 @@ const Search = () => {
 
   const valueSearch = useSelector(getValueSearch());
   const filteredProductsActive = useSelector(getFoundProducts());
-  console.log(filteredProductsActive);
   const isOpenSearch = useSelector(getSearchOpenOrClose());
 
   const requestData = useCallback(() => {

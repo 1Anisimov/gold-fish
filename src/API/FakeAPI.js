@@ -503,7 +503,7 @@ export const products = [
         id: "30",
         sale: 4868,
         saleProcent: 35,
-        allImg: [image, image, image, image]
+        allImg: [image, image]
       },
       {
         img: image,
@@ -689,8 +689,15 @@ export function getNotSaleProducts () {
 export function getTempBuy() {
     return productsTempBuy;
 }
-export function getProductById(productId) {
-   return products.find((product) => product.id === productId )
+// export function getProductById(productId) {
+//    return products.find((product) => product.id === productId )
+// }
+export const getProductByIdApi = (productId) => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(products.find((product) => product.id === productId ))
+    }, 2000)
+  })
 }
 
 // export function getSaleProducts() {

@@ -12,6 +12,7 @@ const initialStateFilters = {
         foundProductsOnPage: [],
         valueSearch: "",
         productsLoadingStatus: "LOADING",
+        activeProductOnProductPage: {},
 
         paginatedProducts: [],
         titleCatalog: "Каталог продукции",
@@ -203,6 +204,10 @@ const productsSlice = createSlice({
         setSpecialProductsReceved: (state, action) => {
             state.specialProducts = action.payload;
             state.isLoading = "READY";
+        },
+        setActiveProductOnProductPageReceved: (state, action) => {
+            state.activeProductOnProductPage = action.payload;
+            state.isLoading = "READY";
         }
         
     }
@@ -254,7 +259,19 @@ const {
     setSaleProductsReceved,
     setSpecialProductsReceved,
 
+    setActiveProductOnProductPageReceved,
+
  } = actions;
+
+ export const setActiveProductOnProductPage = (productId) => async (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        const content = await productsService.getProductById(productId);
+        dispatch(setActiveProductOnProductPageReceved(content))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+}
 
  export const setAllSpecialProducts = () => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
@@ -546,6 +563,7 @@ export const getFiltersAge = () => (state) => state.products.filters.age;
 export const getFiltersPresence = () => (state) => state.products.filters.presence;
 export const getFiltersPlayers = () => (state) => state.products.filters.players; 
 
+export const getActiveProductOnProductPage = () => (state) => state.products.activeProductOnProductPage
 
 
 

@@ -7,6 +7,10 @@ import BottomContainerBg from '../containers/bottom-container-bg';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
+  const scrollToUpOnPage = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <>
       <BottomContainerBg>
@@ -22,25 +26,46 @@ const Footer = () => {
             </div>
             <div className="footer_top_item footer_top_part_2">
               <div className="footer_top_part_2_list">
-                <Link className="footer_top_title footer_top_part_2_title" to={`/catalog`}>
+                <Link
+                  onClick={scrollToUpOnPage}
+                  className="footer_top_title footer_top_part_2_title"
+                  to={`/catalog`}>
                   Каталог
                 </Link>
-                <Link className="footer_top_part_2_categories" to={`/catalog/warhammer`}>
+                <Link
+                  onClick={scrollToUpOnPage}
+                  className="footer_top_part_2_categories"
+                  to={`/catalog/warhammer`}>
                   Warhammer 40000
                 </Link>
-                <Link className="footer_top_part_2_categories" to={`/catalog/board_games`}>
+                <Link
+                  onClick={scrollToUpOnPage}
+                  className="footer_top_part_2_categories"
+                  to={`/catalog/board_games`}>
                   Настольные игры
                 </Link>
-                <Link className="footer_top_part_2_categories" to={`/catalog/magic`}>
+                <Link
+                  onClick={scrollToUpOnPage}
+                  className="footer_top_part_2_categories"
+                  to={`/catalog/magic`}>
                   Magic: the Gathering
                 </Link>
-                <Link className="footer_top_part_2_categories" to={`/catalog/accessories_game`}>
+                <Link
+                  onClick={scrollToUpOnPage}
+                  className="footer_top_part_2_categories"
+                  to={`/catalog/accessories_game`}>
                   Аксессуары для игр
                 </Link>
-                <Link className="footer_top_part_2_categories" to={`/catalog/paints`}>
+                <Link
+                  onClick={scrollToUpOnPage}
+                  className="footer_top_part_2_categories"
+                  to={`/catalog/paints`}>
                   Краски{' '}
                 </Link>
-                <Link className="footer_top_part_2_categories" to={`/catalog/accessories_modeling`}>
+                <Link
+                  onClick={scrollToUpOnPage}
+                  className="footer_top_part_2_categories"
+                  to={`/catalog/accessories_modeling`}>
                   Аксессуары для моделизма
                 </Link>
               </div>

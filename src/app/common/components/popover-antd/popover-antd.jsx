@@ -18,7 +18,7 @@ const PopoverAntd = ({ children }) => (
       }
     }}>
     <Space wrap>
-      <Popover content={content} title="Title" trigger="click">
+      <Popover content={content} title="" trigger="click">
         <span type="text" className="button_pop-up_my">
           {children}
         </span>
