@@ -8,6 +8,7 @@ import productPageReducer from "./productPage";
 import modalsReducer from "./modals";
 import currentUserReducer from "./currentUser";
 import breadcrumbReducer from "./breadcrumb";
+import adminReducer from "./admin";
 
 const rootReducer = combineReducers({
     products: productsReducer,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     productPage: productPageReducer,
     modals: modalsReducer,
     currentUser: currentUserReducer,
-    breadcrumbNavigation: breadcrumbReducer
+    breadcrumbNavigation: breadcrumbReducer,
+    admin: adminReducer
     });
 
 export function createStore() {

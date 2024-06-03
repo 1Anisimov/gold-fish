@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   getFoundProducts,
+  getFoundProductsLoadingStatus,
   getValueSearch,
   setFoundProducts,
   setFoundProductsOnPage,
@@ -19,17 +20,17 @@ const Search = () => {
   const valueSearch = useSelector(getValueSearch());
   const filteredProductsActive = useSelector(getFoundProducts());
   const isOpenSearch = useSelector(getSearchOpenOrClose());
+  const loadingStatus = useSelector(getFoundProductsLoadingStatus());
 
   const requestData = useCallback(() => {
     dispatch(setFoundProducts());
+    dispatch(setSearchOpenOrClose(true));
   }, [dispatch]);
 
   const debouncedFunc = useDebounce(requestData, 500);
 
   const findProducts = ({ target }) => {
     dispatch(setValueSearch(target.value));
-
-    dispatch(setSearchOpenOrClose(true));
     debouncedFunc();
   };
 
@@ -62,7 +63,10 @@ const Search = () => {
           <img src={logoSearch} alt="" />
         </button>
       </div>
-      {valueSearch.length > 0 && isOpenSearch && fiveFilteredProducts ? (
+      {loadingStatus === 'READY' &&
+      valueSearch.length > 0 &&
+      isOpenSearch &&
+      fiveFilteredProducts ? (
         <div autoFocus className="searchProductsBlock">
           {fiveFilteredProducts && fiveFilteredProducts.length > 0 ? (
             fiveFilteredProducts.map((product) => (

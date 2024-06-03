@@ -10,6 +10,7 @@ const initialStateFilters = {
         activePaginatedPageOnFound: 1,
         foundProducts: [],
         foundProductsOnPage: [],
+        foundProductsLoadingStatus: "LOADING",
         valueSearch: "",
         productsLoadingStatus: "LOADING",
         activeProductOnProductPage: {},
@@ -42,6 +43,9 @@ const productsSlice = createSlice({
     name: "products",
     initialState: initialStateFilters,
     reducers: {
+        setFoundProductsLoadingStatusLoading: (state) => {
+            state.foundProductsLoadingStatus = "LOADING"
+        },
         setProductsLoadingStatus: (state, action) => {
             state.productsLoadingStatus = action.payload;
         },
@@ -176,7 +180,7 @@ const productsSlice = createSlice({
 
         setFoundProductsReceved: (state, action) => {
             state.foundProducts = action.payload;
-            state.isLoading = "READY"
+            state.foundProductsLoadingStatus = "READY"
         },
         setFoundProductsOnPageReceved: (state, action) => {
             state.foundProductsOnPage = action.payload;
@@ -215,6 +219,7 @@ const productsSlice = createSlice({
 
 const { reducer: productsReducer, actions } = productsSlice;
 const {
+    setFoundProductsLoadingStatusLoading,
     setProductsLoadingStatus,
     setLoadingStatusLoading,
     setLoadingStatusError,
@@ -322,16 +327,19 @@ export const setFoundProductsOnPage = () => async (dispatch, getState) => {
 }
 
 export const setFoundProducts = () => async (dispatch, getState) => {
-    dispatch(setLoadingStatusLoading())
+    dispatch(setFoundProductsLoadingStatusLoading())
     try {
         const { products, valueSearch } = getState().products;
-        const newArray = products.filter((p) => {
-            return p.name
-              .toLowerCase()
-              .trim()
-              .includes(valueSearch ? valueSearch.toLowerCase().trim() : '');
-          });
-        dispatch(setFoundProductsReceved(newArray))
+        if(valueSearch && valueSearch.length > 0) {
+            const newArray = products.filter((p) => {
+                return p.name
+                  .toLowerCase()
+                  .trim()
+                  .includes(valueSearch ? valueSearch.toLowerCase().trim() : '');
+              });
+            dispatch(setFoundProductsReceved(newArray))
+        }
+        
     } catch (error) {
         dispatch(setLoadingStatusError())
     }
@@ -544,7 +552,10 @@ export const changePlayers = (payload) => async (dispatch) => {
 
 export const getTitleCatalog = () => (state) => state.products.titleCatalog
 
+export const getAllProducts = () => (state) => state.products.products
+
 export const getProductsLoadingStatus = () => (state) => state.products.productsLoadingStatus
+export const getFoundProductsLoadingStatus = () => (state) => state.products.foundProductsLoadingStatus
 
 export const getAllActiveProducts = () => (state) => state.products.activeProducts
 export const getSaleProducts = () => (state) => state.products.saleProducts

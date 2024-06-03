@@ -5,8 +5,9 @@ import cardPlayers from '../image/players_card.png';
 import history from '../utils/history';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductsToBasket, searchProductInBasket } from '../store/basket';
+import { setCurrentProduct, setModalChanged } from '../store/admin';
 
-const Card = ({ product }) => {
+const Card = ({ product, admin }) => {
   const dispatch = useDispatch();
   // const isLoadingBasket = useSelector(getLoadingStatusBasket());
   const isProductInBasket = useSelector(searchProductInBasket(product.id));
@@ -19,6 +20,12 @@ const Card = ({ product }) => {
   const clickCheckout = () => {
     history.push('/person/basket');
   };
+
+  const productChange = () => {
+    dispatch(setCurrentProduct(product));
+    dispatch(setModalChanged(true));
+  };
+
   return (
     <>
       {product && (
@@ -57,27 +64,43 @@ const Card = ({ product }) => {
               </div>
             )}
           </div>
-          <div className="card_button">
-            {isProductInBasket ? (
+          {admin ? (
+            <></>
+          ) : (
+            <div className="card_button">
+              {isProductInBasket ? (
+                <MainButton
+                  handleClick={clickCheckout}
+                  width="163"
+                  heigth="34"
+                  text="Оформить заказ"
+                />
+              ) : (
+                <MainButton
+                  handleClick={clickBasket}
+                  width="163"
+                  heigth="34"
+                  isGradient
+                  text="В корзину"
+                />
+              )}
+            </div>
+          )}
+
+          {admin ? (
+            <div className="card_button">
               <MainButton
-                handleClick={clickCheckout}
+                handleClick={productChange}
                 width="163"
                 heigth="34"
-                text="Оформить заказ"
+                text="редактировать"
               />
-            ) : (
-              <MainButton
-                handleClick={clickBasket}
-                width="163"
-                heigth="34"
-                isGradient
-                text="В корзину"
-              />
-            )}
-          </div>
-          <div className="card_button">
-            <MainButton width="163" heigth="34" text="Купить в 1 клик" />
-          </div>
+            </div>
+          ) : (
+            <div className="card_button">
+              <MainButton width="163" heigth="34" text="Купить в 1 клик" />
+            </div>
+          )}
         </div>
       )}
     </>

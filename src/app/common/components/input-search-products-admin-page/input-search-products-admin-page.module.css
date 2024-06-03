@@ -1,0 +1,32 @@
+.mainBlock{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    font-family: Trebuchet MS;
+    color: rgba(42, 42, 42, 1);
+
+}
+
+.inputBlock{
+    display: flex;
+    flex-direction: column;
+}
+
+.label{
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.input{
+    width: 534px;
+    height: 40px;
+    border-radius: 9px;
+    overflow: hidden;
+    padding-left: 10px;
+    border: 1px solid rgba(217, 217, 217, 0.39);
+    transition: all 0.6s ease;
+}
+.input:focus{
+    border: 1px solid rgb(18, 17, 17);
+    transition: all 0.6s ease;
+}
