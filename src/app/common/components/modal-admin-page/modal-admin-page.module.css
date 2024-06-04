@@ -1,0 +1,76 @@
+/* .adminPage{
+    min-height: 100vh;
+    margin-top: 170px;
+    
+    
+} */
+
+/* .adminTabs{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+} */
+
+
+
+.modalActive{
+    z-index: 10000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    /* height: 100%; */
+    background: rgba(42, 42, 42, 0.5);
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.modalContainer{
+
+    position: fixed;
+    background: #fff;
+    /* height: 100vh; */
+    width: 550px;
+    z-index: 10001;
+    border-radius: 9px;
+    overflow-y: auto;
+}
+
+.addProductButton{
+    background-color: #f1eeea;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.addProductButton:hover{
+    color: #F9A43F;
+}
+
+.modalContent{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.modalInputBlock{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.modalLabel{
+    font-family: Trebuchet MS;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(42, 42, 42, 1);
+}
+
+.modalInput{
+    border: 1px solid rgba(42, 42, 42, 0.5);
+    border-radius: 9px;
+    overflow: hidden;
+    padding-left: 10px;
+}

@@ -7,7 +7,8 @@ const adminSlice = createSlice({
         valueSearch: null,
         foundProducts: [],
         currentProduct: null,
-        modalChanged: false
+        modalChanged: false,
+        newChangedProduct: null
     },
     reducers: {
         setLoadingStatusLoading: (state) => {
@@ -28,12 +29,20 @@ const adminSlice = createSlice({
         },
         setCurrentProductReceved: (state, action) => {
             state.currentProduct = action.payload;
+            state.newChangedProduct = action.payload;
             state.isLoading = "READY";
         },
         setModalChangedReceved: (state, action) => {
             state.modalChanged = action.payload;
             state.isLoading = "READY"
+        },
+
+        setNewChangedProductReceved: (state, action) => {
+            state.newChangedProduct = action.payload;
+            
+            state.isLoading = "READY";
         }
+    
     }
 });
 
@@ -45,10 +54,26 @@ const {
     setValueSearchReceved,
     setFoundProductsReceved,
     setCurrentProductReceved,
-    setModalChangedReceved
+    setModalChangedReceved,
+
+    setNewChangedProductReceved
 
 
  } = actions;
+
+ export const setNewChangedProduct = (name, value) => (dispatch, getState) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        const {newChangedProduct} = getState().admin;
+        
+        dispatch(setNewChangedProductReceved({
+            ...newChangedProduct,
+            [name]: value
+        }))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+ }
 
  export const setModalChanged = (payload) => (dispatch) => {
     dispatch(setLoadingStatusLoading())
@@ -98,6 +123,7 @@ const {
  export const getValueSearchOnAdminPage = () => (state) => state.admin.valueSearch;
  export const getFoundProductsOnAdminPage = () => (state) => state.admin.foundProducts;
  export const getLoadingStatusOnAdminPage = () => (state) => state.admin.isLoading
+ export const getNewChangedProduct = () => (state) => state.admin.newChangedProduct
 
  export const getCurrentProductOnAdminPage = () => (state) => state.admin.currentProduct
  export const getIsOpenModalChanged = () => (state) => state.admin.modalChanged

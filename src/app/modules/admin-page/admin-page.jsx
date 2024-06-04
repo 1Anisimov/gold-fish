@@ -7,14 +7,13 @@ import {
   getCurrentProductOnAdminPage,
   getFoundProductsOnAdminPage,
   getIsOpenModalChanged,
-  setCurrentProduct,
   setModalChanged
 } from '../../store/admin';
 import { getAllProducts, getFiltersLoadingStatus } from '../../store/products';
 import Card from '../../reusable-components/card';
 import { ScrollBlock } from '../../hooks/useScrollBlock';
 import AddProductSvg from '../../image/svg/addProductSvg';
-// import AdminTabs from '../../common/components/admin-tabs/admin-tabs';
+import ModalAdminPage from '../../common/components/modal-admin-page/modal-admin-page';
 
 const AdminPage = () => {
   const dispatch = useDispatch();
@@ -29,38 +28,24 @@ const AdminPage = () => {
 
   isOpenModal ? blockScroll() : allowScroll();
 
-  const closeModal = ({ target }) => {
-    if (target?.id === 'modalBlock') {
-      dispatch(setCurrentProduct(null));
-      dispatch(setModalChanged(false));
-    }
+  const openAdminModal = () => {
+    dispatch(setModalChanged(true));
   };
 
   return (
     <MainContainerBg>
-      {isOpenModal ? (
-        <div onClick={closeModal} id="modalBlock" className={cls.modalActive}>
-          <div className={cls.modalContainer}>
-            <div className={cls.modalContent}>modal</div>
-          </div>
-        </div>
-      ) : (
-        <></>
-      )}
+      {isOpenModal ? <ModalAdminPage /> : <></>}
       <div className={cls.adminPage}>
         <h3>Admin page</h3>
         <div className={cls.addProductBlock}>
-          <button className={cls.addProductButton}>
+          <button onClick={openAdminModal} className={cls.addProductButton}>
             Добавить товар <AddProductSvg />
           </button>
-          <button className={cls.addProductButton}>
+          <button onClick={openAdminModal} className={cls.addProductButton}>
             Добавить товар на главную <AddProductSvg />
           </button>
         </div>
         <SearchProductsOnAdminPage />
-        {/* <div className={cls.adminTabs}>
-          <AdminTabs />
-        </div> */}
         {loadingStatus === 'READY' ? (
           <div className={cls.products}>
             {foundProducts && foundProducts.length > 0

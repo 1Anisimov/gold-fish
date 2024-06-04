@@ -212,6 +212,11 @@ const productsSlice = createSlice({
         setActiveProductOnProductPageReceved: (state, action) => {
             state.activeProductOnProductPage = action.payload;
             state.isLoading = "READY";
+        },
+
+        changeProductByAdminPageReceved: (state, action) => {
+            state.products = action.payload;
+            state.isLoading = "READY";
         }
         
     }
@@ -266,13 +271,38 @@ const {
 
     setActiveProductOnProductPageReceved,
 
+    changeProductByAdminPageReceved,
+
  } = actions;
 
- export const setActiveProductOnProductPage = (productId) => async (dispatch) => {
+ export const changeProductByAdminPage = (productId, newProduct) => (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
     try {
-        const content = await productsService.getProductById(productId);
-        dispatch(setActiveProductOnProductPageReceved(content))
+        const {products} = getState().products;
+        const newArray = [...products]
+        console.log("newProduct", newProduct)
+        console.log("Начало", newArray)
+        const filterdProducts = newArray.filter((product) => product.id !== productId)
+        console.log("Фильтр", filterdProducts)
+        filterdProducts.push(newProduct)
+        console.log("Push", filterdProducts)
+        dispatch(changeProductByAdminPageReceved(filterdProducts))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+ }
+
+ export const setActiveProductOnProductPage = (productId) => async (dispatch, getState) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        const {products} = getState().products;
+        products.forEach((item) => {
+            if(item.id === productId) {
+                dispatch(setActiveProductOnProductPageReceved(item))
+            }
+        })
+        // const content = await productsService.getProductById(productId);
+        // dispatch(setActiveProductOnProductPageReceved(content))
     } catch (error) {
         dispatch(setLoadingStatusError())
     }
