@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import cls from './user-page-settings.module.css';
 import MainContainerBg from '../../containers/main-container-bg';
-import { MenuOnUserPage } from '../../common/components/menu-on-user-page/menu-on-user-page';
-import PersonalAccountSettings from '../../common/components/personal-account-settings/personal-account-settings';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getCurrentUserLoadingStatus,
   getLoadingStatus,
   setCurrentUser
 } from '../../store/currentUser';
+import PersonalAccountSettings from '../user-page/personal-account-settings/personal-account-settings';
+import { MenuOnUserPage } from '../user-page/menu-on-user-page/menu-on-user-page';
 
 const UserPageSettings = () => {
   const dispatch = useDispatch();

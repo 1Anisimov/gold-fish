@@ -1,0 +1,26 @@
+.block_info {
+    margin-top: 50px;
+  }
+
+.info_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+.info_left {
+    flex-basis: 50%;
+    font-family: Trebuchet MS;
+  }
+
+.info_left__text {
+    padding-right: 15px;
+    margin-bottom: 20px;
+    }
+
+.info_right {
+    flex-basis: 50%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    }

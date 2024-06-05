@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import FilterCatalog from '../common/components/filter-catalog/filter-catalog';
-import ProductsCatalog from '../common/components/products-catalog-page/products-catalog-page';
-import MainContainerBg from '../containers/main-container-bg';
-import banner from '../image/catalog/bannerCatalogPage.png';
+import ProductsCatalog from '../products-catalog-page/products-catalog-page';
+import MainContainerBg from '../../../containers/main-container-bg';
+import banner from '../../../image/catalog/bannerCatalogPage.png';
 import { useSelector } from 'react-redux';
-import { getTitleCatalog } from '../store/products';
-import MainNavigation from '../common/components/main-navigation/main-navigation';
+import { getTitleCatalog } from '../../../store/products';
+import MainNavigation from '../../../common/components/main-navigation/main-navigation';
+import FilterCatalog from '../filter-catalog/filter-catalog';
 
 const CatalogPage = () => {
   useEffect(() => {

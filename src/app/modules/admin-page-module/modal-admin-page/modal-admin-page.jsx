@@ -9,7 +9,7 @@ import {
   setNewChangedProduct
 } from '../../../store/admin';
 import MainButton from '../../../reusable-components/main-button';
-import { changeProductByAdminPage } from '../../../store/products';
+import { addProductByAdminPage, changeProductByAdminPage } from '../../../store/products';
 
 const ModalAdminPage = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,9 @@ const ModalAdminPage = () => {
   };
 
   const changeProduct = ({ target }) => {
-    if (changedProduct) {
+    if (target.name === 'price') {
+      dispatch(setNewChangedProduct(target.name, Number(target.value)));
+    } else {
       dispatch(setNewChangedProduct(target.name, target.value));
     }
   };
@@ -37,6 +39,9 @@ const ModalAdminPage = () => {
 
   const handleCreateProduct = () => {
     console.log('create');
+    if (changedProduct) {
+      dispatch(addProductByAdminPage(changedProduct));
+    }
   };
 
   return (

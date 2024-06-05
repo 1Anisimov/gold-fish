@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
 import cls from './products-catalog-page.module.css';
-import Card from '../../../reusable-components/card';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getActivePaginatedPage,
@@ -10,6 +9,7 @@ import {
   setActiveProducts
 } from '../../../store/products';
 import changePaginationPage from '../../../utils/changePaginationPage';
+import Card from '../../../reusable-components/main-card/card';
 
 const ProductsCatalog = () => {
   const dispatch = useDispatch();
@@ -21,6 +21,8 @@ const ProductsCatalog = () => {
   const numberOfProductsOnPage = 12;
   const currentProducts = useSelector(getAllActiveProducts());
   const currentPage = useSelector(getActivePaginatedPage());
+
+  console.log(currentProducts);
 
   const calculateNumberPages = (currentProducts) => {
     let numberPagesArray = [];

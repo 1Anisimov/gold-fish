@@ -117,7 +117,7 @@ const {
 export const getTotalPriceBasket = () => (state) => {
     if(state.basket.entities.length > 0) {
        return state.basket.entities.reduce((sum, product) => {
-        if(product.sale !== null) return sum + (product.sale * product.quantity)
+        if(product.sale) return sum + (product.sale * product.quantity)
         else return sum + (product.price * product.quantity)
     }, 0)
     } else return 0;

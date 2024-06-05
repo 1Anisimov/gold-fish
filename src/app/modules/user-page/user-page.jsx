@@ -8,8 +8,8 @@ import {
   getLoadingStatus,
   setCurrentUser
 } from '../../store/currentUser';
-import PersonalAccount from '../../common/components/personal-account/personal-account';
-import { MenuOnUserPage } from '../../common/components/menu-on-user-page/menu-on-user-page';
+import { MenuOnUserPage } from './menu-on-user-page/menu-on-user-page';
+import PersonalAccount from './personal-account/personal-account';
 
 const UserPage = () => {
   const dispatch = useDispatch();

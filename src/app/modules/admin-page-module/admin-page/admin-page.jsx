@@ -1,19 +1,19 @@
 import React from 'react';
 import cls from './admin-page.module.css';
-import MainContainerBg from '../../containers/main-container-bg';
-import SearchProductsOnAdminPage from '../../common/components/input-search-products-admin-page/input-search-products-admin-page';
+import MainContainerBg from '../../../containers/main-container-bg';
+import SearchProductsOnAdminPage from '../../../common/components/input-search-products-admin-page/input-search-products-admin-page';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getCurrentProductOnAdminPage,
   getFoundProductsOnAdminPage,
   getIsOpenModalChanged,
   setModalChanged
-} from '../../store/admin';
-import { getAllProducts, getFiltersLoadingStatus } from '../../store/products';
-import Card from '../../reusable-components/card';
-import { ScrollBlock } from '../../hooks/useScrollBlock';
-import AddProductSvg from '../../image/svg/addProductSvg';
-import ModalAdminPage from '../../common/components/modal-admin-page/modal-admin-page';
+} from '../../../store/admin';
+import { getAllProducts, getFiltersLoadingStatus } from '../../../store/products';
+import Card from '../../../reusable-components/main-card/card';
+import { ScrollBlock } from '../../../hooks/useScrollBlock';
+import AddProductSvg from '../../../image/svg/addProductSvg';
+import ModalAdminPage from '../modal-admin-page/modal-admin-page';
 
 const AdminPage = () => {
   const dispatch = useDispatch();

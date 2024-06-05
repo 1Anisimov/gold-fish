@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import MainPage from './app/pages/main-page';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Header from './app/components/header';
 import Footer from './app/components/footer';
@@ -12,7 +11,8 @@ import { addProducts, getProductsLoadingStatus } from './app/store/products';
 import foundProductsPage from './app/pages/found-products-page/found-products-page';
 import UserPage from './app/modules/user-page/user-page';
 import UserPageSettings from './app/modules/user-page-settings/user-page-settings';
-import AdminPage from './app/modules/admin-page/admin-page';
+import AdminPage from './app/modules/admin-page-module/admin-page/admin-page';
+import MainPage from './app/modules/main-page-module/main-page/main-page';
 
 const App = () => {
   const dispatch = useDispatch();

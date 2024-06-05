@@ -1,0 +1,49 @@
+.upcoming_events_left {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.upcoming_events_bottom {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 150px;
+  bottom: 0;
+  background: rgba(42, 42, 42, 0.5);
+  color: #FFF;
+  padding: 25px;
+  transition: all 0.5s ease;
+}
+
+.upcoming_events_left:hover .upcoming_events_bottom {
+  height: 100%;
+  transition: all 0.5s ease;
+}
+.upcoming_events_bottom_block {
+  display: flex;
+  justify-content: space-between;
+}
+.upcoming_events_bottom_block_h2{
+color: rgba(249, 164, 63, 1);
+font-family: Trebuchet MS;
+font-size: 19px;
+font-weight: 700;
+}
+.fullText_upcoming_events{
+  margin-top: 30px;
+}
+.upcoming_events_bottom_block_span{
+  font-family: Open Sans;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+}
+.upcoming_events_bottom_text{
+  font-family: Trebuchet MS;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  margin-top: 15px;
+}

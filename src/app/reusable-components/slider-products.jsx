@@ -12,7 +12,7 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Navigation } from 'swiper/modules';
-import Card from './card';
+import Card from './main-card/card';
 
 const SliderProducts = ({ products }) => {
   const [swiperRef, setSwiperRef] = useState({});

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import productsService from "../services/products.service";
+import { nanoid } from "nanoid";
 
 const initialStateFilters = {
         products: [],
@@ -217,6 +218,11 @@ const productsSlice = createSlice({
         changeProductByAdminPageReceved: (state, action) => {
             state.products = action.payload;
             state.isLoading = "READY";
+        },
+
+        addProductByAdminPageReceved: (state, action) => {
+            state.products.push(action.payload);
+            state.isLoading = "READY";
         }
         
     }
@@ -272,20 +278,26 @@ const {
     setActiveProductOnProductPageReceved,
 
     changeProductByAdminPageReceved,
+    addProductByAdminPageReceved,
 
  } = actions;
+
+ export const addProductByAdminPage = (newProduct) => (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        dispatch(addProductByAdminPageReceved({...newProduct, id: nanoid()}))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+ }
 
  export const changeProductByAdminPage = (productId, newProduct) => (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
     try {
         const {products} = getState().products;
         const newArray = [...products]
-        console.log("newProduct", newProduct)
-        console.log("Начало", newArray)
         const filterdProducts = newArray.filter((product) => product.id !== productId)
-        console.log("Фильтр", filterdProducts)
         filterdProducts.push(newProduct)
-        console.log("Push", filterdProducts)
         dispatch(changeProductByAdminPageReceved(filterdProducts))
     } catch (error) {
         dispatch(setLoadingStatusError())
@@ -301,8 +313,6 @@ const {
                 dispatch(setActiveProductOnProductPageReceved(item))
             }
         })
-        // const content = await productsService.getProductById(productId);
-        // dispatch(setActiveProductOnProductPageReceved(content))
     } catch (error) {
         dispatch(setLoadingStatusError())
     }

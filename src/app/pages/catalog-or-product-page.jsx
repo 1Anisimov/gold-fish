@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { ProductPage } from '../modules/product-page/product-page';
-import CatalogPage from '../modules/Catalog-page';
+import CatalogPage from '../modules/catalog-page-module/catalog-page/Catalog-page';
 
 const Component = () => {
   const params = useParams();

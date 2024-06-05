@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
-import BlockInfo from '../components/blockInfo';
-import MainCatalog from '../components/main-page-catalog';
-import MoreInfo from '../components/more-info';
-import TemporarilyBuy from '../components/temporarilyBuy';
-import UpcomingEvents from '../components/upcomingEvents';
-import MainContainerBg from '../containers/main-container-bg';
+import cls from './main-page.module.css';
+import BlockInfo from '../block-info/blockInfo';
+import MainCatalog from '../main-page-catalog/main-page-catalog';
+import MoreInfo from '../more-info/more-info';
+import TemporarilyBuy from '../temporarily-buy/temporarilyBuy';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getSaleProducts,
   getSpecialProducts,
   setAllSaleProducts,
   setAllSpecialProducts
-} from '../store/products';
+} from '../../../store/products';
+import MainContainerBg from '../../../containers/main-container-bg';
+import UpcomingEvents from '../upcoming-events/upcomingEvents';
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const MainPage = () => {
 
   return (
     <>
-      <div className="main_page">
+      <div className={cls.main_page}>
         <MainContainerBg>
           <MainCatalog />
         </MainContainerBg>

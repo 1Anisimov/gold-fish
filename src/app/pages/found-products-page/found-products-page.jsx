@@ -7,9 +7,9 @@ import {
   setActivePaginatedPageOnFound
 } from '../../store/products';
 import { useDispatch, useSelector } from 'react-redux';
-import Card from '../../reusable-components/card';
 import changePaginationPage from '../../utils/changePaginationPage';
 import { Link } from 'react-router-dom';
+import Card from '../../reusable-components/main-card/card';
 
 const FoundProductsPage = () => {
   const dispatch = useDispatch();

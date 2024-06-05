@@ -1,0 +1,21 @@
+.upcoming_events {
+    margin-top: 70px;
+  }
+
+.upcoming_events_h2{
+    font-family: Trebuchet MS;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+  
+.upcoming_events_block_button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 35px;
+  }
+.upcoming_events_block {
+    display: flex;
+    justify-content: space-between;
+  }
