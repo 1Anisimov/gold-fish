@@ -3,9 +3,9 @@ import cls from './filter-presence.module.css';
 
 const FilterPresence = ({ onChange }) => {
   const presenceArray = [
-    { title: 'В наличие', id: 1, value: 'are_available', category: 'presence' },
+    { title: 'В наличии', id: 1, value: 'are_available', category: 'presence' },
     { title: 'Под заказ', id: 2, value: 'to_order', category: 'presence' },
-    { title: 'Нет в наличие', id: 3, value: 'not_available', category: 'presence' }
+    { title: 'Нет в наличии', id: 3, value: 'not_available', category: 'presence' }
   ];
   const [openClose, setOpenClose] = useState(true);
 

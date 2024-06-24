@@ -66,23 +66,8 @@ const currentUserSlice = createSlice({
         },
 
         setUserInfoReceved: (state, action) => {
-            if(action.payload === "name") {
-                if(state.user.changedUserInfo?.name && state.user.changedUserInfo?.name.length > 1) {
-                    state.user.userInfo.name = state.user.changedUserInfo?.name;
-                }
-                if(state.user.changedUserInfo?.secondName && state.user.changedUserInfo?.secondName.length > 1) {
-                    state.user.userInfo.secondName = state.user.changedUserInfo?.secondName
-                }
-            }
-            if(action.payload === "number") {
-                if(state.user.changedUserInfo?.number && state.user.changedUserInfo?.number.length > 1) {
-                    state.user.userInfo.number = state.user.changedUserInfo?.number
-                }
-            }
-            if(action.payload === "mail") {
-                if(state.user.changedUserInfo?.mail && state.user.changedUserInfo?.mail.length > 1) {
-                    state.user.userInfo.mail = state.user.changedUserInfo?.mail
-                }
+            if(state.user.changedUserInfo?.[action.payload] && state.user.changedUserInfo?.[action.payload].length > 1) {
+                state.user.userInfo[action.payload] = state.user.changedUserInfo?.[action.payload];
             }
             state.isLoading = "READY";
         },

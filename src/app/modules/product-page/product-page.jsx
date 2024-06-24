@@ -33,6 +33,7 @@ const Component = ({ productId }) => {
 
   return (
     <>
+      {/* //TODO: предусмотреть вариант, когда статус не READY и мы на этой странице */}
       {productLoadingStatus === 'READY' && (
         <MainContainerBg>
           <div className={cls.productPage}>

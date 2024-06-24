@@ -7,6 +7,7 @@ import {
   getCurrentProductOnAdminPage,
   getFoundProductsOnAdminPage,
   getIsOpenModalChanged,
+  setAddingProductWhere,
   setModalChanged
 } from '../../../store/admin';
 import { getAllProducts, getFiltersLoadingStatus } from '../../../store/products';
@@ -28,7 +29,16 @@ const AdminPage = () => {
 
   isOpenModal ? blockScroll() : allowScroll();
 
-  const openAdminModal = () => {
+  const openAdminModal = ({ target }) => {
+    if (target.id === 'main') {
+      dispatch(setAddingProductWhere('main'));
+    }
+    if (target.id === 'special') {
+      dispatch(setAddingProductWhere('special'));
+    }
+    if (target.id === 'sale') {
+      dispatch(setAddingProductWhere('sale'));
+    }
     dispatch(setModalChanged(true));
   };
 
@@ -38,11 +48,14 @@ const AdminPage = () => {
       <div className={cls.adminPage}>
         <h3>Admin page</h3>
         <div className={cls.addProductBlock}>
-          <button onClick={openAdminModal} className={cls.addProductButton}>
+          <button id="global" onClick={openAdminModal} className={cls.addProductButton}>
             Добавить товар <AddProductSvg />
           </button>
-          <button onClick={openAdminModal} className={cls.addProductButton}>
-            Добавить товар на главную <AddProductSvg />
+          <button id="special" onClick={openAdminModal} className={cls.addProductButton}>
+            Добавить товар в "Специальные предложения" <AddProductSvg />
+          </button>
+          <button id="sale" onClick={openAdminModal} className={cls.addProductButton}>
+            Добавить товар в "Успей купить" <AddProductSvg />
           </button>
         </div>
         <SearchProductsOnAdminPage />

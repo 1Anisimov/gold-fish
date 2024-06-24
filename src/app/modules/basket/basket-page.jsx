@@ -123,6 +123,7 @@ const Component = () => {
                   ))}
                 </tbody>
               </div>
+              {/* //TODO: вынести в отдельный компонент */}
               <div className={cls.right}>
                 <div className={cls.price}>
                   <span className={cls.sum}>Сумма:</span>
@@ -162,6 +163,7 @@ const Component = () => {
           <div className={cls.basket}>
             <h3 className={cls.title}>Корзина</h3>
             <div className={cls.basketZeroImage}>
+              {/* //TODO: убрать */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 color="rgba(202, 202, 202, 1)"

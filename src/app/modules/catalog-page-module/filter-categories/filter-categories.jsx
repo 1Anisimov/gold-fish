@@ -29,8 +29,6 @@ const FilterCategories = () => {
   }, [dispatch, category]);
 
   const handleOpenCategory = ({ target }) => {
-    console.log('targetOpen', target.id);
-    console.log('openCategory', openCategory);
     openCategory === target.id
       ? dispatch(setOpenCategory(null))
       : dispatch(setOpenCategory(target.id));

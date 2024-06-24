@@ -22,9 +22,13 @@ const MainPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(setAllSaleProducts());
-    dispatch(setAllSpecialProducts());
-  }, [dispatch]);
+    if (saleProducts?.length < 1) {
+      dispatch(setAllSaleProducts());
+    }
+    if (specialProducts?.length < 1) {
+      dispatch(setAllSpecialProducts());
+    }
+  }, [dispatch, saleProducts, specialProducts]);
 
   return (
     <>

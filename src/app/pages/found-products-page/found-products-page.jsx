@@ -37,11 +37,8 @@ const FoundProductsPage = () => {
       for (let i = 1; i <= numberPages; i++) {
         numberPagesArray.push(i);
       }
-
-      return numberPagesArray;
-    } else {
-      return numberPagesArray;
     }
+    return numberPagesArray;
   };
   const numberPagesValue = useMemo(() => calculateNumberPages(activeProducts), [activeProducts]);
 
@@ -71,7 +68,7 @@ const FoundProductsPage = () => {
           </div>
         )}
         <div className={cls.paginationBlock}>
-          {numberPagesValue.length > 1 ? (
+          {numberPagesValue.length > 1 && (
             <div className={cls.paginationContent}>
               {numberPagesValue.map((page) => (
                 <button
@@ -86,8 +83,6 @@ const FoundProductsPage = () => {
                 </button>
               ))}
             </div>
-          ) : (
-            ''
           )}
         </div>
       </div>

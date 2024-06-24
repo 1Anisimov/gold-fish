@@ -17,6 +17,7 @@ const HeaderBottom = () => {
 
   return (
     <>
+      {/* //TODO: реструктурировать через массивы */}
       <HeaderBottomContainerBg>
         <div className="header_bottom_container">
           <button

@@ -13,6 +13,7 @@ const Footer = () => {
 
   return (
     <>
+      {/* //TODO: реструктурировать через массивы */}
       <BottomContainerBg>
         <footer className="footer">
           <div className="footer_top">

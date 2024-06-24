@@ -7,7 +7,6 @@ import productsReducer from "./products";
 import productPageReducer from "./productPage";
 import modalsReducer from "./modals";
 import currentUserReducer from "./currentUser";
-import breadcrumbReducer from "./breadcrumb";
 import adminReducer from "./admin";
 
 const rootReducer = combineReducers({
@@ -19,7 +18,6 @@ const rootReducer = combineReducers({
     productPage: productPageReducer,
     modals: modalsReducer,
     currentUser: currentUserReducer,
-    breadcrumbNavigation: breadcrumbReducer,
     admin: adminReducer
     });
 

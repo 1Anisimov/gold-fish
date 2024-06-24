@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getCurrentProductOnAdminPage,
   getNewChangedProduct,
+  setAddingProductWhere,
   setCurrentProduct,
   setModalChanged,
   setNewChangedProduct
@@ -15,6 +16,7 @@ const ModalAdminPage = () => {
   const dispatch = useDispatch();
   const currentProduct = useSelector(getCurrentProductOnAdminPage());
   const changedProduct = useSelector(getNewChangedProduct());
+
   console.log(changedProduct);
 
   const closeModal = ({ target }) => {
@@ -34,15 +36,21 @@ const ModalAdminPage = () => {
 
   const handleChangeProduct = () => {
     dispatch(changeProductByAdminPage(changedProduct.id, changedProduct));
-    console.log('change');
   };
 
   const handleCreateProduct = () => {
-    console.log('create');
     if (changedProduct) {
+      // dispatch(setAddingProductWhere(null))
       dispatch(addProductByAdminPage(changedProduct));
     }
   };
+
+  // const handleCreateProductOnMainPage = () => {
+  //   if (changedProduct) {
+
+  //     dispatch(addProductByAdminPage(changedProduct));
+  //   }
+  // };
 
   return (
     <div onClick={closeModal} id="modalBlock" className={cls.modalActive}>

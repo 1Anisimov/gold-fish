@@ -112,9 +112,10 @@ export const productsTempBuy = [
 
 export const products = [
     {
-      img: imageSecond,
+      img: 'tavlei-stena-cshitov.jpg',
+      withRequire: true,
       price: 3000,
-      name: 'Warhammer 40,000: Chaos Space Marines',
+      name: 'Warhammer 40,000: Chaos Space Marines11',
       players: '3-5',
       time: '30-60',
       age: '18',
@@ -608,9 +609,254 @@ export const categoriesArray = [
     {name:"Инструменты", value:"Tools", category:"accessories_modeling"},
     {name:"Декорации", value:"Scenery", category:"accessories_modeling"},
     {name:"Подставки", value:"Stands", category:"accessories_modeling"},
-
-
   ]
+
+  const hurryUpToBuy = [
+    {
+      img: image,
+      price: 1000,
+      name: 'Chaos Space Marines',
+      players: '3-5',
+      time: '30-60',
+      age: '18',
+      category: 'magic',
+      subcategory: 'Dominaria_United',
+      id: "15",
+      sale: 900,
+      saleProcent: 10
+    },
+    {
+      img: image,
+      price: 6000,
+      name: 'Warhammer 40,000: Chaos Space Marines',
+      players: '3-5',
+      time: '30-60',
+      age: '18',
+      category: 'warhammer',
+      subcategory: 'The_Horus_Heresy',
+      id: "16",
+      sale: 4800,
+      saleProcent: 20
+    },
+    {
+      img: imageSecond,
+      price: 3000,
+      name: 'Warhammer 40,000: Chaos Space Marines',
+      players: '3-5',
+      time: '30-60',
+      age: '18',
+      category: 'board_games',
+      subcategory: 'Games_for_companies',
+      id: "17",
+      sale: 2550,
+      saleProcent: 15
+    },
+    {
+      img: imageSecond,
+      price: 1690,
+      name: 'Тавлеи: Стена щитов',
+      players: '2',
+      time: '20-40',
+      age: '6',
+      category: 'board_games',
+      subcategory: 'Games_for_two',
+      id: "18",
+      sale: null,
+      saleProcent: null
+    },
+    {
+      img: image,
+      price: 4000,
+      name: 'Warhammer 40,000: Chaos Space Marines',
+      players: '3-5',
+      time: '30-60',
+      age: '18',
+      category: 'board_games',
+      subcategory: 'Games_for_companies',
+      id: "19",
+      sale: null,
+      saleProcent: null
+    },
+    {
+      img: image,
+      price: 13000,
+      name: 'Warhammer 40,000: Chaos Space Marines',
+      players: '4-6',
+      time: '30-60',
+      age: '18',
+      category: 'board_games',
+      subcategory: 'Games_for_companies',
+      id: "20",
+      sale: null,
+      saleProcent: null
+    },
+    {
+      img: image,
+      price: 1900,
+      name: 'Warhammer 40,000: Chaos Space Marines',
+      players: '3-5',
+      time: '30-60',
+      age: '18',
+      category: 'board_games',
+      subcategory: 'Games_for_companies',
+      id: "21",
+      sale: null,
+      saleProcent: null
+    },
+    {
+      img: imageSecond,
+      price: 7490,
+      name: 'Тавлеи: Стена щитов',
+      players: '2',
+      time: '20-40',
+      age: '6',
+      category: 'board_games',
+      subcategory: 'Games_for_two',
+      id: "22",
+      sale: 4868,
+      saleProcent: 35
+    },
+    {
+      img: image,
+      price: 1000,
+      name: 'Chaos Space Marines',
+      players: '3-5',
+      time: '30-60',
+      age: '18',
+      category: 'magic',
+      subcategory: 'Dominaria_United',
+      id: "23",
+      sale: 900,
+      saleProcent: 10
+    },
+    {
+      img: image,
+      price: 6000,
+      name: 'Warhammer 40,000: Chaos Space Marines',
+      players: '3-5',
+      time: '30-60',
+      age: '18',
+      category: 'warhammer',
+      subcategory: 'The_Horus_Heresy',
+      id: "24",
+      sale: 4800,
+      saleProcent: 20
+    },
+  ]
+
+const specialOffers = [
+  {
+    img: imageSecond,
+    price: 3000,
+    name: 'Warhammer 40,000: Chaos Space Marines',
+    players: '3-5',
+    time: '30-60',
+    age: '18',
+    category: 'board_games',
+    subcategory: 'Games_for_companies',
+    id: "25",
+    sale: 2550,
+    saleProcent: 15
+  },
+  {
+    img: imageSecond,
+    price: 1690,
+    name: 'Тавлеи: Стена щитов',
+    players: '2',
+    time: '20-40',
+    age: '6',
+    category: 'board_games',
+    subcategory: 'Games_for_two',
+    id: "26",
+    sale: null,
+    saleProcent: null
+  },
+  {
+    img: image,
+    price: 4000,
+    name: 'Warhammer 40,000: Chaos Space Marines',
+    players: '3-5',
+    time: '30-60',
+    age: '18',
+    category: 'board_games',
+    subcategory: 'Games_for_companies',
+    id: "27",
+    sale: null,
+    saleProcent: null,
+    allImg: [image, image, image, image]
+  },
+  {
+    img: image,
+    price: 13000,
+    name: 'Warhammer 40,000: Chaos Space Marines',
+    players: '4-6',
+    time: '30-60',
+    age: '18',
+    category: 'board_games',
+    subcategory: 'Games_for_companies',
+    id: "28",
+    sale: null,
+    saleProcent: null,
+    allImg: [image, image, image, image]
+  },
+  {
+    img: image,
+    price: 1900,
+    name: 'Warhammer 40,000: Chaos Space Marines',
+    players: '3-5',
+    time: '30-60',
+    age: '18',
+    category: 'board_games',
+    subcategory: 'Games_for_companies',
+    id: "29",
+    sale: null,
+    saleProcent: null,
+    allImg: [image, image, image, image]
+  },
+  {
+    img: imageSecond,
+    price: 7490,
+    name: 'Тавлеи: Стена щитов',
+    players: '4-8',
+    time: '20-40',
+    age: '6',
+    category: 'board_games',
+    subcategory: 'Games_for_two',
+    id: "30",
+    sale: 4868,
+    saleProcent: 35,
+    allImg: [image, image]
+  },
+  {
+    img: image,
+    price: 1000,
+    name: 'Chaos Space Marines',
+    players: '3-5',
+    time: '30-60',
+    age: '18',
+    category: 'magic',
+    subcategory: 'Dominaria_United',
+    id: "31",
+    sale: 900,
+    saleProcent: 10,
+    allImg: [image, image, image, image]
+  },
+  {
+    img: image,
+    price: 6000,
+    name: 'Warhammer 40,000: Chaos Space Marines',
+    players: '3-5',
+    time: '30-60',
+    age: '18',
+    category: 'warhammer',
+    subcategory: 'The_Horus_Heresy',
+    id: "32",
+    sale: 4800,
+    saleProcent: 20,
+    allImg: [image, image, image, image]
+  },
+]
+
 
 const promocodes = [
   {code:"Q25", sale:25},
@@ -673,7 +919,7 @@ export function getAllProducts () {
 export function getSaleProducts () {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      res(products.filter((product)=> product.sale !== null))
+      res(specialOffers)
     }, 2000)
   })
 }
@@ -681,7 +927,7 @@ export function getSaleProducts () {
 export function getNotSaleProducts () {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      res(products.filter((product)=> product.sale === null))
+      res(hurryUpToBuy)
     }, 2000)
   })
 }

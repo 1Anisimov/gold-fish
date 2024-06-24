@@ -54,6 +54,7 @@ const PersonalAccountSettings = () => {
 
   return (
     <div className={cls.mainContent}>
+      {/* //TODO: фамилию и имя сделать одним инпутом, сделать общий инпут под все модалки */}
       {isModalActive ? (
         <Modal>
           <h3 className={cls.changeFormTitle}>Изменить данные</h3>
@@ -135,6 +136,7 @@ const PersonalAccountSettings = () => {
               <span>{currentUser?.secondName}</span>
               <span>{` ${currentUser?.name}`}</span>
             </div>
+            {/* //TODO: кнопка Изменить везде одинаковая на этой странице, сделать переиспользуемым компонентом */}
             <div className={cls.buttonBlock}>
               <button onClick={() => changeOpenClosed('name')}>
                 <img src={iconChange} alt="" />
@@ -168,6 +170,7 @@ const PersonalAccountSettings = () => {
           </div>
         </div>
       </div>
+      {/* //TODO: убрать в отдельный компонент */}
       <div className={cls.question}>
         <h3 className={cls.questionTitle}>Остались вопросы?</h3>
         <div className={cls.questionBlock}>

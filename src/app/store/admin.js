@@ -8,7 +8,8 @@ const adminSlice = createSlice({
         foundProducts: [],
         currentProduct: null,
         modalChanged: false,
-        newChangedProduct: null
+        newChangedProduct: null,
+        addingProductWhere: null
     },
     reducers: {
         setLoadingStatusLoading: (state) => {
@@ -41,6 +42,11 @@ const adminSlice = createSlice({
             state.newChangedProduct = action.payload;
             
             state.isLoading = "READY";
+        },
+
+        setAddingProductWhereReceved: (state, action) => {
+            state.addingProductWhere = action.payload;
+            state.isLoading = "READY";
         }
     
     }
@@ -56,10 +62,20 @@ const {
     setCurrentProductReceved,
     setModalChangedReceved,
 
-    setNewChangedProductReceved
+    setNewChangedProductReceved,
+    setAddingProductWhereReceved
 
 
  } = actions;
+
+ export const setAddingProductWhere = (payload) => (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        dispatch(setAddingProductWhereReceved(payload))
+    } catch (error) {
+        dispatch(setLoadingStatusError())
+    }
+ }
 
  export const setNewChangedProduct = (name, value) => (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
@@ -124,6 +140,7 @@ const {
  export const getFoundProductsOnAdminPage = () => (state) => state.admin.foundProducts;
  export const getLoadingStatusOnAdminPage = () => (state) => state.admin.isLoading
  export const getNewChangedProduct = () => (state) => state.admin.newChangedProduct
+ export const getAddingProductWhere = () => (state) => state.admin.addingProductWhere
 
  export const getCurrentProductOnAdminPage = () => (state) => state.admin.currentProduct
  export const getIsOpenModalChanged = () => (state) => state.admin.modalChanged

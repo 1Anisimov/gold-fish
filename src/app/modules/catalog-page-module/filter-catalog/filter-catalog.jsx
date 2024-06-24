@@ -40,6 +40,7 @@ const FilterCatalog = () => {
       dispatch(getSubcategory(subcategory));
     }
     if (category === undefined) {
+      //TODO: сделать с маленькой буквы
       dispatch(RemoveCategoryAndSubcategory());
     }
   }, [category, subcategory, dispatch]);

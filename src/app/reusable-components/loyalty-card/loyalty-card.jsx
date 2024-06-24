@@ -6,7 +6,7 @@ import { getCurrentUser } from '../../store/currentUser';
 
 const LoyaltyCard = () => {
   const user = useSelector(getCurrentUser());
-
+  //TODO: вместо трех компонентов сделать один
   if (user.grade === 'Новичок') {
     return (
       <div className={cls.loyaltyCard}>

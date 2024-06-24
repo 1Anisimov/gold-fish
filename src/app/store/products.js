@@ -223,6 +223,18 @@ const productsSlice = createSlice({
         addProductByAdminPageReceved: (state, action) => {
             state.products.push(action.payload);
             state.isLoading = "READY";
+        },
+
+        addSpecialProductByAdminPageReceved: (state, action) => {
+            state.products.push(action.payload);
+            state.specialProducts.push(action.payload);
+            state.isLoading = "READY";
+        },
+
+        addSaleProductByAdminPageReceved: (state, action) => {
+            state.products.push(action.payload);
+            state.saleProducts.push(action.payload);
+            state.isLoading = "READY";
         }
         
     }
@@ -280,12 +292,26 @@ const {
     changeProductByAdminPageReceved,
     addProductByAdminPageReceved,
 
+    addSpecialProductByAdminPageReceved,
+    addSaleProductByAdminPageReceved
+
  } = actions;
 
- export const addProductByAdminPage = (newProduct) => (dispatch) => {
+ export const addProductByAdminPage = (newProduct) => (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
     try {
-        dispatch(addProductByAdminPageReceved({...newProduct, id: nanoid()}))
+        const {addingProductWhere} = getState().admin;
+
+        if(addingProductWhere === "global") {
+            dispatch(addProductByAdminPageReceved({...newProduct, id: nanoid()}))
+        }
+        if(addingProductWhere === "special") {
+            dispatch(addSpecialProductByAdminPageReceved({...newProduct, id: nanoid()}))
+        }
+        if(addingProductWhere === "sale") {
+            dispatch(addSaleProductByAdminPageReceved({...newProduct, id: nanoid()}))
+        }
+        
     } catch (error) {
         dispatch(setLoadingStatusError())
     }
