@@ -4,83 +4,58 @@ import LoyaltyCard from '../../../reusable-components/loyalty-card/loyalty-card'
 import MedalsUser from '../medals-user/medals-user';
 import iconV from '../../../image/icons/icon_orange_V.png';
 import { useSelector } from 'react-redux';
-import { getCurrentUser } from '../../../store/currentUser';
+import { getCurrentUser, getCurrentUserTotalPurchase } from '../../../store/currentUser';
 
 const PersonalAccount = () => {
   const user = useSelector(getCurrentUser());
+  const totalPurchase = useSelector(getCurrentUserTotalPurchase());
 
   const getUserGradeInfoBySum = (sum) => {
     if (sum < 1000) {
       return {
-        name: '',
-        grade: null,
-        progress: sum / (1000 / 100),
+        grade: 'new',
+        gradeName: null,
+        progressProcent: sum / (1000 / 100),
+        progress: sum,
         maxSum: 1000,
         sale: 0
       };
     }
-  };
-
-  const userGrade = {
-    new: {
-      minSum: 0,
-      name: ''
-    },
-    beginner: {
-      minSum: 1000,
-      name: 'Новичок'
-    },
-    amateur: {
-      minSum: 5000,
-      name: 'Любитель'
-    },
-    professional: {
-      minSum: 10000,
-      name: 'Профессионал'
+    if (sum >= 1000 && sum < 5000) {
+      return {
+        grade: 'beginner',
+        gradeName: 'Новичок',
+        progressProcent: sum / (5000 / 100),
+        progress: sum,
+        maxSum: 5000,
+        sale: 5
+      };
+    }
+    if (sum >= 5000 && sum < 10000) {
+      return {
+        grade: 'amateur',
+        gradeName: 'Любитель',
+        progressProcent: sum / (10000 / 100),
+        progress: sum,
+        maxSum: 10000,
+        sale: 10
+      };
+    }
+    if (sum >= 10000) {
+      return {
+        grade: 'professional',
+        gradeName: 'Профессионал',
+        progressProcent: 100,
+        maxSum: null,
+        progress: sum,
+        sale: 15
+      };
     }
   };
 
-  const calculateMaxValueOnGrade = (userGrade) => {
-    if (userGrade === null) {
-      return 1000;
-    }
+  const currentUserInfo = useMemo(() => getUserGradeInfoBySum(totalPurchase), [totalPurchase]);
 
-    if (userGrade === 'Новичок') {
-      return 5000;
-    }
-
-    if (userGrade === 'Любитель') {
-      return 10000;
-    }
-
-    if (userGrade === 'Профессионал') {
-      return 10000;
-    }
-  };
-
-  const maxValueOnGrade = useMemo(() => calculateMaxValueOnGrade(user?.grade), [user?.grade]);
-
-  const calculateProgressOnGrade = (userProgress, userGrade) => {
-    if (userGrade === null) {
-      const maxValue = 1000;
-      return userProgress / (maxValue / 100);
-    }
-
-    if (userGrade === 'Новичок') {
-      const maxValue = 5000;
-      return userProgress / (maxValue / 100);
-    }
-
-    if (userGrade === 'Любитель') {
-      const maxValue = 10000;
-      return userProgress / (maxValue / 100);
-    }
-  };
-
-  const gradeProcent = useMemo(
-    () => calculateProgressOnGrade(user?.gradeProgress, user?.grade),
-    [user?.gradeProgress, user?.grade]
-  );
+  console.log('currentUserInfo', currentUserInfo);
 
   return (
     <div className={cls.mainContent}>
@@ -93,29 +68,27 @@ const PersonalAccount = () => {
           <div className={cls.orangeCircle}>
             <img src={iconV} alt="" />
           </div>
-          <div className={cls.gradeText}>{user.grade}</div>
+          <div className={cls.gradeText}>{currentUserInfo.gradeName}</div>
         </div>
       </div>
       <div className={cls.loyaltyCardBlock}>
         <h3 className={cls.loyaltyCardTitle}>Карта лояльности</h3>
         <div className={cls.loyaltyCardContent}>
           <div className={cls.loyaltyCardContentTop}>
-            <LoyaltyCard />
+            <LoyaltyCard userGrade={currentUserInfo.grade} />
             <MedalsUser />
           </div>
           <div className={cls.loyaltyCardProgress}>
             <div className={cls.progressLine}>
               <div
                 className={cls.progressLineActive}
-                style={
-                  user.grade !== 'Профессионал' ? { width: gradeProcent + '%' } : { width: '100%' }
-                }></div>
+                style={{ width: `${currentUserInfo.progressProcent}%` }}></div>
             </div>
 
             <div className={cls.progressNumber}>
-              {user.grade !== 'Профессионал'
-                ? `${user.gradeProgress}/${maxValueOnGrade}`
-                : `${maxValueOnGrade}/${maxValueOnGrade}`}
+              {currentUserInfo.grade !== 'professional'
+                ? `${currentUserInfo.progress}/${currentUserInfo.maxSum}`
+                : `${currentUserInfo.progress}`}
             </div>
           </div>
         </div>

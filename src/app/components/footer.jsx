@@ -11,9 +11,34 @@ const Footer = () => {
     window.scrollTo(0, 0);
   };
 
+  const linksArrayOne = [
+    { class: 'footer_top_title footer_top_part_2_title', name: 'Каталог', url: '/catalog' },
+    { class: 'footer_top_part_2_categories', name: 'Warhammer 40000', url: '/catalog/warhammer' },
+    { class: 'footer_top_part_2_categories', name: 'Настольные игры', url: '/catalog/board_games' },
+    { class: 'footer_top_part_2_categories', name: 'Magic: the Gathering', url: '/catalog/magic' },
+    {
+      class: 'footer_top_part_2_categories',
+      name: 'Аксессуары для игр',
+      url: '/catalog/accessories_game'
+    },
+    { class: 'footer_top_part_2_categories', name: 'Краски', url: '/catalog/paints' },
+    {
+      class: 'footer_top_part_2_categories',
+      name: 'Аксессуары для моделизма',
+      url: '/catalog/accessories_modeling'
+    }
+  ];
+
+  const linksArrayTwo = [
+    { name: 'Правила клуба', url: '/' },
+    { name: 'Мероприятия', url: '/' },
+    { name: 'О нас', url: '/' },
+    { name: 'Контакты', url: '/' },
+    { name: 'Блог', url: '/' }
+  ];
+
   return (
     <>
-      {/* //TODO: реструктурировать через массивы */}
       <BottomContainerBg>
         <footer className="footer">
           <div className="footer_top">
@@ -27,67 +52,20 @@ const Footer = () => {
             </div>
             <div className="footer_top_item footer_top_part_2">
               <div className="footer_top_part_2_list">
-                <Link
-                  onClick={scrollToUpOnPage}
-                  className="footer_top_title footer_top_part_2_title"
-                  to={`/catalog`}>
-                  Каталог
-                </Link>
-                <Link
-                  onClick={scrollToUpOnPage}
-                  className="footer_top_part_2_categories"
-                  to={`/catalog/warhammer`}>
-                  Warhammer 40000
-                </Link>
-                <Link
-                  onClick={scrollToUpOnPage}
-                  className="footer_top_part_2_categories"
-                  to={`/catalog/board_games`}>
-                  Настольные игры
-                </Link>
-                <Link
-                  onClick={scrollToUpOnPage}
-                  className="footer_top_part_2_categories"
-                  to={`/catalog/magic`}>
-                  Magic: the Gathering
-                </Link>
-                <Link
-                  onClick={scrollToUpOnPage}
-                  className="footer_top_part_2_categories"
-                  to={`/catalog/accessories_game`}>
-                  Аксессуары для игр
-                </Link>
-                <Link
-                  onClick={scrollToUpOnPage}
-                  className="footer_top_part_2_categories"
-                  to={`/catalog/paints`}>
-                  Краски{' '}
-                </Link>
-                <Link
-                  onClick={scrollToUpOnPage}
-                  className="footer_top_part_2_categories"
-                  to={`/catalog/accessories_modeling`}>
-                  Аксессуары для моделизма
-                </Link>
+                {linksArrayOne.map((item) => (
+                  <Link onClick={scrollToUpOnPage} className={item.class} to={item.url}>
+                    {item.name}
+                  </Link>
+                ))}
               </div>
             </div>
             <div className="footer_top_item footer_top_part_3">
               <div className="footer_top_part_3_list">
-                <Link className="footer_top_title" to={`/`}>
-                  Правила клуба
-                </Link>
-                <Link className="footer_top_title" to={`/`}>
-                  Мероприятия
-                </Link>
-                <Link className="footer_top_title" to={`/`}>
-                  О нас
-                </Link>
-                <Link className="footer_top_title" to={`/`}>
-                  Контакты
-                </Link>
-                <Link className="footer_top_title" to={`/`}>
-                  Блог
-                </Link>
+                {linksArrayTwo.map((item) => (
+                  <Link className="footer_top_title" to={item.url}>
+                    {item.name}
+                  </Link>
+                ))}
               </div>
             </div>
             <div className="footer_top_item footer_top_part_4">

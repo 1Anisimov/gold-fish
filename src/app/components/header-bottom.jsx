@@ -11,13 +11,20 @@ import FacebookSvg from '../image/svg/facebookSvg';
 const HeaderBottom = () => {
   const dispatch = useDispatch();
 
+  const linksArray = [
+    { name: 'Warhammer', url: '/catalog/warhammer' },
+    { name: 'Magic:the Cathering', url: '/catalog/magic' },
+    { name: 'Мероприятия', url: '/' },
+    { name: 'центре', url: '/' },
+    { name: 'Контакты', url: '/' }
+  ];
+
   const handleOpenCatalog = () => {
     dispatch(setModalCatalog(true));
   };
 
   return (
     <>
-      {/* //TODO: реструктурировать через массивы */}
       <HeaderBottomContainerBg>
         <div className="header_bottom_container">
           <button
@@ -26,21 +33,11 @@ const HeaderBottom = () => {
             <CatalogSvg />
             <span>Каталог</span>
           </button>
-          <Link to="/catalog/warhammer" className="header_bottom_nav_item  links">
-            Warhammer
-          </Link>
-          <Link to="/catalog/magic" className="header_bottom_nav_item  links">
-            Magic:the Cathering
-          </Link>
-          <Link to="" className="header_bottom_nav_item  links">
-            Мероприятия
-          </Link>
-          <Link to="" className="header_bottom_nav_item  links">
-            О центре
-          </Link>
-          <Link to="" className="header_bottom_nav_item  links">
-            Контакты
-          </Link>
+          {linksArray.map((item) => (
+            <Link to={item.url} className="header_bottom_nav_item  links">
+              {item.name}
+            </Link>
+          ))}
 
           <div className="header_bottom_item header_bottom_item_icons">
             <div className="header_bottom_item_icons_inst">

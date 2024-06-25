@@ -10,14 +10,9 @@ const currentUserSlice = createSlice({
         user: {
             userInfo: {
                 name: null,
-                secondName: null,
                 number: null,
                 mail: null,
-                grade: null,
-                gradeProgress: null,
                 img: null,
-                card: null,
-                sale: null,
                 totalPurchase : null
               },
               changedUserInfo: {
@@ -52,10 +47,6 @@ const currentUserSlice = createSlice({
             state.user.changedUserInfo.name = action.payload
             state.isLoading = "READY";
         },
-        setChangedUserInfoSecondNameReceved: (state, action) => {
-            state.user.changedUserInfo.secondName = action.payload
-            state.isLoading = "READY";
-        },
         setChangedUserInfoNumberReceved: (state, action) => {
             state.user.changedUserInfo.number = action.payload
             state.isLoading = "READY";
@@ -81,7 +72,6 @@ const {
     // setLoadingStatusReady,
     setCurrentUserReceved,
     setChangedUserInfoNameReceved,
-    setChangedUserInfoSecondNameReceved,
     setChangedUserInfoNumberReceved,
     setChangedUserInfoMailReceved,
 
@@ -93,15 +83,6 @@ const {
     dispatch(setLoadingStatusLoading())
     try {
         dispatch(setUserInfoReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
- }
-
- export const setChangedUserInfoSecondName = (payload) => async (dispatch) => {
-    dispatch(setLoadingStatusLoading())
-    try {
-        dispatch(setChangedUserInfoSecondNameReceved(payload))
     } catch (error) {
         dispatch(setLoadingStatusError())
     }

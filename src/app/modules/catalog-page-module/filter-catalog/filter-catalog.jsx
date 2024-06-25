@@ -7,7 +7,7 @@ import FilterAge from '../filter-age/filter-age';
 import FilterPresence from '../filter-presence/filter-presence';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  RemoveCategoryAndSubcategory,
+  removeCategoryAndSubcategory,
   getAge,
   getCategory,
   getFiltersAge,
@@ -40,8 +40,7 @@ const FilterCatalog = () => {
       dispatch(getSubcategory(subcategory));
     }
     if (category === undefined) {
-      //TODO: сделать с маленькой буквы
-      dispatch(RemoveCategoryAndSubcategory());
+      dispatch(removeCategoryAndSubcategory());
     }
   }, [category, subcategory, dispatch]);
 
@@ -53,7 +52,7 @@ const FilterCatalog = () => {
       dispatch(showAllCategory(!isShowAllCategory));
     }
     dispatch(setTitleCatalog(title));
-    dispatch(RemoveCategoryAndSubcategory());
+    dispatch(removeCategoryAndSubcategory());
   };
 
   const handleRemoveFilters = () => {

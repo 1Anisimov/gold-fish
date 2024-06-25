@@ -548,7 +548,7 @@ export const changePriceInput = (value, name) => async (dispatch) => {
     }
 }
 
- export const RemoveCategoryAndSubcategory = () => async (dispatch) => {
+ export const removeCategoryAndSubcategory = () => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
     try {
         dispatch(removeCategoryAndSubcategoryReceved())

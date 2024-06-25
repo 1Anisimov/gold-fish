@@ -1,0 +1,76 @@
+.right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 1);
+    width: 350px;
+    gap: 0px;
+    border-radius: 9px;
+    opacity: 0px;
+    box-shadow: 5px 6px 16px 0px rgba(42, 42, 42, 0.16);
+    padding: 20px;
+}
+.price{
+    margin-bottom: 18px;
+}
+.sum{
+    font-family: Trebuchet MS;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 22.06px;
+    text-align: left;
+}
+.totalPrice{
+    font-family: Trebuchet MS;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 38.32px;
+    text-align: left;
+
+}
+.promocodeTitle{
+    font-family: Trebuchet MS;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.58px;
+    text-align: left;
+    color: rgba(42, 42, 42, 1);
+}
+.input{
+    border: 1px solid rgba(42, 42, 42, 0.25);
+    height: 34px;
+    gap: 0px;
+    border-radius: 9px;
+    opacity: 0px;
+    width: 100%;
+    padding-left: 10px;
+}
+.promocodeButton{
+    background: rgba(202, 202, 202, 1);
+    height: 34px;
+    width: 34px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+}
+.promocodeBlock{
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+.promocode{
+    margin-bottom: 23px;
+    width: 100%;
+}
+.firstButton{
+    margin-bottom: 14px;
+}
+.secondButton{
+    margin-bottom: 26px;
+}
+.deleteIcon{
+    margin-bottom: 2px;
+}

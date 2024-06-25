@@ -1,0 +1,45 @@
+.question{
+    margin-top: 50px;
+    width: 446px;
+    max-width: 446px;
+}
+
+.questionTitle{
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+
+.questionBlockInput{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 14px;
+}
+
+.questionInput{
+    border: 1px solid rgba(42, 42, 42, 0.3);
+    /* width: 445px; */
+    height: 44px;
+    border-radius: 9px;
+    overflow: hidden;
+    padding-left: 10px;
+    font-size: 20px;
+}
+.questionInput:focus{
+    border: 1px solid rgba(42, 42, 42, 1);
+}
+
+.questionInputTextarea{
+    padding-left: 10px;
+    border: 1px solid rgba(42, 42, 42, 0.3);
+    border-radius: 9px;
+    overflow: hidden;
+    min-height: 88px;
+    max-height: 88px;
+    margin-bottom: 20px;
+    resize: none;
+}
+.questionInputTextarea:focus{
+    border: 1px solid rgba(42, 42, 42, 1);
+}

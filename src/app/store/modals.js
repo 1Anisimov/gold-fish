@@ -8,7 +8,8 @@ const modalsSlice = createSlice({
         modalCatalog: false,
         modalRegisterForm: false,
         modalCatalogActiveCategory: null,
-        search: false
+        search: false,
+        changedName: false
     },
     reducers: {
         setLoadingStatusLoading: (state) => {
@@ -43,6 +44,11 @@ const modalsSlice = createSlice({
             state.isLoading = "READY";
         },
 
+        setChangedNameReceved: (state, action) => {
+            state.changedName = action.payload;
+            state.isLoading = "READY";
+        }
+
     }
 });
 
@@ -60,10 +66,15 @@ const {
 
     setSearchOpenOrCloseReceved,
 
+    setChangedNameReceved,
+
 
  } = actions;
 
- 
+
+ export const setChangeName = (name) => (dispatch) => {
+    dispatch(setChangedNameReceved(name))
+ }
 
  export const setSearchOpenOrClose = (payload) => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
@@ -115,6 +126,7 @@ const {
  export const getModalCatalog = () => (state) => state.modals.modalCatalog;
  export const getSearchOpenOrClose = () => (state) => state.modals.search;
  export const getModalCatalogActiveCategory = () => (state) => state.modals.modalCatalogActiveCategory
+ export const getChangedName = () => (state) => state.modals.changedName
 
 
 export default modalsReducer;

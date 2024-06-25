@@ -1,62 +1,50 @@
 import React from 'react';
 import cls from './loyalty-card.module.css';
 import logoImg from '../../image/logo_goldFish_card_orange.png';
-import { useSelector } from 'react-redux';
-import { getCurrentUser } from '../../store/currentUser';
 
-const LoyaltyCard = () => {
-  const user = useSelector(getCurrentUser());
-  //TODO: вместо трех компонентов сделать один
-  if (user.grade === 'Новичок') {
-    return (
-      <div className={cls.loyaltyCard}>
-        <div className={cls.loyaltyCardColorCuprum}>
-          <div className={cls.loyaltyCardContentCuprum}>
-            <div className={cls.blockContent}>
-              <div className={cls.logoBlock}>
-                <img className={cls.logoBlock} src={logoImg} alt="" />
+const LoyaltyCard = ({ userGrade }) => {
+  const gradesArray = [
+    {
+      grade: 'beginner',
+      cardColor: cls.loyaltyCardColorCuprum,
+      cardContent: cls.loyaltyCardContentCuprum,
+      cardText: cls.saleTextCuprum,
+      cardSale: '-5%'
+    },
+    {
+      grade: 'amateur',
+      cardColor: cls.loyaltyCardColorSilver,
+      cardContent: cls.loyaltyCardContentSilver,
+      cardText: cls.saleTextSilver,
+      cardSale: '-10%'
+    },
+    {
+      grade: 'professional',
+      cardColor: cls.loyaltyCardColorGold,
+      cardContent: cls.loyaltyCardContentGold,
+      cardText: cls.saleTextGold,
+      cardSale: '-15%'
+    }
+  ];
+
+  return gradesArray.map((item) => {
+    if (item.grade === userGrade) {
+      return (
+        <div className={cls.loyaltyCard}>
+          <div className={item.cardColor}>
+            <div className={item.cardContent}>
+              <div className={cls.blockContent}>
+                <div className={cls.logoBlock}>
+                  <img className={cls.logoBlock} src={logoImg} alt="" />
+                </div>
+                <div className={item.cardText}>{item.cardSale}</div>
               </div>
-              <div className={cls.saleTextCuprum}>{`-5%`}</div>
             </div>
           </div>
         </div>
-      </div>
-    );
-  }
-
-  if (user.grade === 'Любитель') {
-    return (
-      <div className={cls.loyaltyCard}>
-        <div className={cls.loyaltyCardColorSilver}>
-          <div className={cls.loyaltyCardContentSilver}>
-            <div className={cls.blockContent}>
-              <div className={cls.logoBlock}>
-                <img className={cls.logoBlock} src={logoImg} alt="" />
-              </div>
-              <div className={cls.saleTextSilver}>{`-10%`}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (user.grade === 'Профессионал') {
-    return (
-      <div className={cls.loyaltyCard}>
-        <div className={cls.loyaltyCardColorGold}>
-          <div className={cls.loyaltyCardContentGold}>
-            <div className={cls.blockContent}>
-              <div className={cls.logoBlock}>
-                <img className={cls.logoBlock} src={logoImg} alt="" />
-              </div>
-              <div className={cls.saleTextGold}>{`-15%`}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+      );
+    } else return <></>;
+  });
 };
 
 export default LoyaltyCard;

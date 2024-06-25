@@ -877,16 +877,11 @@ const questionAnswerArray = [
 const currentUser = {
   userInfo: {
     id: "1",
-    name: 'Александр',
-    secondName: 'Анисимов',
+    name: 'Александр Анисимов',
     number: "+7 912 523 42 78",
     mail: "anisimov2002kurgan@mail.ru",
-    grade: 'Новичок',
-    gradeProgress: 1200,
     img: profileImg,
-    card: 'cuprum',
-    sale: 10,
-    totalPurchase : 2200
+    totalPurchase : 4999
   },
   changedUserInfo: {
     name: null,
