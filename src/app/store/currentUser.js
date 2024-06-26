@@ -79,40 +79,24 @@ const {
 
  } = actions;
 
- export const setUserInfo = (payload) => async (dispatch) => {
+ export const setUserInfo = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setUserInfoReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
- export const setChangedUserInfoNumber = (payload) => async (dispatch) => {
+ export const setChangedUserInfoNumber = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setChangedUserInfoNumberReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
- export const setChangedUserInfoMail = (payload) => async (dispatch) => {
+ export const setChangedUserInfoMail = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setChangedUserInfoMailReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
- export const setChangedUserInfoName = (payload) => async (dispatch) => {
+ export const setChangedUserInfoName = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setChangedUserInfoNameReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
  export const setCurrentUser = () => async (dispatch) => {

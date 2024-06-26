@@ -55,7 +55,7 @@ const adminSlice = createSlice({
 const { reducer: adminReducer, actions } = adminSlice;
 const {
     setLoadingStatusLoading,
-    setLoadingStatusError,
+    // setLoadingStatusError,
 
     setValueSearchReceved,
     setFoundProductsReceved,
@@ -69,55 +69,37 @@ const {
  } = actions;
 
  export const setAddingProductWhere = (payload) => (dispatch) => {
-    dispatch(setLoadingStatusLoading())
-    try {
-        dispatch(setAddingProductWhereReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
+        dispatch(setLoadingStatusLoading())
+        dispatch(setAddingProductWhereReceved(payload))    
  }
 
  export const setNewChangedProduct = (name, value) => (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
-    try {
         const {newChangedProduct} = getState().admin;
         
         dispatch(setNewChangedProductReceved({
             ...newChangedProduct,
             [name]: value
         }))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
+    
  }
 
  export const setModalChanged = (payload) => (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setModalChangedReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
  export const setCurrentProduct = (product) => (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setCurrentProductReceved(product))
-        // dispatch(setModalChangedReceved(true))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
  export const setValueSearchOnAdminPage = (payload) => (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setValueSearchReceved(payload))
         
         const {products} = getState().products
         const {valueSearch} = getState().admin
-        // console.log(products)
         if(valueSearch && valueSearch.length > 0) {
             const newArray = products.filter((p) => {
                 return p.name
@@ -126,14 +108,8 @@ const {
                   .includes(valueSearch.toLowerCase().trim());
               });
             dispatch(setFoundProductsReceved(newArray))
-        } else {
             dispatch(setFoundProductsReceved(null))
         }
-
-        
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
  export const getValueSearchOnAdminPage = () => (state) => state.admin.valueSearch;

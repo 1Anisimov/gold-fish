@@ -49,31 +49,19 @@ const {
 
  } = actions;
 
- export const showAllCategory = () => async (dispatch) => {
+ export const showAllCategory = () =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(showAllCategoryReceved())
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
- export const setActiveCategory = (payload) => async (dispatch) => {
+ export const setActiveCategory = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
-        
         dispatch(setActiveCategoryReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
- export const setOpenCategory = (payload) => async (dispatch) => {
+
+ export const setOpenCategory = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setOpenCategoryReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
  export const addCategories = () => async (dispatch) => {

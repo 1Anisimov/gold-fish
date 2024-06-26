@@ -10,9 +10,6 @@ const productPageSlice = createSlice({
         setLoadingStatusLoading: (state) => {
             state.isLoading = "LOADING"
         },
-        setLoadingStatusError: (state) => {
-            state.isLoading = "ERROR"
-        },
 
         setSliderPageIndexReceved: (state, action) => {
             state.sliderPageIndex = action.payload;
@@ -27,20 +24,15 @@ const { reducer: productPageReducer, actions } = productPageSlice;
 const {
 
     setLoadingStatusLoading,
-    setLoadingStatusError,
 
     setSliderPageIndexReceved,
 
  } = actions;
 
  
- export const setSliderPageIndex = (payload) => async (dispatch) => {
+ export const setSliderPageIndex = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setSliderPageIndexReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
  

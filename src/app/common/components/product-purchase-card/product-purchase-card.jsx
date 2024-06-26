@@ -16,7 +16,6 @@ const Component = ({ product }) => {
 
   return (
     <div className={cls.buyBlock}>
-      {/* //TODO: сделать переиспользуемым здесь и в карточке товара */}
       <div className={cls.infoBlock}>
         <div className={cls.infoItem}>
           <img src={playersImg} alt="" />

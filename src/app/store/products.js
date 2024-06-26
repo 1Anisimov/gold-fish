@@ -299,7 +299,6 @@ const {
 
  export const addProductByAdminPage = (newProduct) => (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
-    try {
         const {addingProductWhere} = getState().admin;
 
         if(addingProductWhere === "global") {
@@ -312,36 +311,25 @@ const {
             dispatch(addSaleProductByAdminPageReceved({...newProduct, id: nanoid()}))
         }
         
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
  export const changeProductByAdminPage = (productId, newProduct) => (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
-    try {
         const {products} = getState().products;
         const newArray = [...products]
         const filterdProducts = newArray.filter((product) => product.id !== productId)
         filterdProducts.push(newProduct)
         dispatch(changeProductByAdminPageReceved(filterdProducts))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
- export const setActiveProductOnProductPage = (productId) => async (dispatch, getState) => {
+ export const setActiveProductOnProductPage = (productId) =>  (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
-    try {
         const {products} = getState().products;
         products.forEach((item) => {
             if(item.id === productId) {
                 dispatch(setActiveProductOnProductPageReceved(item))
             }
         })
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
 }
 
  export const setAllSpecialProducts = () => async (dispatch) => {
@@ -364,37 +352,24 @@ const {
     }
 }
 
- export const setTitleCatalog = (payload) => async (dispatch) => {
+ export const setTitleCatalog = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setTitleCatalogReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
 }
  
- export const setValueSearch = (payload) => async (dispatch) => {
+ export const setValueSearch = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setValueSearchReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
 }
 
-export const setFoundProductsOnPage = () => async (dispatch, getState) => {
+export const setFoundProductsOnPage = () =>  (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
-    try {
         const {foundProducts} = getState().products
         dispatch(setFoundProductsOnPageReceved(foundProducts))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
 }
 
-export const setFoundProducts = () => async (dispatch, getState) => {
+export const setFoundProducts = () =>  (dispatch, getState) => {
     dispatch(setFoundProductsLoadingStatusLoading())
-    try {
         const { products, valueSearch } = getState().products;
         if(valueSearch && valueSearch.length > 0) {
             const newArray = products.filter((p) => {
@@ -405,28 +380,16 @@ export const setFoundProducts = () => async (dispatch, getState) => {
               });
             dispatch(setFoundProductsReceved(newArray))
         }
-        
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
 }
 
-export const setActivePaginatedPageOnFound = (payload) => async (dispatch) => {
+export const setActivePaginatedPageOnFound = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setActivePaginationPageOnFoundReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
-export const setActivePaginatedPage = (payload) => async (dispatch) => {
+export const setActivePaginatedPage = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setActivePaginatedPageReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
  const handleAgeParams = (age, ageState) => {
@@ -461,9 +424,8 @@ export const setActivePaginatedPage = (payload) => async (dispatch) => {
 
  
 
- export const setActiveProducts = () => async (dispatch, getState) => {
+ export const setActiveProducts = () =>  (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
-    try {
         const { category, subcategory, age, price, players } = getState().products.filters
         const products = getState().products.products
 
@@ -488,9 +450,6 @@ export const setActivePaginatedPage = (payload) => async (dispatch) => {
               dispatch(setActiveProductsReceved(newArray))
               dispatch(setActivePaginatedPageReceved(1))   
         }
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
  export const addProducts = () => async (dispatch) => {
@@ -506,9 +465,8 @@ export const setActivePaginatedPage = (payload) => async (dispatch) => {
     }
  }
 
-export const changePlayersInput = (value, name) => async (dispatch) => {
+export const changePlayersInput = (value, name) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         if(name === 'min') {
             dispatch(changePlayersInputMinReceved(value))
         }
@@ -516,14 +474,10 @@ export const changePlayersInput = (value, name) => async (dispatch) => {
             dispatch(changePlayersInputMaxReceved(value))
         }
         dispatch(setActiveProducts())
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
 }
 
-export const changePriceInput = (value, name) => async (dispatch) => {
+export const changePriceInput = (value, name) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         if(name === 'min') {
             dispatch(changePriceInputMinReceved(value))
         }
@@ -532,88 +486,55 @@ export const changePriceInput = (value, name) => async (dispatch) => {
         }
         dispatch(setActiveProducts())
         
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
 }
 
- export const removeAllFilters = () => async (dispatch, getState) => {
+ export const removeAllFilters = () =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(filtersRemoveAllReceved())
         dispatch(setActiveProducts())
         
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
 }
 
- export const removeCategoryAndSubcategory = () => async (dispatch) => {
+ export const removeCategoryAndSubcategory = () =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(removeCategoryAndSubcategoryReceved())
         dispatch(setActiveProducts())
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
 }
 
- export const getPrice = (payload) => async (dispatch) => {
+ export const getPrice = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(filtersPriceReceved(payload))
         dispatch(setActiveProducts())
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
 }
-export const getPresence = (payload) => async (dispatch) => {
+
+export const getPresence = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(filtersPresenceReceved(payload))
         dispatch(setActiveProducts())
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
 }
 
-export const getAge = (payload) => async (dispatch) => {
+export const getAge = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(filtersAgeReceved(payload))
         dispatch(setActiveProducts())
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
 }
 
-export const getCategory = (payload) => async (dispatch) => {
+export const getCategory = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(filtersCategoryReceved(payload))
         dispatch(setActiveProducts())
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
 };
-export const getSubcategory = (payload) => async (dispatch) => {
+
+export const getSubcategory = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(filtersSubcategoryReceved(payload))
         dispatch(setActiveProducts())
-    } catch (error) {
-        dispatch(setLoadingStatusError());
-    }
 }
 
-export const changePlayers = (payload) => async (dispatch) => {
+export const changePlayers = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(changePlayersReceved(payload))
         dispatch(setActiveProducts())
-    } catch (error) {
-        dispatch(setLoadingStatusError());
-    }
 }
 
 export const getTitleCatalog = () => (state) => state.products.titleCatalog

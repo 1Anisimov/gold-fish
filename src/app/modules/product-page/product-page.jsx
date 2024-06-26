@@ -14,6 +14,29 @@ import {
 import MainNavigation from '../../common/components/main-navigation/main-navigation';
 
 const Component = ({ productId }) => {
+  const tabItems = [
+    {
+      key: '1',
+      label: 'Описание',
+      children: 'Content of Tab Pane 1'
+    },
+    {
+      key: '2',
+      label: 'Характеристики',
+      children: 'Content of Tab Pane 2'
+    },
+    {
+      key: '3',
+      label: 'Правила',
+      children: 'Content of Tab Pane 3'
+    },
+    {
+      key: '4',
+      label: 'Вопрос-ответ',
+      children: <div>hello</div>
+    }
+  ];
+
   const dispatch = useDispatch();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,10 +53,16 @@ const Component = ({ productId }) => {
       </div>
     );
   }
+  if (productLoadingStatus === 'ERROR') {
+    return (
+      <div className="mainContent_or_loader">
+        <div>Error.</div>
+      </div>
+    );
+  }
 
   return (
     <>
-      {/* //TODO: предусмотреть вариант, когда статус не READY и мы на этой странице */}
       {productLoadingStatus === 'READY' && (
         <MainContainerBg>
           <div className={cls.productPage}>
@@ -47,7 +76,7 @@ const Component = ({ productId }) => {
                     <Slider product={product} />
                   </div>
                 </div>
-                <Tab />
+                <Tab tabItems={tabItems} tabSize={22} />
               </div>
               <div className={cls.right}>
                 <ProductPurchaseCard product={product} />

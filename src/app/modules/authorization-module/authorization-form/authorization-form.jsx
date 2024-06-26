@@ -1,12 +1,27 @@
 import React from 'react';
 import cls from './authorization-form.module.css';
-import TabsAuthorization from '../tabs-authorization/tabs-authorization';
 import iconClosed from '../../../image/icons/X_closed_icon.png';
 import { ScrollBlock } from '../../../hooks/useScrollBlock';
 import { useDispatch, useSelector } from 'react-redux';
 import { getModalRegisterForm, setModalRegisterForm } from '../../../store/modals';
+import TabsAuthorizationSignIn from '../tabs-authorization-signIn/tabs-authorization-signIn';
+import AuthorizationFormSignUp from '../authorization-form-signUp/authorization-form-signUp';
+import Tab from '../../../common/components/tabs/tabs';
 
 const AuthorizationForm = () => {
+  const tabItems = [
+    {
+      key: '1',
+      label: 'Вход',
+      children: <TabsAuthorizationSignIn />
+    },
+    {
+      key: '2',
+      label: 'Регистрация',
+      children: <AuthorizationFormSignUp />
+    }
+  ];
+
   const dispatch = useDispatch();
 
   const modalForm = useSelector(getModalRegisterForm());
@@ -32,7 +47,7 @@ const AuthorizationForm = () => {
                 alt=""
               />
               <h3 className={cls.title}>Войдите или зарегистрируйтесь</h3>
-              <TabsAuthorization />
+              <Tab tabItems={tabItems} tabSize={19} tabClassName={'w340'} />
             </div>
           </div>
         </div>

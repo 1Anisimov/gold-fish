@@ -14,9 +14,6 @@ const basketSlice = createSlice({
             state.entities.push(action.payload)
             state.isLoading = "READY";
         },
-        addProductsToBasketRequestFile: (state) => {
-            state.isLoading = "ERROR";
-        },
 
         removeProductOnBasketRequested: (state) => {
             state.isLoading = "LOADING";
@@ -24,9 +21,6 @@ const basketSlice = createSlice({
         removeProductOnBasketReceved: (state, action) => {
             state.entities = state.entities.filter((product) => product.id !== action.payload)
             state.isLoading = "READY";
-        },
-        removeProductOnBasketRequestFile: (state) => {
-            state.isLoading = "ERROR";
         },
 
         quantityProductRequested: (state) => {
@@ -51,9 +45,6 @@ const basketSlice = createSlice({
             state.entities = state.entities.filter((product) => product.quantity > 0)
             state.isLoading = "READY";
         },
-        quantityProductRequestFile: (state) => {
-            state.isLoading = "ERROR";
-        },
     }
 });
 
@@ -62,55 +53,37 @@ const {
     quantityProductRequested,
     addQuantityProductReceved,
     removeQuantityProductReceved,
-    quantityProductRequestFile,
 
     removeProductOnBasketRequested,
     removeProductOnBasketReceved,
-    removeProductOnBasketRequestFile,
 
     addProductsToBasketRequested,
     addProductsToBasketReceved,
-    addProductsToBasketRequestFile,
 
  } = actions;
 
- export const addQuantityProduct = (productId) => async (dispatch) => {
+ export const addQuantityProduct = (productId) =>  (dispatch) => {
     dispatch(quantityProductRequested())
-    try {
         dispatch(addQuantityProductReceved(productId))
-    } catch (error) {
-        dispatch(quantityProductRequestFile())
-    }
  }
- export const removeQuantityProduct = (productId) => async (dispatch) => {
+
+ export const removeQuantityProduct = (productId) =>  (dispatch) => {
     dispatch(quantityProductRequested())
-    try {
         dispatch(removeQuantityProductReceved(productId))
-    } catch (error) {
-        dispatch(quantityProductRequestFile())
-    }
  }
 
- export const removeProductOnBasket = (productId) => async (dispatch) => {
+ export const removeProductOnBasket = (productId) =>  (dispatch) => {
     dispatch(removeProductOnBasketRequested())
-    try {
         dispatch(removeProductOnBasketReceved(productId))
-    } catch (error) {
-        dispatch(removeProductOnBasketRequestFile())
-    }
  }
 
- export const addProductsToBasket = (payload) => async (dispatch) => {
+ export const addProductsToBasket = (payload) =>  (dispatch) => {
     dispatch(addProductsToBasketRequested())
-    try {
         const newPayload = {
             ...payload,
             quantity: 1
         }
         dispatch(addProductsToBasketReceved(newPayload))
-    } catch (error) {
-        dispatch(addProductsToBasketRequestFile());
-    }
  }
 
 

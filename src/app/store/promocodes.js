@@ -17,9 +17,6 @@ const promocodeSlice = createSlice({
             state.entity = action.payload
             state.isLoading = "READY";
         },
-        promocodeSearchRequestFile: (state) => {
-            state.isLoading = "ERROR";
-        },
 
         setSaleRequested: (state) => {
             state.isLoading = "LOADING";
@@ -47,7 +44,6 @@ const {
 
     promocodeSearchRequested,
     promocodeSearchReceved,
-    promocodeSearchRequestFile,
 
     downloadAllPromocodesReceved,
 
@@ -64,9 +60,8 @@ const {
     }
  }
 
- export const setSale = () => async (dispatch, getState) => {
+ export const setSale = () =>  (dispatch, getState) => {
     dispatch(setSaleRequested())
-    try {
         const {allPromocodes, entity} = getState().promocode;
         const promocode = allPromocodes.find((item) => item.code === entity)
         console.log(promocode)
@@ -79,19 +74,11 @@ const {
                 }
               });
           }
-        // dispatch(setSaleReceved(payload));
-    } catch (error) {
-        dispatch(setSaleRequestFile())
-    }
  }
 
- export const promocodeSearch = (payload) => async (dispatch) => {
+ export const promocodeSearch = (payload) =>  (dispatch) => {
     dispatch(promocodeSearchRequested())
-    try {
         dispatch(promocodeSearchReceved(payload));
-    } catch (error) {
-        dispatch(promocodeSearchRequestFile())
-    }
  }
 
 

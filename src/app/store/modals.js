@@ -15,9 +15,9 @@ const modalsSlice = createSlice({
         setLoadingStatusLoading: (state) => {
             state.isLoading = "LOADING";
         },
-        setLoadingStatusError: (state) => {
-            state.isLoading = "ERROR";
-        },
+        // setLoadingStatusError: (state) => {
+        //     state.isLoading = "ERROR";
+        // },
 
         
         setModalCatalogReceved: (state, action) => {
@@ -55,7 +55,6 @@ const modalsSlice = createSlice({
 const { reducer: modalsReducer, actions } = modalsSlice;
 const {
     setLoadingStatusLoading,
-    setLoadingStatusError,
 
     setModalCatalogReceved,
 
@@ -76,49 +75,29 @@ const {
     dispatch(setChangedNameReceved(name))
  }
 
- export const setSearchOpenOrClose = (payload) => async (dispatch) => {
+ export const setSearchOpenOrClose = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setSearchOpenOrCloseReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
- export const setMainModal = (payload) => async (dispatch) => {
+ export const setMainModal = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setMainModalReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
- export const setActiveCategoryOnModalCatalog = (payload) => async (dispatch) => {
+ export const setActiveCategoryOnModalCatalog = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setModalCatalogActiveCategoryReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
- export const setModalCatalog = (payload) => async (dispatch) => {
+ export const setModalCatalog = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setModalCatalogReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
- export const setModalRegisterForm = (payload) => async (dispatch) => {
+ export const setModalRegisterForm = (payload) =>  (dispatch) => {
     dispatch(setLoadingStatusLoading())
-    try {
         dispatch(setModalRegisterFormReceved(payload))
-    } catch (error) {
-        dispatch(setLoadingStatusError())
-    }
  }
 
  export const getMainModal = () => (state) => state.modals.mainModal
