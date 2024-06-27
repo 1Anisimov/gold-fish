@@ -65,7 +65,12 @@ export default function VerticalSlider({ product }) {
                             ? 'swiper_slide_85px_active'
                             : 'swiper_slide_85px'
                         }>
-                        <img id={index} onClick={clickOnImage} src={image} alt="" />
+                        <img
+                          id={index}
+                          onClick={clickOnImage}
+                          src={require(`../image/${image}`)}
+                          alt=""
+                        />
                       </div>
                     </div>
                   </SwiperSlide>

@@ -10,8 +10,8 @@ import Number from '../image/svg/number-header';
 import Profile from '../image/svg/profile-header';
 import Basket from '../image/svg/basket-header';
 import Search from '../common/components/search/search';
-import { getSearchOpenOrClose, setSearchOpenOrClose } from '../store/modals';
-import PopoverAntd from '../common/components/popover-antd/popover-antd';
+import { getSearchOpenOrClose, setCopyNumber, setSearchOpenOrClose } from '../store/modals';
+import { CopyNumberModal } from '../common/components/copy-number-modal/copy-number-modal';
 
 // TODO Важно не удалить
 // import { setModalRegisterForm } from '../store/modals';
@@ -26,9 +26,15 @@ const HeaderTop = () => {
     dispatch(setSearchOpenOrClose(false));
   };
 
+  const handleOpenClosed = () => {
+    dispatch(setCopyNumber(false));
+  };
+
   const copyTextToClipboard = async ({ target }) => {
     try {
       await navigator.clipboard.writeText(target.innerText);
+      dispatch(setCopyNumber(true));
+      setTimeout(handleOpenClosed, 2500);
     } catch (err) {}
   };
 
@@ -56,11 +62,9 @@ const HeaderTop = () => {
 
           <div className="header_top_number">
             <Number />
-            <PopoverAntd>
-              <span style={{ cursor: 'pointer' }} id="textField" onClick={copyTextToClipboard}>
-                +7 (495) 911-10-11
-              </span>
-            </PopoverAntd>
+            <span style={{ cursor: 'pointer' }} id="textField" onClick={copyTextToClipboard}>
+              +7 (495) 911-10-11
+            </span>
           </div>
           <div className="header_top_icons">
             <button style={{ backgroundColor: '#2A2A2A' }} onClick={handleOpenModalForm}>
@@ -81,6 +85,7 @@ const HeaderTop = () => {
             </div>
           </div>
         </div>
+        <CopyNumberModal />
       </HeaderTopContainerBg>
     </>
   );

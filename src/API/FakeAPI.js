@@ -1,11 +1,9 @@
-import image from "../app/image/image 12.png"
 import { nanoid } from 'nanoid'
-import imageSecond from "../app/image/tavlei-stena-cshitov.jpg"
 import profileImg from "../app/image/img_events_2.png";
 
 export const productsTempBuy = [
     {
-        img: imageSecond,
+        img: "tavlei-stena-cshitov.jpg",
         price: 3000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -18,7 +16,7 @@ export const productsTempBuy = [
         saleProcent: 15
       },
       {
-        img: imageSecond,
+        img: "tavlei-stena-cshitov.jpg",
         price: 1690,
         name: 'Тавлеи: Стена щитов',
         players: '2',
@@ -31,7 +29,7 @@ export const productsTempBuy = [
         saleProcent: null
       },
       {
-        img: image,
+        img: "image12.png",
         price: 4000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -44,7 +42,7 @@ export const productsTempBuy = [
         saleProcent: null
       },
       {
-        img: image,
+        img: "image12.png",
         price: 13000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '4-6',
@@ -57,7 +55,7 @@ export const productsTempBuy = [
         saleProcent: null
       },
       {
-        img: image,
+        img: "image12.png",
         price: 1900,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -70,7 +68,7 @@ export const productsTempBuy = [
         saleProcent: null
       },
       {
-        img: imageSecond,
+        img: "tavlei-stena-cshitov.jpg",
         price: 7490,
         name: 'Тавлеи: Стена щитов',
         players: '2',
@@ -83,7 +81,7 @@ export const productsTempBuy = [
         saleProcent: 35
       },
       {
-        img: image,
+        img: "image12.png",
         price: 1000,
         name: 'Chaos Space Marines',
         players: '3-5',
@@ -96,7 +94,7 @@ export const productsTempBuy = [
         saleProcent: 10
       },
       {
-        img: image,
+        img: "image12.png",
         price: 6000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -126,7 +124,8 @@ export const products = [
       saleProcent: 15
     },
     {
-      img: imageSecond,
+      img: 'tavlei-stena-cshitov.jpg',
+      withRequire: true,
       price: 1690,
       name: 'Тавлеи: Стена щитов',
       players: '2',
@@ -139,7 +138,7 @@ export const products = [
       saleProcent: null
     },
     {
-      img: image,
+      img: "image12.png",
       price: 4000,
       name: 'Warhammer 40,000: Chaos Space Marines',
       players: '3-5',
@@ -152,7 +151,7 @@ export const products = [
       saleProcent: null
     },
     {
-      img: image,
+      img: "image12.png",
       price: 13000,
       name: 'Warhammer 40,000: Chaos Space Marines',
       players: '4-6',
@@ -165,7 +164,7 @@ export const products = [
       saleProcent: null
     },
     {
-      img: image,
+      img: "image12.png",
       price: 1900,
       name: 'Warhammer 40,000: Chaos Space Marines',
       players: '3-5',
@@ -178,7 +177,7 @@ export const products = [
       saleProcent: null
     },
     {
-      img: imageSecond,
+      img: 'tavlei-stena-cshitov.jpg',
       price: 7490,
       name: 'Тавлеи: Стена щитов',
       players: '2',
@@ -191,7 +190,7 @@ export const products = [
       saleProcent: 35
     },
     {
-      img: image,
+      img: "image12.png",
       price: 1000,
       name: 'Chaos Space Marines',
       players: '3-5',
@@ -204,7 +203,7 @@ export const products = [
       saleProcent: 10
     },
     {
-      img: image,
+      img: "image12.png",
       price: 6000,
       name: 'Warhammer 40,000: Chaos Space Marines',
       players: '3-5',
@@ -217,7 +216,7 @@ export const products = [
       saleProcent: 20
     },
     {
-        img: imageSecond,
+        img: 'tavlei-stena-cshitov.jpg',
         price: 3000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -230,7 +229,7 @@ export const products = [
         saleProcent: 15
       },
       {
-        img: imageSecond,
+        img: 'tavlei-stena-cshitov.jpg',
         price: 1690,
         name: 'Тавлеи: Стена щитов',
         players: '2',
@@ -243,7 +242,7 @@ export const products = [
         saleProcent: null
       },
       {
-        img: image,
+        img: "image12.png",
         price: 4000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -256,7 +255,7 @@ export const products = [
         saleProcent: null
       },
       {
-        img: image,
+        img: "image12.png",
         price: 13000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '4-6',
@@ -269,7 +268,7 @@ export const products = [
         saleProcent: null
       },
       {
-        img: image,
+        img: "image12.png",
         price: 1900,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -282,7 +281,7 @@ export const products = [
         saleProcent: null
       },
       {
-        img: imageSecond,
+        img: 'tavlei-stena-cshitov.jpg',
         price: 7490,
         name: 'Тавлеи: Стена щитов',
         players: '2',
@@ -295,7 +294,7 @@ export const products = [
         saleProcent: 35
       },
       {
-        img: image,
+        img: "image12.png",
         price: 1000,
         name: 'Chaos Space Marines',
         players: '3-5',
@@ -308,7 +307,7 @@ export const products = [
         saleProcent: 10
       },
       {
-        img: image,
+        img: "image12.png",
         price: 6000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -321,7 +320,7 @@ export const products = [
         saleProcent: 20
       },
       {
-        img: imageSecond,
+        img: 'tavlei-stena-cshitov.jpg',
         price: 3000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -334,7 +333,7 @@ export const products = [
         saleProcent: 15
       },
       {
-        img: imageSecond,
+        img: 'tavlei-stena-cshitov.jpg',
         price: 1690,
         name: 'Тавлеи: Стена щитов',
         players: '2',
@@ -347,7 +346,7 @@ export const products = [
         saleProcent: null
       },
       {
-        img: image,
+        img: "image12.png",
         price: 4000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -360,7 +359,7 @@ export const products = [
         saleProcent: null
       },
       {
-        img: image,
+        img: "image12.png",
         price: 13000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '4-6',
@@ -373,7 +372,7 @@ export const products = [
         saleProcent: null
       },
       {
-        img: image,
+        img: "image12.png",
         price: 1900,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -386,7 +385,7 @@ export const products = [
         saleProcent: null
       },
       {
-        img: imageSecond,
+        img: 'tavlei-stena-cshitov.jpg',
         price: 7490,
         name: 'Тавлеи: Стена щитов',
         players: '2',
@@ -399,7 +398,7 @@ export const products = [
         saleProcent: 35
       },
       {
-        img: image,
+        img: "image12.png",
         price: 1000,
         name: 'Chaos Space Marines',
         players: '3-5',
@@ -412,7 +411,7 @@ export const products = [
         saleProcent: 10
       },
       {
-        img: image,
+        img: "image12.png",
         price: 6000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -425,7 +424,7 @@ export const products = [
         saleProcent: 20
       },
       {
-        img: imageSecond,
+        img: 'tavlei-stena-cshitov.jpg',
         price: 3000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -438,7 +437,7 @@ export const products = [
         saleProcent: 15
       },
       {
-        img: imageSecond,
+        img: 'tavlei-stena-cshitov.jpg',
         price: 1690,
         name: 'Тавлеи: Стена щитов',
         players: '2',
@@ -451,7 +450,7 @@ export const products = [
         saleProcent: null
       },
       {
-        img: image,
+        img: "image12.png",
         price: 4000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -462,10 +461,10 @@ export const products = [
         id: "27",
         sale: null,
         saleProcent: null,
-        allImg: [image, image, image, image]
+        allImg: ["image12.png", "image12.png", "image12.png", "image12.png"]
       },
       {
-        img: image,
+        img: "image12.png",
         price: 13000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '4-6',
@@ -476,10 +475,10 @@ export const products = [
         id: "28",
         sale: null,
         saleProcent: null,
-        allImg: [image, image, image, image]
+        allImg: ["image12.png", "image12.png", "image12.png", "image12.png"]
       },
       {
-        img: image,
+        img: "image12.png",
         price: 1900,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -490,10 +489,10 @@ export const products = [
         id: "29",
         sale: null,
         saleProcent: null,
-        allImg: [image, image, image, image]
+        allImg: ["image12.png", "image12.png", "image12.png", "image12.png"]
       },
       {
-        img: imageSecond,
+        img: 'tavlei-stena-cshitov.jpg',
         price: 7490,
         name: 'Тавлеи: Стена щитов',
         players: '4-8',
@@ -504,10 +503,10 @@ export const products = [
         id: "30",
         sale: 4868,
         saleProcent: 35,
-        allImg: [image, image]
+        allImg: ["image12.png", "image12.png"]
       },
       {
-        img: image,
+        img: "image12.png",
         price: 1000,
         name: 'Chaos Space Marines',
         players: '3-5',
@@ -518,10 +517,10 @@ export const products = [
         id: "31",
         sale: 900,
         saleProcent: 10,
-        allImg: [image, image, image, image]
+        allImg: ["image12.png", "image12.png", "image12.png", "image12.png"]
       },
       {
-        img: image,
+        img: "image12.png",
         price: 6000,
         name: 'Warhammer 40,000: Chaos Space Marines',
         players: '3-5',
@@ -532,7 +531,7 @@ export const products = [
         id: "32",
         sale: 4800,
         saleProcent: 20,
-        allImg: [image, image, image, image]
+        allImg: ["image12.png", "image12.png", "image12.png", "image12.png"]
       },
   ];
 export const categoriesArray = [
@@ -613,7 +612,7 @@ export const categoriesArray = [
 
   const hurryUpToBuy = [
     {
-      img: image,
+      img: "image12.png",
       price: 1000,
       name: 'Chaos Space Marines',
       players: '3-5',
@@ -626,7 +625,7 @@ export const categoriesArray = [
       saleProcent: 10
     },
     {
-      img: image,
+      img: "image12.png",
       price: 6000,
       name: 'Warhammer 40,000: Chaos Space Marines',
       players: '3-5',
@@ -639,7 +638,7 @@ export const categoriesArray = [
       saleProcent: 20
     },
     {
-      img: imageSecond,
+      img: "tavlei-stena-cshitov.jpg",
       price: 3000,
       name: 'Warhammer 40,000: Chaos Space Marines',
       players: '3-5',
@@ -652,7 +651,7 @@ export const categoriesArray = [
       saleProcent: 15
     },
     {
-      img: imageSecond,
+      img: "tavlei-stena-cshitov.jpg",
       price: 1690,
       name: 'Тавлеи: Стена щитов',
       players: '2',
@@ -665,7 +664,7 @@ export const categoriesArray = [
       saleProcent: null
     },
     {
-      img: image,
+      img: "image12.png",
       price: 4000,
       name: 'Warhammer 40,000: Chaos Space Marines',
       players: '3-5',
@@ -678,7 +677,7 @@ export const categoriesArray = [
       saleProcent: null
     },
     {
-      img: image,
+      img: "image12.png",
       price: 13000,
       name: 'Warhammer 40,000: Chaos Space Marines',
       players: '4-6',
@@ -691,7 +690,7 @@ export const categoriesArray = [
       saleProcent: null
     },
     {
-      img: image,
+      img: "image12.png",
       price: 1900,
       name: 'Warhammer 40,000: Chaos Space Marines',
       players: '3-5',
@@ -704,7 +703,7 @@ export const categoriesArray = [
       saleProcent: null
     },
     {
-      img: imageSecond,
+      img: "tavlei-stena-cshitov.jpg",
       price: 7490,
       name: 'Тавлеи: Стена щитов',
       players: '2',
@@ -717,7 +716,7 @@ export const categoriesArray = [
       saleProcent: 35
     },
     {
-      img: image,
+      img: "image12.png",
       price: 1000,
       name: 'Chaos Space Marines',
       players: '3-5',
@@ -730,7 +729,7 @@ export const categoriesArray = [
       saleProcent: 10
     },
     {
-      img: image,
+      img: "image12.png",
       price: 6000,
       name: 'Warhammer 40,000: Chaos Space Marines',
       players: '3-5',
@@ -746,7 +745,7 @@ export const categoriesArray = [
 
 const specialOffers = [
   {
-    img: imageSecond,
+    img: "tavlei-stena-cshitov.jpg",
     price: 3000,
     name: 'Warhammer 40,000: Chaos Space Marines',
     players: '3-5',
@@ -759,7 +758,7 @@ const specialOffers = [
     saleProcent: 15
   },
   {
-    img: imageSecond,
+    img: "tavlei-stena-cshitov.jpg",
     price: 1690,
     name: 'Тавлеи: Стена щитов',
     players: '2',
@@ -772,7 +771,7 @@ const specialOffers = [
     saleProcent: null
   },
   {
-    img: image,
+    img: "image12.png",
     price: 4000,
     name: 'Warhammer 40,000: Chaos Space Marines',
     players: '3-5',
@@ -783,10 +782,10 @@ const specialOffers = [
     id: "27",
     sale: null,
     saleProcent: null,
-    allImg: [image, image, image, image]
+    allImg: ["image12.png", "image12.png", "image12.png", "image12.png"]
   },
   {
-    img: image,
+    img: "image12.png",
     price: 13000,
     name: 'Warhammer 40,000: Chaos Space Marines',
     players: '4-6',
@@ -797,10 +796,10 @@ const specialOffers = [
     id: "28",
     sale: null,
     saleProcent: null,
-    allImg: [image, image, image, image]
+    allImg: ["image12.png", "image12.png", "image12.png", "image12.png"]
   },
   {
-    img: image,
+    img: "image12.png",
     price: 1900,
     name: 'Warhammer 40,000: Chaos Space Marines',
     players: '3-5',
@@ -811,10 +810,10 @@ const specialOffers = [
     id: "29",
     sale: null,
     saleProcent: null,
-    allImg: [image, image, image, image]
+    allImg: ["image12.png", "image12.png", "image12.png", "image12.png"]
   },
   {
-    img: imageSecond,
+    img: "tavlei-stena-cshitov.jpg",
     price: 7490,
     name: 'Тавлеи: Стена щитов',
     players: '4-8',
@@ -825,10 +824,10 @@ const specialOffers = [
     id: "30",
     sale: 4868,
     saleProcent: 35,
-    allImg: [image, image]
+    allImg: ["image12.png", "image12.png"]
   },
   {
-    img: image,
+    img: "image12.png",
     price: 1000,
     name: 'Chaos Space Marines',
     players: '3-5',
@@ -839,10 +838,10 @@ const specialOffers = [
     id: "31",
     sale: 900,
     saleProcent: 10,
-    allImg: [image, image, image, image]
+    allImg: ["image12.png", "image12.png", "image12.png", "image12.png"]
   },
   {
-    img: image,
+    img: "image12.png",
     price: 6000,
     name: 'Warhammer 40,000: Chaos Space Marines',
     players: '3-5',
@@ -853,7 +852,7 @@ const specialOffers = [
     id: "32",
     sale: 4800,
     saleProcent: 20,
-    allImg: [image, image, image, image]
+    allImg: ["image12.png", "image12.png", "image12.png", "image12.png"]
   },
 ]
 

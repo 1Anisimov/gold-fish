@@ -34,11 +34,7 @@ const Card = ({ product, admin }) => {
       {product && (
         <div className={cls.card} style={{ border: 'none' }}>
           <div onClick={goToProductPage} className={cls.card_image}>
-            <img
-              className={cls.card_image}
-              src={product.withRequire ? require(`../../image/${product.img}`) : product.img}
-              alt=""
-            />
+            <img className={cls.card_image} src={require(`../../image/${product.img}`)} alt="" />
           </div>
           {product.sale ? <div className={cls.card_sale}>{`-${product.saleProcent}%`}</div> : ''}
           <div className={cls.card_data}>

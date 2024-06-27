@@ -1,0 +1,36 @@
+.modalBlock{
+    position: absolute;
+    left: 43%;
+    top: 210px;
+    color: azure;
+    background: #383737;
+    width: 200px;
+    height: 200px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    animation: animationModal 3s ease infinite;
+    box-shadow: 0px 0px 4px rgba(41,18,11,0.66);
+}
+
+@keyframes animationModal {   
+  0% {     
+    opacity: 0.5;
+  }   
+  50% {     
+    opacity: 1;
+  } 
+  100% {
+    opacity: 0.5;
+   }
+}
+
+.modalBlockShown {
+    opacity: 1.0;
+  }
+
+.content{
+    opacity: 1;
+}

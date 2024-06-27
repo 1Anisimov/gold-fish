@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import { downloadAllPromocodes } from '../../store/promocodes';
 import BasketSvg from '../../image/svg/basketSvg';
 import BasketRightMenu from './basket-right-menu';
+import MainNavigation from '../../common/components/main-navigation/main-navigation';
 
 const Component = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const Component = () => {
       <MainContainerBg>
         {products.length > 0 ? (
           <div className={cls.basket}>
+            <MainNavigation />
             <h3 className={cls.title}>Корзина</h3>
             <div className={cls.basketBlock}>
               <div className={cls.left}>
@@ -53,7 +55,11 @@ const Component = () => {
                     <tr>
                       <td>
                         <div onClick={() => goToProductPage(product)} className={cls.productImage}>
-                          <img className={cls.productImageImg} src={product.img} alt="" />
+                          <img
+                            className={cls.productImageImg}
+                            src={require(`../../image/${product.img}`)}
+                            alt=""
+                          />
                         </div>
                       </td>
                       <td>
@@ -111,6 +117,7 @@ const Component = () => {
           </div>
         ) : (
           <div className={cls.basket}>
+            <MainNavigation />
             <h3 className={cls.title}>Корзина</h3>
             <div className={cls.basketZeroImage}>
               <BasketSvg />

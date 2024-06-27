@@ -16,6 +16,7 @@ import imgNext from '../image/icons/arrow_next_gorisantal.png';
 export default function Slider({ product }) {
   const dispatch = useDispatch();
   const [swiperRef, setSwiperRef] = useState({});
+  console.log(product);
 
   const sliderActiveIndex = useSelector(getSliderPageIndex());
 
@@ -57,7 +58,7 @@ export default function Slider({ product }) {
                   <SwiperSlide className="my_swiper_slide">
                     <div className="my_swiper_slide_w100">
                       <div className="my_swiper_slide_container">
-                        <img id={index} src={image} alt="" />
+                        <img id={index} src={require(`../image/${image}`)} alt="" />
                       </div>
                     </div>
                   </SwiperSlide>
@@ -72,10 +73,12 @@ export default function Slider({ product }) {
             </button>
           </div>
         </div>
-      ) : (
+      ) : product && product.img ? (
         <div className="slider_oneImg">
-          <img className="slider_oneImg_img" src={product?.img} alt="" />
+          <img className="slider_oneImg_img" src={require(`../image/${product?.img}`)} alt="" />
         </div>
+      ) : (
+        <div>loading...</div>
       )}
     </>
   );
