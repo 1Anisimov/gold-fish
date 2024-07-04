@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import Header from './app/components/header';
-import Footer from './app/components/footer';
 import { CatalogOrProductPage } from './app/pages/catalog-or-product-page';
 import { BasketPage } from './app/modules/basket/basket-page';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +11,8 @@ import UserPage from './app/modules/user-page/user-page';
 import UserPageSettings from './app/modules/user-page-settings/user-page-settings';
 import AdminPage from './app/modules/admin-page-module/admin-page/admin-page';
 import MainPage from './app/modules/main-page-module/main-page/main-page';
+import Footer from './app/common/footer/footer';
+import Header from './app/common/header/header';
 
 const App = () => {
   const dispatch = useDispatch();

@@ -1,0 +1,75 @@
+.header_top {
+  padding: 15px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Trebuchet MS";
+  color: white;
+}
+.header_top_number {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: Trebuchet MS;
+font-size: 15px;
+font-weight: 700;
+}
+.header_top_number:hover {
+  color:#F9A43F
+}
+.header_top_number:hover .button_pop-up_my {
+  color:#F9A43F
+}
+.header_top__blockInputBlock_out{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(42, 42, 42, 0);
+}
+
+.header_top_icons {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+.header_top_icons_profile{
+  color: #F2F2F2;
+}
+.header_top_icons_profile:hover {
+  color:#F9A43F
+}
+.header_top_logo {
+  width: 157px;
+  height: 37px;
+}
+
+.header_top_icons_profile_basket{
+  position: relative;
+}
+
+.circle_on_basket{
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  gap: 0px;
+  opacity: 0px;
+  top: -8px;
+  right: 0;
+  background: rgba(249, 164, 63, 1);
+  border-radius: 50%;
+
+  font-family: Open Sans;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 19.07px;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 0 0 3px 1px;
+}

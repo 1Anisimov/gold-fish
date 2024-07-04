@@ -1,0 +1,47 @@
+.catalog_page_banner{
+  margin-top: 100px;
+  width: 100%;
+  position: relative;
+}
+.catalog_page_banner_title{
+  font-family: Trebuchet MS;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 25.54px;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+}
+.catalog_page_banner_text{
+  font-family: Trebuchet MS;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18.58px;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+}
+
+
+.catalog_page_banner_image{
+  width: 100%;
+}
+.catalog_page_banner_absolute{
+  position: absolute;
+  top: 40%;
+  left: 14%;
+}
+.catalog_page{
+  background-color: #f1eeea;
+  margin-top: 57px;
+  width: 100%;
+}
+.catalog_page_block{
+  width: 100%;
+  display: flex;
+  align-items: start;
+}
+.first_title{
+  font-family: Trebuchet MS;
+font-size: 32px;
+font-weight: 700;
+  margin-bottom: 30px;
+}
