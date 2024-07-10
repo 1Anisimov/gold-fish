@@ -9,7 +9,10 @@ const adminSlice = createSlice({
         currentProduct: null,
         modalChanged: false,
         newChangedProduct: null,
-        addingProductWhere: null
+        addingProductWhere: null,
+        currentProductAdding: null,
+        whereProductAdding: null,
+        addOrRemove: null
     },
     reducers: {
         setLoadingStatusLoading: (state) => {
@@ -17,6 +20,20 @@ const adminSlice = createSlice({
         },
         setLoadingStatusError: (state) => {
             state.isLoading = "ERROR"
+        },
+
+        setAddOrRemoveReceved: (state, action) => {
+            state.addOrRemove = action.payload;
+            state.isLoading = "READY";
+        },
+
+        setCurrentProductAddingReceved: (state, action) => {
+            state.currentProductAdding = action.payload;
+            state.isLoading = "READY"
+        },
+        setWhereProductAddingReceved: (state, action) => {
+            state.whereProductAdding = action.payload;
+            state.isLoading = "READY"
         },
 
         setValueSearchReceved: (state, action) => {
@@ -63,10 +80,30 @@ const {
     setModalChangedReceved,
 
     setNewChangedProductReceved,
-    setAddingProductWhereReceved
+    setAddingProductWhereReceved,
+
+    setCurrentProductAddingReceved,
+    setWhereProductAddingReceved,
+
+    setAddOrRemoveReceved,
 
 
  } = actions;
+
+ export const setAddOrRemove = (payload) => (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    dispatch(setAddOrRemoveReceved(payload))    
+}
+
+ export const setCurrentProductAdding = (product) => (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    dispatch(setCurrentProductAddingReceved(product))    
+}
+
+export const setWhereProductAdding = (payload) => (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    dispatch(setWhereProductAddingReceved(payload))    
+}
 
  export const setAddingProductWhere = (payload) => (dispatch) => {
         dispatch(setLoadingStatusLoading())
@@ -111,6 +148,12 @@ const {
             dispatch(setFoundProductsReceved(null))
         }
  }
+
+
+ export const getCurrentProductAdding = () => (state) => state.admin.currentProductAdding;
+ export const getWhereProductAdding = () => (state) => state.admin.whereProductAdding;
+
+ export const getAddOrRemove = () => (state) => state.admin.addOrRemove;
 
  export const getValueSearchOnAdminPage = () => (state) => state.admin.valueSearch;
  export const getFoundProductsOnAdminPage = () => (state) => state.admin.foundProducts;

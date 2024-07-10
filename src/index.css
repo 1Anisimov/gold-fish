@@ -147,6 +147,19 @@ code {
   background: #2A2A2A;;
 
 }
+
+.button_disabled{
+  /* background: linear-gradient(184.53deg, #F9A43F 5.27%, #FB791B 91.78%); */
+  line-height: 18.58px;  
+  border: 2px solid #929292;
+  border-radius: 9px;
+  color: #929292;
+  font-family: "Trebuchet MS";
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+}
  
 .button-gradient {
   background: linear-gradient(184.53deg, #F9A43F 5.27%, #FB791B 91.78%);

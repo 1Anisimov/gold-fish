@@ -5,7 +5,8 @@ const MainButton = ({ width, heigth, text, isGradient, big, handleClick, isDisab
     <>
       <button
         onClick={handleClick}
-        className={isGradient ? 'button-gradient' : 'button-white'}
+        className={isDisabled ? 'button_disabled' : isGradient ? 'button-gradient' : 'button-white'}
+        disabled={isDisabled ? true : false}
         style={{
           height: heigth + 'px',
           width: width ? width + 'px' : '100%',

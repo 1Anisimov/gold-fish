@@ -113,6 +113,14 @@ max-height: 30px;
 
 .card_button {
   margin-bottom: 15px;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+.button_disabled{
+  color: grey;
+  
 }
 
 .card_sale{
@@ -132,3 +140,11 @@ opacity: 0px;
 background: rgba(249, 164, 63, 1);
 text-align: center;
 }
+
+.card_button_add{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+

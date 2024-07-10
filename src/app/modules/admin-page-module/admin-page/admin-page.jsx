@@ -1,33 +1,55 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import cls from './admin-page.module.css';
 import MainContainerBg from '../../../containers/main-container-bg';
 import SearchProductsOnAdminPage from '../../../common/components/input-search-products-admin-page/input-search-products-admin-page';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getCurrentProductOnAdminPage,
+  getAddingProductWhere,
+  getAddOrRemove,
+  getCurrentProductAdding,
   getFoundProductsOnAdminPage,
   getIsOpenModalChanged,
   setAddingProductWhere,
+  setCurrentProductAdding,
   setModalChanged
 } from '../../../store/admin';
-import { getAllProducts, getFiltersLoadingStatus } from '../../../store/products';
+import {
+  addToSaleProductByAdminPage,
+  addToSpecialProductByAdminPage,
+  getAllProducts,
+  getFiltersLoadingStatus,
+  removeProductOnSaleProductsByAdminPage,
+  removeProductOnSpecialProductsByAdminPage,
+  setAllSaleProducts,
+  setAllSpecialProducts
+} from '../../../store/products';
 import Card from '../../../reusable-components/main-card/card';
 import { ScrollBlock } from '../../../hooks/useScrollBlock';
 import AddProductSvg from '../../../image/svg/addProductSvg';
 import ModalAdminPage from '../modal-admin-page/modal-admin-page';
+import { getModalAdminAccept, setModalAdminAccept } from '../../../store/modals';
 
 const AdminPage = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setAllSaleProducts());
+    dispatch(setAllSpecialProducts());
+  }, [dispatch]);
+
   const foundProducts = useSelector(getFoundProductsOnAdminPage());
   const products = useSelector(getAllProducts());
   const loadingStatus = useSelector(getFiltersLoadingStatus());
   const isOpenModal = useSelector(getIsOpenModalChanged());
-  const currentProduct = useSelector(getCurrentProductOnAdminPage());
-  console.log(currentProduct);
+
+  const isModalAccept = useSelector(getModalAdminAccept());
+  const whereAdding = useSelector(getAddingProductWhere());
+  const currentAddingProduct = useSelector(getCurrentProductAdding());
+  const isAddOrRemove = useSelector(getAddOrRemove());
 
   const [blockScroll, allowScroll] = ScrollBlock();
 
-  isOpenModal ? blockScroll() : allowScroll();
+  isOpenModal || isModalAccept ? blockScroll() : allowScroll();
 
   const openAdminModal = ({ target }) => {
     if (target.id === 'main') {
@@ -42,21 +64,109 @@ const AdminPage = () => {
     dispatch(setModalChanged(true));
   };
 
+  const addCurrentProductToSaleOrSpecial = ({ target }) => {
+    if (whereAdding === 'sale') {
+      if (target.id === 'yes') {
+        dispatch(addToSaleProductByAdminPage(currentAddingProduct));
+        dispatch(setModalAdminAccept(false));
+      } else {
+        dispatch(setAddingProductWhere(null));
+        dispatch(setCurrentProductAdding(null));
+        dispatch(setModalAdminAccept(false));
+      }
+    }
+
+    if (whereAdding === 'special') {
+      if (target.id === 'yes') {
+        dispatch(addToSpecialProductByAdminPage(currentAddingProduct));
+        dispatch(setModalAdminAccept(false));
+      } else {
+        dispatch(setAddingProductWhere(null));
+        dispatch(setCurrentProductAdding(null));
+        dispatch(setModalAdminAccept(false));
+      }
+    }
+  };
+
+  const removeCurrentProductToSaleOrSpecial = ({ target }) => {
+    if (whereAdding === 'sale') {
+      if (target.id === 'yes') {
+        dispatch(removeProductOnSaleProductsByAdminPage(currentAddingProduct));
+        dispatch(setModalAdminAccept(false));
+      } else {
+        dispatch(setAddingProductWhere(null));
+        dispatch(setCurrentProductAdding(null));
+        dispatch(setModalAdminAccept(false));
+      }
+    }
+
+    if (whereAdding === 'special') {
+      if (target.id === 'yes') {
+        dispatch(removeProductOnSpecialProductsByAdminPage(currentAddingProduct));
+        dispatch(setModalAdminAccept(false));
+      } else {
+        dispatch(setAddingProductWhere(null));
+        dispatch(setCurrentProductAdding(null));
+        dispatch(setModalAdminAccept(false));
+      }
+    }
+  };
+
   return (
     <MainContainerBg>
       {isOpenModal ? <ModalAdminPage /> : <></>}
+      {isModalAccept ? (
+        <div className={cls.modalBlock}>
+          <div className={cls.modalContent}>
+            <div className={cls.adminModalContainer}>
+              <p>Подтверждение</p>
+              <div className={cls.confirmBlock}>
+                <p>
+                  {isAddOrRemove === 'add'
+                    ? `Вы точно хотите ДОБАВИТЬ товар в "${whereAdding}"?`
+                    : `Вы точно хотите УДАЛИТЬ товар из "${whereAdding}"?`}
+                </p>
+                <div className={cls.buttonsBlock}>
+                  <button
+                    onClick={
+                      isAddOrRemove === 'add'
+                        ? addCurrentProductToSaleOrSpecial
+                        : removeCurrentProductToSaleOrSpecial
+                    }
+                    id="yes"
+                    className={cls.button}>
+                    Да
+                  </button>
+                  <button
+                    onClick={
+                      isAddOrRemove === 'add'
+                        ? addCurrentProductToSaleOrSpecial
+                        : removeCurrentProductToSaleOrSpecial
+                    }
+                    id="no"
+                    className={cls.button}>
+                    Нет
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
       <div className={cls.adminPage}>
         <h3>Admin page</h3>
         <div className={cls.addProductBlock}>
           <button id="global" onClick={openAdminModal} className={cls.addProductButton}>
             Добавить товар <AddProductSvg />
           </button>
-          <button id="special" onClick={openAdminModal} className={cls.addProductButton}>
+          {/* <button id="special" onClick={openAdminModal} className={cls.addProductButton}>
             Добавить товар в "Специальные предложения" <AddProductSvg />
           </button>
           <button id="sale" onClick={openAdminModal} className={cls.addProductButton}>
             Добавить товар в "Успей купить" <AddProductSvg />
-          </button>
+          </button> */}
         </div>
         <SearchProductsOnAdminPage />
         {loadingStatus === 'READY' ? (

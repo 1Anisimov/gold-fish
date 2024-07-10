@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import cls from './card.module.css';
 import MainButton from '../main-button';
 import cardTimer from '../../image/time_card.png';
@@ -6,10 +6,36 @@ import cardPlayers from '../../image/players_card.png';
 import history from '../../utils/history';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductsToBasket, searchProductInBasket } from '../../store/basket';
-import { setCurrentProduct, setModalChanged } from '../../store/admin';
+import {
+  setAddingProductWhere,
+  setAddOrRemove,
+  setCurrentProduct,
+  setCurrentProductAdding,
+  setModalChanged
+} from '../../store/admin';
+import { getSaleProducts, getSpecialProducts } from '../../store/products';
+import { setModalAdminAccept } from '../../store/modals';
 
 const Card = ({ product, admin }) => {
   const dispatch = useDispatch();
+
+  const saleProducts = useSelector(getSaleProducts());
+  const specialProducts = useSelector(getSpecialProducts());
+
+  const isProductOnSaleOrSpecial = (saleProducts, currentProduct) => {
+    return saleProducts.find((p) => p.id === currentProduct.id);
+  };
+
+  const isSaleProduct = useMemo(
+    () => isProductOnSaleOrSpecial(saleProducts, product),
+    [saleProducts, product]
+  );
+  const isSpecialProduct = useMemo(
+    () => isProductOnSaleOrSpecial(specialProducts, product),
+    [specialProducts, product]
+  );
+
+  console.log(isSaleProduct);
 
   const isProductInBasket = useSelector(searchProductInBasket(product.id));
   const goToProductPage = () => {
@@ -27,6 +53,26 @@ const Card = ({ product, admin }) => {
   const productChange = () => {
     dispatch(setCurrentProduct(product));
     dispatch(setModalChanged(true));
+  };
+
+  const addToSaleProductConfirm = (payload) => {
+    if (isSaleProduct) {
+      dispatch(setAddOrRemove('remove'));
+    } else dispatch(setAddOrRemove('add'));
+
+    dispatch(setAddingProductWhere(payload));
+    dispatch(setCurrentProductAdding(product));
+    dispatch(setModalAdminAccept(true));
+  };
+
+  const addToSpecialProductConfirm = (payload) => {
+    if (isSpecialProduct) {
+      dispatch(setAddOrRemove('remove'));
+    } else dispatch(setAddOrRemove('add'));
+
+    dispatch(setAddingProductWhere(payload));
+    dispatch(setCurrentProductAdding(product));
+    dispatch(setModalAdminAccept(true));
   };
 
   return (
@@ -92,12 +138,48 @@ const Card = ({ product, admin }) => {
 
           {admin ? (
             <div className={cls.card_button}>
-              <MainButton
-                handleClick={productChange}
-                width="163"
-                heigth="34"
-                text="редактировать"
-              />
+              <div className={cls.card_button_add}>
+                <MainButton
+                  handleClick={productChange}
+                  width="163"
+                  heigth="34"
+                  text="редактировать"
+                />
+              </div>
+              <div className={cls.card_button_add}>
+                {isSaleProduct ? (
+                  <MainButton
+                    isGradient
+                    handleClick={() => addToSaleProductConfirm('sale')}
+                    width="90"
+                    heigth="34"
+                    text="On sale"
+                  />
+                ) : (
+                  <MainButton
+                    handleClick={() => addToSaleProductConfirm('sale')}
+                    width="90"
+                    heigth="34"
+                    text="sale"
+                  />
+                )}
+                {isSpecialProduct ? (
+                  <MainButton
+                    isGradient
+                    handleClick={() => addToSpecialProductConfirm('special')}
+                    width="90"
+                    heigth="34"
+                    text="On special"
+                  />
+                ) : (
+                  <MainButton
+                    handleClick={() => addToSpecialProductConfirm('special')}
+                    width="90"
+                    heigth="34"
+                    text="special"
+                  />
+                )}
+              </div>
             </div>
           ) : (
             <div className={cls.card_button}>

@@ -226,13 +226,13 @@ const productsSlice = createSlice({
         },
 
         addSpecialProductByAdminPageReceved: (state, action) => {
-            state.products.push(action.payload);
+            // state.products.push(action.payload);
             state.specialProducts.push(action.payload);
             state.isLoading = "READY";
         },
 
         addSaleProductByAdminPageReceved: (state, action) => {
-            state.products.push(action.payload);
+            // state.products.push(action.payload);
             state.saleProducts.push(action.payload);
             state.isLoading = "READY";
         }
@@ -296,6 +296,39 @@ const {
     addSaleProductByAdminPageReceved
 
  } = actions;
+
+ export const removeProductOnSpecialProductsByAdminPage = (product) => (dispatch, getState) => {
+    dispatch(setLoadingStatusLoading())
+
+    const {specialProducts} = getState().products;
+
+    const newSaleProductsArray = specialProducts.filter((p) => p.id !== product.id)
+
+    dispatch(setSpecialProductsReceved(newSaleProductsArray))
+ }
+
+ export const removeProductOnSaleProductsByAdminPage = (product) => (dispatch, getState) => {
+    dispatch(setLoadingStatusLoading())
+
+    const {saleProducts} = getState().products;
+    console.log("saleProducts", saleProducts)
+
+    const newSaleProductsArray = saleProducts.filter((p) => p.id !== product.id)
+
+    dispatch(setSaleProductsReceved(newSaleProductsArray))
+ }
+
+ export const addToSaleProductByAdminPage = (newProduct) => (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+
+    dispatch(addSaleProductByAdminPageReceved({...newProduct, id: nanoid()}))
+ }
+
+ export const addToSpecialProductByAdminPage = (newProduct) => (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+
+    dispatch(addSpecialProductByAdminPageReceved({...newProduct, id: nanoid()}))
+ }
 
  export const addProductByAdminPage = (newProduct) => (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
