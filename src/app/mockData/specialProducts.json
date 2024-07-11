@@ -1,0 +1,67 @@
+[
+    {
+      "img": "image12.png",
+      "price": 1000,
+      "name": "Chaos Space Marines",
+      "players": "3-5",
+      "time": "30-60",
+      "age": "18",
+      "category": "magic",
+      "subcategory": "Dominaria_United",
+      "id": "15",
+      "sale": 900,
+      "saleProcent": 10
+    },
+    {
+      "img": "image12.png",
+      "price": 6000,
+      "name": "Warhammer 40,000: Chaos Space Marines",
+      "players": "3-5",
+      "time": "30-60",
+      "age": "18",
+      "category": "warhammer",
+      "subcategory": "The_Horus_Heresy",
+      "id": "16",
+      "sale": 4800,
+      "saleProcent": 20
+    },
+    {
+      "img": "tavlei-stena-cshitov.jpg",
+      "price": 3000,
+      "name": "Warhammer 40,000: Chaos Space Marines",
+      "players": "3-5",
+      "time": "30-60",
+      "age": "18",
+      "category": "board_games",
+      "subcategory": "Games_for_companies",
+      "id": "17",
+      "sale": 2550,
+      "saleProcent": 15
+    },
+    {
+      "img": "tavlei-stena-cshitov.jpg",
+      "price": 1690,
+      "name": "Тавлеи: Стена щитов",
+      "players": "2",
+      "time": "20-40",
+      "age": "6",
+      "category": "board_games",
+      "subcategory": "Games_for_two",
+      "id": "18",
+      "sale": null,
+      "saleProcent": null
+    },
+    {
+      "img": "image12.png",
+      "price": 4000,
+      "name": "Warhammer 40,000: Chaos Space Marines",
+      "players": "3-5",
+      "time": "30-60",
+      "age": "18",
+      "category": "board_games",
+      "subcategory": "Games_for_companies",
+      "id": "19",
+      "sale": null,
+      "saleProcent": null
+    }
+  ]

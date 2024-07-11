@@ -1,29 +1,36 @@
-import { getAllProducts, getNotSaleProducts, getProductByIdApi, getSaleProducts } from "../../API/FakeAPI";
+// import { getAllProducts, getNotSaleProducts, getProductByIdApi, getSaleProducts } from "../../API/FakeAPI";
 import httpService from "./http.service";
 
 
-const productsEndpoint = "products/";
+const productsEndpoint = "product/";
+const saleProductsEndpoint = "saleProducts/";
+const specialProductsEndpoint = "specialProducts/";
+
 
 const productsService = {
     create: async (payload) => {
-        const { data } = await httpService.put(productsEndpoint + payload._id, payload);
+        const { data } = await httpService.put(productsEndpoint + payload.id, payload);
         return data;
     },
     get: async () => {
-        const data = await getAllProducts();
-        return data;
+        // const data = await getAllProducts();
+        const {data}  = await httpService.get(productsEndpoint)
+        // console.log(data)
+        return data.content;
     },
     getAllSaleProducts: async () => {
-        const data = await getSaleProducts();
-        return data;
+        const {data}  = await httpService.get(saleProductsEndpoint)
+        return data.content;
     },
     getAllSpecialProducts: async () => {
-        const data = await getNotSaleProducts();
-        return data;
+        const {data}  = await httpService.get(specialProductsEndpoint)
+        console.log(data.content)
+        return data.content;
     },
     getProductById: async (productId) => {
-        const data = await getProductByIdApi(productId);
-        return data;
+        const { data } = await httpService.get(productsEndpoint);
+        return data.find((p) => p.id === productId)
+        // return data;
     }
 }
 

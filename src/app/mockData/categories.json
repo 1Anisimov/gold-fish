@@ -1,0 +1,8 @@
+[
+    { "name": "Настольные игры", "value": "board_games" },
+    { "name": "Warhammer 40000", "value": "warhammer" },
+    { "name": "Magic: the Gathering", "value": "magic" },
+    { "name": "Аксессуры для игр", "value": "accessories_game" },
+    { "name": "Краски", "value": "paints" },
+    { "name": "Аксессуары для моделизма", "value": "accessories_modeling" }
+]

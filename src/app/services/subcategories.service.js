@@ -1,10 +1,11 @@
-import { getSubcategories } from "../../API/FakeAPI";
+import httpService from "./http.service";
 
+const subcategoriesEndpoint = "subcategory/"
 
 const subcategoriesService = {
     get: async () => {
-        const data = await getSubcategories();
-        return data;
+        const { data } = await httpService.get(subcategoriesEndpoint);
+        return data.content;
     }
 }
 

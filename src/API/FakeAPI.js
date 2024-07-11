@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid'
 import profileImg from "../app/image/img_events_2.png";
 
 export const productsTempBuy = [
@@ -879,15 +878,6 @@ const promocodes = [
   {code:"Q15", sale:15},
 ]
 
-const questionAnswerArray = [
-  {title:"Как оформить заказ?", id:1, text:"how"},
-  {title:"Как подобрать игру?", id:2, text:<p>Если в настольной игре собирается принять участие компания, нужно учитывать средний возраст игроков. Есть игры, которые не требуют активности и вряд ли понравятся молодёжи, а подвижные не придутся по душе пожилым людям.</p>},
-  {title:"Как оплатить заказ?", id:3, text:"how"},
-  {title:"Как изменить заказ после оформления?", id:4, text:"how"},
-  {title:"Что делать, если заказ не пришел?", id:5, text:"how"},
-  {title:"Как вернуть товар?", id:6, text:"how"},
-]
-
 const currentUser = {
   userInfo: {
     id: "1",
@@ -903,10 +893,6 @@ const currentUser = {
     number: null,
     mail: null,
   }
-}
-
-export function getquestionAnswerArray() {
-  return questionAnswerArray
 }
 
 export function getAllPromocodes() {
