@@ -1,0 +1,24 @@
+[
+    {
+        "userInfo": {
+          "id": "1",
+          "name": "Александр Анисимов",
+          "number": "+7 912 523 42 78",
+          "mail": "anisimov2002kurgan@mail.ru",
+          "img": "smesharik.png",
+          "totalPurchase" : 4999,
+          "isAdmin": true
+        }
+      },
+      {
+        "userInfo": {
+          "id": "2",
+          "name": "Полина Гагарина",
+          "number": "+7 777 77 77",
+          "mail": "gagarina2002kurgan@mail.ru",
+          "img": "smesharik.png",
+          "totalPurchase" : 2399,
+          "isAdmin": false
+        }
+      }
+]

@@ -4,11 +4,17 @@ import LoyaltyCard from '../../../reusable-components/loyalty-card/loyalty-card'
 import MedalsUser from '../medals-user/medals-user';
 import iconV from '../../../image/icons/icon_orange_V.png';
 import { useSelector } from 'react-redux';
-import { getCurrentUser, getCurrentUserTotalPurchase } from '../../../store/currentUser';
+import {
+  getCurrentUser,
+  getCurrentUserTotalPurchase,
+  getLoadingStatus
+} from '../../../store/currentUser';
 
 const PersonalAccount = () => {
   const user = useSelector(getCurrentUser());
   const totalPurchase = useSelector(getCurrentUserTotalPurchase());
+
+  const loadingStatus = useSelector(getLoadingStatus());
 
   const getUserGradeInfoBySum = (sum) => {
     if (sum < 1000) {
@@ -55,13 +61,19 @@ const PersonalAccount = () => {
 
   const currentUserInfo = useMemo(() => getUserGradeInfoBySum(totalPurchase), [totalPurchase]);
 
-  console.log('currentUserInfo', currentUserInfo);
-
-  return (
+  return loadingStatus === 'READY' ? (
     <div className={cls.mainContent}>
       <div className={cls.profileInfo}>
         <div className={cls.imageProfileBlock}>
-          <img className={cls.imageProfileBlock} src={user.img} alt="" />
+          {user.img ? (
+            <img
+              className={cls.imageProfileBlock}
+              src={require(`../../../image/${user.img}`)}
+              alt=""
+            />
+          ) : (
+            <></>
+          )}
         </div>
         <div className={cls.userName}>{user.name}</div>
         <div className={cls.userGrade}>
@@ -94,6 +106,8 @@ const PersonalAccount = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <></>
   );
 };
 

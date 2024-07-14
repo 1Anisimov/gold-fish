@@ -297,52 +297,80 @@ const {
 
  } = actions;
 
- export const removeProductOnSpecialProductsByAdminPage = (product) => (dispatch, getState) => {
+ export const removeProductOnSpecialProductsByAdminPage = (product) => async (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
 
-    const {specialProducts} = getState().products;
-
-    const newSaleProductsArray = specialProducts.filter((p) => p.id !== product.id)
-
-    dispatch(setSpecialProductsReceved(newSaleProductsArray))
+    try {
+        const {specialProducts} = getState().products;
+        const newSaleProductsArray = specialProducts.filter((p) => p.id !== product.id)
+    
+        await productsService.removeSpecialProduct(product.id)
+        dispatch(setSpecialProductsReceved(newSaleProductsArray))
+    } catch (error) {
+        console.log("ERROR: <removeProductOnSpecialProductsByAdminPage>", error)
+    }
  }
 
- export const removeProductOnSaleProductsByAdminPage = (product) => (dispatch, getState) => {
+ export const removeProductOnSaleProductsByAdminPage = (product) => async (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
 
-    const {saleProducts} = getState().products;
-    console.log("saleProducts", saleProducts)
+    try {
+        const {saleProducts} = getState().products;
+        const newSaleProductsArray = saleProducts.filter((p) => p.id !== product.id)
 
-    const newSaleProductsArray = saleProducts.filter((p) => p.id !== product.id)
-
-    dispatch(setSaleProductsReceved(newSaleProductsArray))
+        await productsService.removeSaleProduct(product.id)
+        dispatch(setSaleProductsReceved(newSaleProductsArray))
+    } catch (error) {
+        console.log("ERROR: <removeProductOnSaleProductsByAdminPage>", error)
+    }
  }
 
- export const addToSaleProductByAdminPage = (newProduct) => (dispatch) => {
+ export const addToSaleProductByAdminPage = (newProduct) => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
+    try {
+        // dispatch(addSaleProductByAdminPageReceved({...newProduct, id: nanoid()}))
+        await productsService.addToSale(newProduct)
+        dispatch(addSaleProductByAdminPageReceved(newProduct))
+    } catch (error) {
+        console.log("ERROR <addToSaleProductByAdminPage>", error)
+    }
 
-    dispatch(addSaleProductByAdminPageReceved({...newProduct, id: nanoid()}))
+    
  }
 
- export const addToSpecialProductByAdminPage = (newProduct) => (dispatch) => {
+ export const addToSpecialProductByAdminPage = (newProduct) => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
 
-    dispatch(addSpecialProductByAdminPageReceved({...newProduct, id: nanoid()}))
+    try {
+        await productsService.addToSpecial(newProduct)
+        dispatch(addSpecialProductByAdminPageReceved(newProduct))
+        // dispatch(addSpecialProductByAdminPageReceved({...newProduct, id: nanoid()}))
+    } catch (error) {
+        console.log("ERROR <addToSpecialProductByAdminPage>", error)
+    }
  }
 
- export const addProductByAdminPage = (newProduct) => (dispatch, getState) => {
+ export const addProductByAdminPage = (newProduct) => async (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
-        const {addingProductWhere} = getState().admin;
+    try {
 
-        if(addingProductWhere === "global") {
+        // const {addingProductWhere} = getState().admin;
+
+        // if(addingProductWhere === "global") {
+            await productsService.create({...newProduct, id: nanoid()})
             dispatch(addProductByAdminPageReceved({...newProduct, id: nanoid()}))
-        }
-        if(addingProductWhere === "special") {
-            dispatch(addSpecialProductByAdminPageReceved({...newProduct, id: nanoid()}))
-        }
-        if(addingProductWhere === "sale") {
-            dispatch(addSaleProductByAdminPageReceved({...newProduct, id: nanoid()}))
-        }
+        // }
+        // if(addingProductWhere === "special") {
+            // dispatch(addSpecialProductByAdminPageReceved({...newProduct, id: nanoid()}))
+        // }
+        // if(addingProductWhere === "sale") {
+            // dispatch(addSaleProductByAdminPageReceved({...newProduct, id: nanoid()}))
+        // }
+        
+    } catch (error) {
+        
+    }
+        
         
  }
 
@@ -407,7 +435,7 @@ export const setFoundProducts = () =>  (dispatch, getState) => {
         if(valueSearch && valueSearch.length > 0) {
             const newArray = products.filter((p) => {
                 return p.name
-                  .toLowerCase()
+                  ?.toLowerCase()
                   .trim()
                   .includes(valueSearch ? valueSearch.toLowerCase().trim() : '');
               });

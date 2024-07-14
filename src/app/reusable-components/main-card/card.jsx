@@ -35,8 +35,6 @@ const Card = ({ product, admin }) => {
     [specialProducts, product]
   );
 
-  console.log(isSaleProduct);
-
   const isProductInBasket = useSelector(searchProductInBasket(product.id));
   const goToProductPage = () => {
     history.push(`/catalog/${product.category}/${product.subcategory}/${product.id}`);
@@ -80,7 +78,11 @@ const Card = ({ product, admin }) => {
       {product && (
         <div className={cls.card} style={{ border: 'none' }}>
           <div onClick={goToProductPage} className={cls.card_image}>
-            <img className={cls.card_image} src={require(`../../image/${product.img}`)} alt="" />
+            {product.img ? (
+              <img className={cls.card_image} src={require(`../../image/${product.img}`)} alt="" />
+            ) : (
+              <></>
+            )}
           </div>
           {product.sale ? <div className={cls.card_sale}>{`-${product.saleProcent}%`}</div> : ''}
           <div className={cls.card_data}>

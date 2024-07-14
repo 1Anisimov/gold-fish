@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import cls from './authorization-form-signUp.module.css';
 import MainButton from '../../../reusable-components/main-button';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../../store/currentUser';
 
 const AuthorizationFormSignUp = () => {
+  const dispatch = useDispatch();
+
   const [registerForm, setRegisterForm] = useState({
     name: '',
-    secondName: '',
-    email: '',
     politic: false,
     news: false
   });
@@ -25,11 +27,12 @@ const AuthorizationFormSignUp = () => {
   const pushRegisterForm = (e) => {
     e.preventDefault();
     console.log(registerForm);
+    dispatch(signUp(registerForm));
   };
   const registerFormInputsArray = [
     { htmlfor: 'name', type: 'name', name: 'name', placeholder: 'Имя' },
-    { htmlfor: 'secondName', type: 'text', name: 'secondName', placeholder: 'Фамилия' },
-    { htmlfor: 'email', type: 'email', name: 'email', placeholder: 'E-mail' },
+    // { htmlfor: 'secondName', type: 'text', name: 'secondName', placeholder: 'Фамилия' },
+    { htmlfor: 'email', type: 'email', name: 'mail', placeholder: 'E-mail' },
     { htmlfor: 'password', type: 'password', name: 'password', placeholder: 'Пароль' }
   ];
   return (
@@ -87,12 +90,6 @@ const AuthorizationFormSignUp = () => {
               </div>
             </div>
           </div>
-          {/* <div className={cls.checkbox}>
-            <input className={cls.checkboxItem} type="checkbox" id="news" name="news" />
-            <label className={cls.checkboxText} htmlFor="news">
-              Я хочу получать новости и узнавать об акциях первым
-            </label>
-          </div> */}
           <div className={cls.registerButton}>
             <MainButton
               handleClick={pushRegisterForm}

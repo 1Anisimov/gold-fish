@@ -28,6 +28,7 @@ import { ScrollBlock } from '../../../hooks/useScrollBlock';
 import AddProductSvg from '../../../image/svg/addProductSvg';
 import ModalAdminPage from '../modal-admin-page/modal-admin-page';
 import { getModalAdminAccept, setModalAdminAccept } from '../../../store/modals';
+// import { initialize } from '../../../utils/mockData';
 
 const AdminPage = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const AdminPage = () => {
   useEffect(() => {
     dispatch(setAllSaleProducts());
     dispatch(setAllSpecialProducts());
+    // initialize();
   }, [dispatch]);
 
   const foundProducts = useSelector(getFoundProductsOnAdminPage());
@@ -161,19 +163,15 @@ const AdminPage = () => {
           <button id="global" onClick={openAdminModal} className={cls.addProductButton}>
             Добавить товар <AddProductSvg />
           </button>
-          {/* <button id="special" onClick={openAdminModal} className={cls.addProductButton}>
-            Добавить товар в "Специальные предложения" <AddProductSvg />
-          </button>
-          <button id="sale" onClick={openAdminModal} className={cls.addProductButton}>
-            Добавить товар в "Успей купить" <AddProductSvg />
-          </button> */}
         </div>
         <SearchProductsOnAdminPage />
         {loadingStatus === 'READY' ? (
           <div className={cls.products}>
             {foundProducts && foundProducts.length > 0
               ? foundProducts.map((product) => <Card admin product={product} />)
-              : products.map((product) => <Card admin product={product} />)}
+              : products.map((product) =>
+                  product.name ? <Card admin product={product} /> : <></>
+                )}
           </div>
         ) : (
           <></>

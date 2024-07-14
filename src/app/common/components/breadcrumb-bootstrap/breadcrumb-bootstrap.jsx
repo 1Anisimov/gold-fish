@@ -10,7 +10,6 @@ const BreadcrumbBootstrap = () => {
   const params = useParams();
   const { pathname } = useLocation();
   const pathnameValue = pathname.split('/').slice(1, 2).join();
-  console.log('pathnameValue', pathnameValue);
   const { category, subcategory, productId } = params;
   const categoriesArray = useSelector(getAllCategories());
   const subcategoriesArray = useSelector(getAllSubcategories());

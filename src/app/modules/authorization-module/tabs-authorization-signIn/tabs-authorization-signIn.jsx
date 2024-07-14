@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import cls from './tabs-authorization-signIn.module.css';
 import MainButton from '../../../reusable-components/main-button';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../../../store/currentUser';
+import { setModalRegisterForm } from '../../../store/modals';
 
 const TabsAuthorizationSignIn = () => {
+  const dispatch = useDispatch();
   const [loginForm, setLoginForm] = useState({});
   const handleChangeLoginForm = ({ target }) => {
     setLoginForm((prevState) => ({
@@ -10,8 +14,10 @@ const TabsAuthorizationSignIn = () => {
       [target.name]: target.value
     }));
   };
-  const pushLoginForm = () => {
-    console.log(loginForm);
+  const pushLoginForm = (e) => {
+    e.preventDefault();
+    dispatch(logIn({ payload: loginForm }));
+    dispatch(setModalRegisterForm(false));
   };
   return (
     <div className={cls.signIn}>

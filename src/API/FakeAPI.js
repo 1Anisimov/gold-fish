@@ -884,8 +884,9 @@ const currentUser = {
     name: 'Александр Анисимов',
     number: "+7 912 523 42 78",
     mail: "anisimov2002kurgan@mail.ru",
-    img: profileImg,
-    totalPurchase : 4999
+    img: "smesharik.png",
+    totalPurchase : 4999,
+    isAdmin: true
   },
   changedUserInfo: {
     name: null,
@@ -968,7 +969,7 @@ export const getSubcategories = () => {
 export const getCurrentUserFakeApi = () => {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      res(currentUser)
+      res(currentUser.userInfo)
     }, 2000)
   })
 }

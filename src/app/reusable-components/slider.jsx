@@ -16,7 +16,6 @@ import imgNext from '../image/icons/arrow_next_gorisantal.png';
 export default function Slider({ product }) {
   const dispatch = useDispatch();
   const [swiperRef, setSwiperRef] = useState({});
-  console.log(product);
 
   const sliderActiveIndex = useSelector(getSliderPageIndex());
 

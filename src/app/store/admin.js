@@ -140,13 +140,12 @@ export const setWhereProductAdding = (payload) => (dispatch) => {
         if(valueSearch && valueSearch.length > 0) {
             const newArray = products.filter((p) => {
                 return p.name
-                  .toLowerCase()
+                  ?.toLowerCase()
                   .trim()
                   .includes(valueSearch.toLowerCase().trim());
               });
             dispatch(setFoundProductsReceved(newArray))
-            dispatch(setFoundProductsReceved(null))
-        }
+        } else dispatch(setFoundProductsReceved(null))
  }
 
 

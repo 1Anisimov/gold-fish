@@ -6,7 +6,7 @@ import HeaderTopContainerBg from '../../containers/header-top-container-bg';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBasketEntities } from '../../store/basket';
 import { getFoundProducts } from '../../store/products';
-import history from '../../utils/history';
+// import history from '../../utils/history';
 import Number from '../../image/svg/number-header';
 import Profile from '../../image/svg/profile-header';
 import Basket from '../../image/svg/basket-header';
@@ -15,13 +15,18 @@ import { getSearchOpenOrClose, setCopyNumber, setSearchOpenOrClose } from '../..
 import { CopyNumberModal } from '../components/copy-number-modal/copy-number-modal';
 
 // TODO Важно не удалить
-// import { setModalRegisterForm } from '../store/modals';
+import { setModalRegisterForm } from '../../store/modals';
+import { getAuthCurrentUser, getIsLoggedIn } from '../../store/currentUser';
+import history from '../../utils/history';
 
 const HeaderTop = () => {
   const dispatch = useDispatch();
   const basketEntities = useSelector(getBasketEntities());
   const filteredProductsActive = useSelector(getFoundProducts());
   const isOpenSearch = useSelector(getSearchOpenOrClose());
+
+  const isLoggedIn = useSelector(getIsLoggedIn());
+  const auth = useSelector(getAuthCurrentUser());
 
   const removeValueSearch = () => {
     dispatch(setSearchOpenOrClose(false));
@@ -41,8 +46,14 @@ const HeaderTop = () => {
 
   const handleOpenModalForm = () => {
     // TODO ВАЖНО НЕ УДАЛИТЬ
-    // dispatch(setModalRegisterForm(true));
-    history.push('/user/1');
+    if (!isLoggedIn) {
+      dispatch(setModalRegisterForm(true));
+    }
+    if (isLoggedIn && auth) {
+      history.push(`/user/${auth.userId}`);
+    }
+
+    // history.push('/user/1');
   };
 
   return (

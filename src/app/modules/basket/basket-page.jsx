@@ -15,12 +15,16 @@ import { downloadAllPromocodes } from '../../store/promocodes';
 import BasketSvg from '../../image/svg/basketSvg';
 import BasketRightMenu from './basket-right-menu';
 import MainNavigation from '../../common/components/main-navigation/main-navigation';
+// import localStorageService from '../../services/localStorage.service';
 
 const Component = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(downloadAllPromocodes());
+    // console.log(process.env.REACT_APP_FIREBASE_KEY);
+    // console.log(localStorageService.getUserId());
+    console.log(history.location);
   }, [dispatch]);
 
   const products = useSelector(getBasketEntities());
