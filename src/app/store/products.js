@@ -235,6 +235,11 @@ const productsSlice = createSlice({
             // state.products.push(action.payload);
             state.saleProducts.push(action.payload);
             state.isLoading = "READY";
+        },
+
+        removeProductOnAdminPageReceved: (state, action) => {
+            state.products = action.payload;
+            state.isLoading = "READY";
         }
         
     }
@@ -246,6 +251,7 @@ const {
     setProductsLoadingStatus,
     setLoadingStatusLoading,
     setLoadingStatusError,
+    // setLoadingStatusReady,
 
     changePlayersInputMinReceved,
     changePlayersInputMaxReceved,
@@ -293,9 +299,23 @@ const {
     addProductByAdminPageReceved,
 
     addSpecialProductByAdminPageReceved,
-    addSaleProductByAdminPageReceved
+    addSaleProductByAdminPageReceved,
+
+    removeProductOnAdminPageReceved,
 
  } = actions;
+
+ export const removeProductOnAdminPage = (productId) => async (dispatch, getState) => {
+    dispatch(setLoadingStatusLoading());
+    const { products } = getState().products;
+    const newProductsArray = products.filter((p) => p.id !== productId);
+    try {
+        await productsService.removeProduct(productId);
+        dispatch(removeProductOnAdminPageReceved(newProductsArray));
+    } catch (error) {
+        console.log("ERROR: <removeProductOnAdminPage>", error);
+    }
+ }
 
  export const removeProductOnSpecialProductsByAdminPage = (product) => async (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())

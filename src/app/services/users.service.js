@@ -13,9 +13,9 @@ const usersService = {
         return data;
     },
     getCurrentUser: async () => {
-        const {data}  = await httpService.get(userEndpoint);
-        const user = await data.content.find((u) => u.id === localStorageService.getUserId());
-        return user;
+        const data = await httpService.get(userEndpoint + localStorageService.getUserId());
+        const result = JSON.parse(data.request.response)
+        return result;
     },
     update: async (payload) => {
         const { data } = await httpService.patch(userEndpoint + localStorageService.getUserId(), payload);

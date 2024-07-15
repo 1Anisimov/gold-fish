@@ -26,7 +26,6 @@ const AuthorizationFormSignUp = () => {
   };
   const pushRegisterForm = (e) => {
     e.preventDefault();
-    console.log(registerForm);
     dispatch(signUp(registerForm));
   };
   const registerFormInputsArray = [

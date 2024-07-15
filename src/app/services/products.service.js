@@ -10,14 +10,15 @@ const specialProductsEndpoint = "specialProducts/";
 const productsService = {
     create: async (payload) => {
         const { data } = await httpService.put(productsEndpoint + payload.id, payload);
-        console.log("CREATE", data)
         return data;
     },
     get: async () => {
-        // const data = await getAllProducts();
         const {data}  = await httpService.get(productsEndpoint)
-        // console.log(data)
         return data.content;
+    },
+    removeProduct: async (id) => {
+        const { data } = await httpService.delete(productsEndpoint + id);
+        return data;
     },
     addToSale: async (payload) => {
         const { data } = await httpService.put(saleProductsEndpoint + payload.id, payload);
@@ -42,7 +43,6 @@ const productsService = {
     },
     getAllSpecialProducts: async () => {
         const {data}  = await httpService.get(specialProductsEndpoint)
-        console.log(data.content)
         return data.content;
     },
     getProductById: async (productId) => {

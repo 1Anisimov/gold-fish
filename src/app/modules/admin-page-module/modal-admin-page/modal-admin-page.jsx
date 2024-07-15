@@ -16,6 +16,17 @@ const ModalAdminPage = () => {
   const currentProduct = useSelector(getCurrentProductOnAdminPage());
   const changedProduct = useSelector(getNewChangedProduct());
 
+  const inputsArray = [
+    { label: 'Имя товара:', name: 'name', defaultValue: currentProduct?.name },
+    { label: 'Возраст:', name: 'age', defaultValue: currentProduct?.age },
+    { label: 'Кол-во игроков:', name: 'players', defaultValue: currentProduct?.players },
+    { label: 'Цена:', name: 'price', defaultValue: currentProduct?.price },
+    { label: 'Категория:', name: 'category', defaultValue: currentProduct?.category },
+    { label: 'Подкатегория:', name: 'subcategory', defaultValue: currentProduct?.subcategory },
+    { label: 'Среднее время:', name: 'time', defaultValue: currentProduct?.time },
+    { label: 'Изображение:', name: 'img', defaultValue: currentProduct?.img }
+  ];
+
   const closeModal = ({ target }) => {
     if (target?.id === 'modalBlock') {
       dispatch(setCurrentProduct(null));
@@ -33,11 +44,13 @@ const ModalAdminPage = () => {
 
   const handleChangeProduct = () => {
     dispatch(changeProductByAdminPage(changedProduct.id, changedProduct));
+    dispatch(setModalChanged(false));
   };
 
   const handleCreateProduct = () => {
     if (changedProduct) {
       dispatch(addProductByAdminPage(changedProduct));
+      dispatch(setModalChanged(false));
     }
   };
 
@@ -45,90 +58,22 @@ const ModalAdminPage = () => {
     <div onClick={closeModal} id="modalBlock" className={cls.modalActive}>
       <div className={cls.modalContainer}>
         <div className={cls.modalContent}>
-          <div className={cls.modalInputBlock}>
-            <label className={cls.modalLabel} htmlFor="">
-              Имя товара
-            </label>
-            <input
-              onChange={changeProduct}
-              defaultValue={currentProduct ? currentProduct?.name : ''}
-              className={cls.modalInput}
-              type="text"
-              name="name"
-            />
-          </div>
-          <div className={cls.modalInputBlock}>
-            <label className={cls.modalLabel} htmlFor="">
-              Возраст
-            </label>
-            <input
-              onChange={changeProduct}
-              name="age"
-              defaultValue={currentProduct ? currentProduct?.age : ''}
-              className={cls.modalInput}
-              type="text"
-            />
-          </div>
-          <div className={cls.modalInputBlock}>
-            <label className={cls.modalLabel} htmlFor="">
-              Кол-во игроков
-            </label>
-            <input
-              onChange={changeProduct}
-              name="players"
-              defaultValue={currentProduct ? currentProduct?.players : ''}
-              className={cls.modalInput}
-              type="text"
-            />
-          </div>
-          <div className={cls.modalInputBlock}>
-            <label className={cls.modalLabel} htmlFor="">
-              Цена
-            </label>
-            <input
-              onChange={changeProduct}
-              name="price"
-              defaultValue={currentProduct ? currentProduct?.price : ''}
-              className={cls.modalInput}
-              type="text"
-            />
-          </div>
-          <div className={cls.modalInputBlock}>
-            <label className={cls.modalLabel} htmlFor="">
-              Категория
-            </label>
-            <input
-              onChange={changeProduct}
-              name="category"
-              defaultValue={currentProduct ? currentProduct?.category : ''}
-              className={cls.modalInput}
-              type="text"
-            />
-          </div>
-          <div className={cls.modalInputBlock}>
-            <label className={cls.modalLabel} htmlFor="">
-              Подкатегория
-            </label>
-            <input
-              onChange={changeProduct}
-              name="subcategory"
-              defaultValue={currentProduct ? currentProduct?.subcategory : ''}
-              className={cls.modalInput}
-              type="text"
-            />
-          </div>
-          <div className={cls.modalInputBlock}>
-            <label className={cls.modalLabel} htmlFor="">
-              Среднее время
-            </label>
-            <input
-              onChange={changeProduct}
-              name="time"
-              defaultValue={currentProduct ? currentProduct?.time : ''}
-              className={cls.modalInput}
-              type="text"
-            />
-          </div>
+          {inputsArray &&
+            inputsArray.map((item) => (
+              <div className={cls.modalInputBlock}>
+                <label className={cls.modalLabel} htmlFor="">
+                  {item.label}
+                </label>
+                <input
+                  onChange={changeProduct}
+                  defaultValue={currentProduct ? item.defaultValue : ''}
+                  className={cls.modalInput}
+                  type="text"
+                  name={item.name}
+                />
+              </div>
+            ))}
+
           <div className={cls.modalInputBlock}>
             <MainButton
               handleClick={currentProduct ? handleChangeProduct : handleCreateProduct}

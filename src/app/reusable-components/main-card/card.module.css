@@ -148,3 +148,23 @@ text-align: center;
   gap: 10px;
 }
 
+.deleteCard{
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  z-index: 1000;
+  border: 1px solid black;
+  padding: 10px 10px 10px 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d75353;
+}
+
+.deleteItem{
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}

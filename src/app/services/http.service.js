@@ -10,7 +10,6 @@ const http = axios.create({
   http.interceptors.request.use(
     async function (config) {
       if (configFile.isFireBase) {
-        // console.log(configFile)
         const containSlash = /\/$/gi.test(config.url);
         config.url = (containSlash ? config.url.slice(0, -1) : config.url) + ".json";
         const expiresData = localStorageService.getTokenExpiresDate();

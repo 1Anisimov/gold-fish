@@ -22,8 +22,6 @@ const ProductsCatalog = () => {
   const currentProducts = useSelector(getAllActiveProducts());
   const currentPage = useSelector(getActivePaginatedPage());
 
-  console.log(currentProducts);
-
   const calculateNumberPages = (currentProducts) => {
     let numberPagesArray = [];
 

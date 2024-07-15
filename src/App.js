@@ -13,6 +13,7 @@ import AdminPage from './app/modules/admin-page-module/admin-page/admin-page';
 import MainPage from './app/modules/main-page-module/main-page/main-page';
 import Footer from './app/common/footer/footer';
 import Header from './app/common/header/header';
+import { setCurrentUser } from "./app/store/currentUser";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const App = () => {
     dispatch(addProducts())
     dispatch(addCategories())
     dispatch(addSubcategories())
+    dispatch(setCurrentUser())
   },[dispatch])
 
   const categoriesLoadingStatus = useSelector(getCategoriesLoadingStatus());

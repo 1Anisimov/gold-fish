@@ -64,7 +64,6 @@ const {
     dispatch(setSaleRequested())
         const {allPromocodes, entity} = getState().promocode;
         const promocode = allPromocodes.find((item) => item.code === entity)
-        console.log(promocode)
         if (promocode === undefined) {
             dispatch(setSaleReceved(null));
           } else {

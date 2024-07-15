@@ -176,14 +176,26 @@ function createUser(payload) {
     };
 };
 
- export const setUserInfo = (payload) =>  (dispatch) => {
+ export const setUserInfo = (payload) => async (dispatch, getState) => {
     dispatch(setLoadingStatusLoading())
-        dispatch(setUserInfoReceved(payload))
+    const { changedUserInfo } = getState().currentUser.user;
+    dispatch(setUserInfoReceved(payload))
+    try {
+        if(changedUserInfo[payload]?.length > 1) {
+            console.log("userInfo", {[payload]: changedUserInfo[payload]})
+            const data = await usersService.update({[payload]: changedUserInfo[payload]})
+            console.log("Data", data);
+        }
+        
+    } catch (error) {
+        console.log("ERROR: <setUserInfo>", error)
+    }
+        
  }
 
- export const setChangedUserInfoNumber = (payload) =>  (dispatch) => {
+ export const setChangedUserInfoNumber = (payload) => (dispatch) => {
     dispatch(setLoadingStatusLoading())
-        dispatch(setChangedUserInfoNumberReceved(payload))
+            dispatch(setChangedUserInfoNumberReceved(payload))
  }
 
  export const setChangedUserInfoMail = (payload) =>  (dispatch) => {
@@ -199,8 +211,10 @@ function createUser(payload) {
  export const setCurrentUser = () => async (dispatch) => {
     dispatch(setLoadingStatusLoading())
     try {
-        const content = await usersService.getCurrentUser()
-        dispatch(setCurrentUserReceved(content))
+        if(localStorageService.getUserId()) {
+            const content = await usersService.getCurrentUser()
+            dispatch(setCurrentUserReceved(content))
+        }
     } catch (error) {
         console.log("ERROR: <setCurrentUser>", error);
     }
@@ -214,6 +228,7 @@ export const getCurrentUserTotalPurchase = () => (state) => state.currentUser.us
 
 export const getIsLoggedIn = () => (state) => state.currentUser.isLoggedIn;
 export const getAuthCurrentUser = () => (state) => state.currentUser.auth;
+export const getAdminStatus = () => (state) => state.currentUser.user.userInfo.isAdmin;
 
 export const getLoadingStatus = () => (state) => state.currentUser.isLoading
  

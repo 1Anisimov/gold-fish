@@ -19,7 +19,7 @@ const UserPageSettings = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (currentUserLoadingStatus === 'LOADING') {
-      // dispatch(setCurrentUser());
+      dispatch(setCurrentUser());
     }
   }, [dispatch, currentUserLoadingStatus]);
 

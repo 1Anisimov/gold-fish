@@ -13,8 +13,13 @@ import {
   setCurrentProductAdding,
   setModalChanged
 } from '../../store/admin';
-import { getSaleProducts, getSpecialProducts } from '../../store/products';
+import {
+  getSaleProducts,
+  getSpecialProducts,
+  removeProductOnAdminPage
+} from '../../store/products';
 import { setModalAdminAccept } from '../../store/modals';
+import iconClosed from '../../image/icons/X_closed_icon.png';
 
 const Card = ({ product, admin }) => {
   const dispatch = useDispatch();
@@ -73,10 +78,25 @@ const Card = ({ product, admin }) => {
     dispatch(setModalAdminAccept(true));
   };
 
+  const deleteProductByAmdinPage = () => {
+    dispatch(removeProductOnAdminPage(product.id));
+  };
+
   return (
     <>
       {product && (
         <div className={cls.card} style={{ border: 'none' }}>
+          {admin ? (
+            <button onClick={deleteProductByAmdinPage}>
+              <div className={cls.deleteCard}>
+                <div className={cls.deleteItem}>
+                  <img src={iconClosed} alt="" />
+                </div>
+              </div>
+            </button>
+          ) : (
+            <></>
+          )}
           <div onClick={goToProductPage} className={cls.card_image}>
             {product.img ? (
               <img className={cls.card_image} src={require(`../../image/${product.img}`)} alt="" />
@@ -84,7 +104,15 @@ const Card = ({ product, admin }) => {
               <></>
             )}
           </div>
-          {product.sale ? <div className={cls.card_sale}>{`-${product.saleProcent}%`}</div> : ''}
+          {!admin ? (
+            product.sale ? (
+              <div className={cls.card_sale}>{`-${product.saleProcent}%`}</div>
+            ) : (
+              ''
+            )
+          ) : (
+            <></>
+          )}
           <div className={cls.card_data}>
             <div className={cls.card_data_players}>
               <img className={cls.card_data_timer_players} src={cardPlayers} alt="" />
