@@ -20,7 +20,12 @@ const usersService = {
     update: async (payload) => {
         const { data } = await httpService.patch(userEndpoint + localStorageService.getUserId(), payload);
         return data;
+    },
+    addProductToBasket: async (products) => {
+        const data = await httpService.patch(userEndpoint + localStorageService.getUserId(), {basket: products});
+        return data;
     }
+    
 };
 
 export default usersService;

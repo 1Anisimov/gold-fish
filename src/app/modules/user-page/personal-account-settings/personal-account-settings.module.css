@@ -89,3 +89,17 @@
 }
 
 
+.buttonLogOut{
+    border: 1px solid #f1eeea;
+    padding: 5px 10px 5px 10px;
+    border-radius: 9px;
+    background: #cc2020;
+    color: #f1eeea;
+    transition: all 0.6s ease;
+}
+
+.buttonLogOut:hover {
+    color: #cc2020;
+    background: #f1eeea;
+    transition: all 0.6s ease;
+}

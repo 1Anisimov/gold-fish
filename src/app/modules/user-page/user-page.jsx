@@ -32,8 +32,8 @@ const UserPage = () => {
 
   const loadingStatus = useSelector(getLoadingStatus());
 
-  return loadingStatus === 'READY' ? (
-    auth ? (
+  return auth ? (
+    loadingStatus === 'READY' ? (
       auth.userId === userId ? (
         <MainContainerBg>
           <div className={cls.userPage}>
@@ -48,12 +48,12 @@ const UserPage = () => {
         <Redirect to={`/user/${auth.userId}`} />
       )
     ) : (
-      <Redirect to={`/`} />
+      <div className="mainContent_or_loader">
+        <div className="loader"></div>
+      </div>
     )
   ) : (
-    <div className="mainContent_or_loader">
-      <div className="loader"></div>
-    </div>
+    <Redirect to={`/`} />
   );
 };
 

@@ -3,6 +3,7 @@ import cls from './personal-account-settings.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getCurrentUser,
+  logOut,
   setChangedUserInfoMail,
   setChangedUserInfoName,
   setChangedUserInfoNumber,
@@ -14,6 +15,7 @@ import Modal from '../../../reusable-components/main-modal/main-modal';
 import { getChangedName, getMainModal, setMainModal } from '../../../store/modals';
 import PersonalQuestionForm from './personal-question-form';
 import ButtonChangePersonal from '../../../common/components/button-change-personal/button-change-personal';
+import history from '../../../utils/history';
 
 const PersonalAccountSettings = () => {
   const dispatch = useDispatch();
@@ -47,6 +49,11 @@ const PersonalAccountSettings = () => {
   const submitTheForm = () => {
     dispatch(setUserInfo(changeName));
     dispatch(setMainModal(false));
+  };
+
+  const logOutAccount = () => {
+    dispatch(logOut());
+    history.push('/');
   };
 
   return (
@@ -112,6 +119,11 @@ const PersonalAccountSettings = () => {
               <span className={cls.stringBlockText}>{` ${currentUser?.mail}`}</span>
             </div>
             <ButtonChangePersonal name={'mail'} />
+          </div>
+          <div className={cls.buttonLogOutBlock}>
+            <button onClick={logOutAccount} className={cls.buttonLogOut}>
+              Выйти из аккаунта
+            </button>
           </div>
         </div>
       </div>

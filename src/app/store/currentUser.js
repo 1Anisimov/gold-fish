@@ -4,6 +4,8 @@ import authService from "../services/auth.service";
 import localStorageService from "../services/localStorage.service";
 import history from "../utils/history";
 import usersService from "../services/users.service";
+import { setBasketEntities } from "./basket";
+
 
 const initialState = localStorageService.getAccessToken()
     ? {allUsers: [],
@@ -57,13 +59,13 @@ const currentUserSlice = createSlice({
         setLoadingStatusError: (state) => {
             state.isLoading = "ERROR";
         },
-        // setLoadingStatusReady: (state) => {
-        //     state.isLoading = "READY";
-        // },
+        setLoadingStatusReady: (state) => {
+            state.isLoading = "READY";
+        },
 
         authRequestSuccess: (state, action) => {
             state.auth = action.payload;
-            // state.isLoggedIn = true;
+            state.isLoggedIn = true;
         },
 
         userCreated: (state, action) => {
@@ -99,6 +101,29 @@ const currentUserSlice = createSlice({
             }
             state.isLoading = "READY";
         },
+
+        logOutReceved: (state) => {
+        state.allUsers = [];
+        state.isLoading= "LOADING";
+        state.auth= null;
+        state.isLoggedIn= false;
+        state.user= {
+            userInfo: {
+                name: null,
+                number: null,
+                mail: null,
+                img: null,
+                totalPurchase : null
+            },
+            changedUserInfo: {
+                name: null,
+                secondName: null,
+                number: null,
+                mail: null,
+        },
+        userLoadingStatus: "LOADING"
+    }
+        }
     }
 });
 
@@ -106,7 +131,7 @@ const { reducer: currentUserReducer, actions } = currentUserSlice;
 const {
     setLoadingStatusLoading,
     // setLoadingStatusError,
-    // setLoadingStatusReady,
+    setLoadingStatusReady,
     setCurrentUserReceved,
     setChangedUserInfoNameReceved,
     setChangedUserInfoNumberReceved,
@@ -116,6 +141,8 @@ const {
     userCreated,
 
     setUserInfoReceved,
+
+    logOutReceved,
 
  } = actions;
 
@@ -133,6 +160,7 @@ const {
         localStorageService.setTokens(data);
         const currentUser = await usersService.getCurrentUser();
         dispatch(setCurrentUserReceved(currentUser))
+        dispatch(setBasketEntities())
 
         history.push(`/user/${data.localId}`);
 
@@ -140,6 +168,17 @@ const {
             console.log("ERROR: <logIn>", error );
     }
 };
+
+export const logOut = () => async (dispatch) => {
+    dispatch(setLoadingStatusLoading())
+    try {
+        localStorageService.removeAuthData();
+        dispatch(logOutReceved());
+        dispatch(setLoadingStatusReady());
+    } catch (error) {
+        console.log("ERROR: <logOut>", error)
+    }
+}
 
  export const signUp = ({ mail, password, ...rest }) => async (dispatch) => {
     dispatch(setLoadingStatusLoading());
@@ -155,9 +194,11 @@ const {
                 number: "+7 111 11 11",
                 totalPurchase: 0,
                 isAdmin: false,
+                // basket: null,
                 ...rest
             }
         ));
+        history.push(`/user/${data.localId}`)
     } catch (error) {
         console.log("ERROR: <singUp>", error)
     }

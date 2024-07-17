@@ -14,6 +14,7 @@ import MainPage from './app/modules/main-page-module/main-page/main-page';
 import Footer from './app/common/footer/footer';
 import Header from './app/common/header/header';
 import { setCurrentUser } from "./app/store/currentUser";
+import { setBasketEntities } from "./app/store/basket";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const App = () => {
     dispatch(addCategories())
     dispatch(addSubcategories())
     dispatch(setCurrentUser())
+    dispatch(setBasketEntities())
   },[dispatch])
 
   const categoriesLoadingStatus = useSelector(getCategoriesLoadingStatus());

@@ -3,6 +3,7 @@ import cls from './authorization-form-signUp.module.css';
 import MainButton from '../../../reusable-components/main-button';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../../store/currentUser';
+// import history from "../../../utils/history";
 
 const AuthorizationFormSignUp = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const AuthorizationFormSignUp = () => {
   const pushRegisterForm = (e) => {
     e.preventDefault();
     dispatch(signUp(registerForm));
+    // history.push()
   };
   const registerFormInputsArray = [
     { htmlfor: 'name', type: 'name', name: 'name', placeholder: 'Имя' },

@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import usersService from "../services/users.service";
+import localStorageService from "../services/localStorage.service";
 
 const basketSlice = createSlice({
     name: "basket",
@@ -45,6 +47,11 @@ const basketSlice = createSlice({
             state.entities = state.entities.filter((product) => product.quantity > 0)
             state.isLoading = "READY";
         },
+
+        setBasketEntitiesReceved: (state, action) => {
+            state.entities = action.payload;
+            state.isLoading = "READY";
+        }
     }
 });
 
@@ -60,30 +67,84 @@ const {
     addProductsToBasketRequested,
     addProductsToBasketReceved,
 
+    setBasketEntitiesReceved,
+
  } = actions;
 
- export const addQuantityProduct = (productId) =>  (dispatch) => {
+ export const setBasketEntities = () => async (dispatch) => {
+    dispatch(addProductsToBasketRequested())
+
+    try {
+        if(localStorageService.getAccessToken()) {
+            const currentUser = await usersService.getCurrentUser();
+            if(currentUser?.basket) {
+                dispatch(setBasketEntitiesReceved(currentUser.basket))
+            }
+        }
+    } catch (error) {
+        console.log("ERROR: <setBasketEntities>", error)
+    }
+ }
+
+ export const addQuantityProduct = (productId) => async (dispatch, getState) => {
     dispatch(quantityProductRequested())
         dispatch(addQuantityProductReceved(productId))
+        const { entities } = getState().basket;
+
+        try {
+            if(localStorageService.getAccessToken()) {
+                await usersService.addProductToBasket(entities);
+            }
+        } catch (error) {
+            console.log("ERROR: <addQuantityProduct>", error)
+        }
  }
 
- export const removeQuantityProduct = (productId) =>  (dispatch) => {
+ export const removeQuantityProduct = (productId) => async (dispatch, getState) => {
     dispatch(quantityProductRequested())
         dispatch(removeQuantityProductReceved(productId))
+        const { entities } = getState().basket;
+
+        try {
+            if(localStorageService.getAccessToken()) {
+                await usersService.addProductToBasket(entities);
+            }
+        } catch (error) {
+            console.log("ERROR: <removeQuantityProduct>", error)
+        }
  }
 
- export const removeProductOnBasket = (productId) =>  (dispatch) => {
+ export const removeProductOnBasket = (productId) => async (dispatch, getState) => {
     dispatch(removeProductOnBasketRequested())
         dispatch(removeProductOnBasketReceved(productId))
+        const { entities } = getState().basket;
+    try {
+        if(localStorageService.getAccessToken()) {
+            await usersService.addProductToBasket(entities);
+        }
+    } catch (error) {
+        console.log("ERROR: <removeProductOnBasket>", error)
+    }
+        
  }
 
- export const addProductsToBasket = (payload) =>  (dispatch) => {
+ export const addProductsToBasket = (payload) => async (dispatch, getState) => {
     dispatch(addProductsToBasketRequested())
-        const newPayload = {
-            ...payload,
-            quantity: 1
+    const newPayload = {
+        ...payload,
+        quantity: 1
+    }
+    dispatch(addProductsToBasketReceved(newPayload))
+    const { entities } = getState().basket;
+    try {
+        if(localStorageService.getAccessToken()) {
+            await usersService.addProductToBasket(entities);
         }
-        dispatch(addProductsToBasketReceved(newPayload))
+        
+    } catch (error) {
+        console.log("ERROR: <addProductsToBasket>", error)
+    }
+        
  }
 
 
