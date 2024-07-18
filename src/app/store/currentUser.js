@@ -8,7 +8,7 @@ import { setBasketEntities } from "./basket";
 
 
 const initialState = localStorageService.getAccessToken()
-    ? {allUsers: [],
+    ? {
         isLoading: "LOADING",
         auth: {userId: localStorageService.getUserId()},
         isLoggedIn: true,
@@ -18,7 +18,8 @@ const initialState = localStorageService.getAccessToken()
                 number: null,
                 mail: null,
                 img: null,
-                totalPurchase : null
+                totalPurchase : null,
+                isAdmin: null
               },
               changedUserInfo: {
                 name: null,
@@ -28,7 +29,7 @@ const initialState = localStorageService.getAccessToken()
               },
               userLoadingStatus: "LOADING"
         }}
-    : {allUsers: [],
+    : {
         isLoading: "LOADING",
         auth: null,
         isLoggedIn: false,
@@ -38,7 +39,8 @@ const initialState = localStorageService.getAccessToken()
                 number: null,
                 mail: null,
                 img: null,
-                totalPurchase : null
+                totalPurchase : null,
+                isAdmin: null
               },
               changedUserInfo: {
                 name: null,
@@ -68,12 +70,12 @@ const currentUserSlice = createSlice({
             state.isLoggedIn = true;
         },
 
-        userCreated: (state, action) => {
-            if (!Array.isArray(state.allUsers)) {
-                state.allUsers = [];
-            }
-            state.allUsers.push(action.payload);
-        },
+        // userCreated: (state, action) => {
+        //     if (!Array.isArray(state.allUsers)) {
+        //         state.allUsers = [];
+        //     }
+        //     state.allUsers.push(action.payload);
+        // },
         
 
         setCurrentUserReceved: (state, action) => {
@@ -103,7 +105,6 @@ const currentUserSlice = createSlice({
         },
 
         logOutReceved: (state) => {
-        state.allUsers = [];
         state.isLoading= "LOADING";
         state.auth= null;
         state.isLoggedIn= false;
@@ -113,7 +114,8 @@ const currentUserSlice = createSlice({
                 number: null,
                 mail: null,
                 img: null,
-                totalPurchase : null
+                totalPurchase : null,
+                isAdmin: null
             },
             changedUserInfo: {
                 name: null,
@@ -138,7 +140,7 @@ const {
     setChangedUserInfoMailReceved,
 
     authRequestSuccess,
-    userCreated,
+    // userCreated,
 
     setUserInfoReceved,
 
@@ -180,37 +182,38 @@ export const logOut = () => async (dispatch) => {
     }
 }
 
- export const signUp = ({ mail, password, ...rest }) => async (dispatch) => {
+ export const signUp = ({ email, password, ...rest }) => async (dispatch) => {
     dispatch(setLoadingStatusLoading());
     try {
-        const data = await authService.register({ mail, password });
-        console.log("RIGISTER DATA", data);
-        localStorageService.setTokens(data);
+        const data = await authService.register({ email, password });
         dispatch(authRequestSuccess({ userId: data.localId }));
+        localStorageService.setTokens(data);
+        
         dispatch(createUser({
                 id: data.localId,
-                mail,
+                mail: email,
                 image: "smesharik.png",
                 number: "+7 111 11 11",
                 totalPurchase: 0,
                 isAdmin: false,
-                // basket: null,
                 ...rest
-            }
+            },
+            data
         ));
-        history.push(`/user/${data.localId}`)
+        
     } catch (error) {
         console.log("ERROR: <singUp>", error)
     }
 };
 
-function createUser(payload) {
-    console.log("payload", payload);
+function createUser(payload, data) {
     return async function (dispatch) {
         try {
-            const { content } = await usersService.create(payload);
-            dispatch(userCreated(content));
-            history.push("/");
+            dispatch(setLoadingStatusLoading())
+            await usersService.create(payload);
+            dispatch(setCurrentUserReceved(payload))
+
+            history.push(`/user/${data.localId}`)
         } catch (error) {
             console.log("ERROR: <createUser>", error)
         }
@@ -223,9 +226,7 @@ function createUser(payload) {
     dispatch(setUserInfoReceved(payload))
     try {
         if(changedUserInfo[payload]?.length > 1) {
-            console.log("userInfo", {[payload]: changedUserInfo[payload]})
-            const data = await usersService.update({[payload]: changedUserInfo[payload]})
-            console.log("Data", data);
+            await usersService.update({[payload]: changedUserInfo[payload]})
         }
         
     } catch (error) {
@@ -255,7 +256,7 @@ function createUser(payload) {
         if(localStorageService.getUserId()) {
             const content = await usersService.getCurrentUser()
             dispatch(setCurrentUserReceved(content))
-        }
+        } else dispatch(setLoadingStatusReady())
     } catch (error) {
         console.log("ERROR: <setCurrentUser>", error);
     }

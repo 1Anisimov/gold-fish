@@ -47,15 +47,27 @@ const MedalsUser = () => {
   const currentRank = useMemo(() => findOutWhatRank(totalPurchase), [totalPurchase]);
 
   const medalsArray = [
-    { rank: currentRank.recruit, text: '5% «Новичок»', maxValue: '1000', img: cuprumMedal },
-    { rank: currentRank.amateur, text: '10% «Любитель»', maxValue: '5000', img: silverMedal },
-    { rank: currentRank.professional, text: '5% «Профессионал»', maxValue: '10000', img: goldMedal }
+    { rank: currentRank.recruit, text: '5% «Новичок»', maxValue: '1000', img: cuprumMedal, key: 1 },
+    {
+      rank: currentRank.amateur,
+      text: '10% «Любитель»',
+      maxValue: '5000',
+      img: silverMedal,
+      key: 2
+    },
+    {
+      rank: currentRank.professional,
+      text: '5% «Профессионал»',
+      maxValue: '10000',
+      img: goldMedal,
+      key: 3
+    }
   ];
 
   return loadingStatus === 'READY' ? (
     <div className={cls.medalsBlock}>
       {medalsArray.map((item) => (
-        <div className={cls.blockContent}>
+        <div key={item.key} className={cls.blockContent}>
           <div className={cls.imageBlock}>
             <img src={item.img} alt="" />
           </div>

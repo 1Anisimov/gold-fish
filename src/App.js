@@ -13,25 +13,26 @@ import AdminPage from './app/modules/admin-page-module/admin-page/admin-page';
 import MainPage from './app/modules/main-page-module/main-page/main-page';
 import Footer from './app/common/footer/footer';
 import Header from './app/common/header/header';
-import { setCurrentUser } from "./app/store/currentUser";
+import { getLoadingStatus, setCurrentUser } from "./app/store/currentUser";
 import { setBasketEntities } from "./app/store/basket";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(()=>{
+    dispatch(setCurrentUser())
     dispatch(addProducts())
     dispatch(addCategories())
     dispatch(addSubcategories())
-    dispatch(setCurrentUser())
     dispatch(setBasketEntities())
   },[dispatch])
 
   const categoriesLoadingStatus = useSelector(getCategoriesLoadingStatus());
   const productsLoadingStatus = useSelector(getProductsLoadingStatus());
   const subcategoriesLoadingStatus = useSelector(getSubcategoriesLoadingStatus())
+  const userLoadingStatus = useSelector(getLoadingStatus());
   
-  if(categoriesLoadingStatus === "LOADING" && productsLoadingStatus === "LOADING" && subcategoriesLoadingStatus === "LOADING" ) {
+  if(categoriesLoadingStatus === "LOADING" && productsLoadingStatus === "LOADING" && subcategoriesLoadingStatus === "LOADING" && userLoadingStatus === "LOADING" ) {
     return (
       <div className='mainContent_or_loader'>
         <div className='loader'></div>
@@ -40,7 +41,7 @@ const App = () => {
     )
   }
 
-  if(categoriesLoadingStatus === "ERROR" || productsLoadingStatus === "ERROR" || subcategoriesLoadingStatus === "ERROR" ) {
+  if(categoriesLoadingStatus === "ERROR" || productsLoadingStatus === "ERROR" || subcategoriesLoadingStatus === "ERROR" || userLoadingStatus === "ERROR" ) {
     return (
       <div className='mainContent_or_loader'>
         <div>Что-то пошло не так. <br /> Пожалуйста, попробуйте позже</div>

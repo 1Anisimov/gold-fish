@@ -18,13 +18,13 @@ const BreadcrumbBootstrap = () => {
     <div>
       <nav aria-label="breadcrumb">
         {pathnameValue === 'catalog' ? (
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
               <Link className={cls.links} to="/">
                 Главная
               </Link>
             </li>
-            <li class="breadcrumb-item">
+            <li className="breadcrumb-item">
               <Link className={category === undefined ? cls.linkActive : cls.links} to="/catalog/">
                 Каталог
               </Link>
@@ -33,7 +33,7 @@ const BreadcrumbBootstrap = () => {
               categoriesArray.map((item) => {
                 if (item.value === category) {
                   return (
-                    <li class="breadcrumb-item active" aria-current="page">
+                    <li key={item.value} className="breadcrumb-item active" aria-current="page">
                       <Link
                         className={subcategory === undefined ? cls.linkActive : cls.links}
                         to={`/catalog/${category}`}>
@@ -41,7 +41,7 @@ const BreadcrumbBootstrap = () => {
                       </Link>
                     </li>
                   );
-                } else return <></>;
+                } else return <div key={item.value}></div>;
               })
             ) : (
               <></>
@@ -50,7 +50,7 @@ const BreadcrumbBootstrap = () => {
               subcategoriesArray.map((item) => {
                 if (item.value === subcategory) {
                   return (
-                    <li class="breadcrumb-item active" aria-current="page">
+                    <li key={item.value} className="breadcrumb-item active" aria-current="page">
                       <Link
                         className={productId === undefined ? cls.linkActive : cls.links}
                         to={`/catalog/${category}/${subcategory}/`}>
@@ -58,14 +58,14 @@ const BreadcrumbBootstrap = () => {
                       </Link>
                     </li>
                   );
-                } else return <></>;
+                } else return <div key={item.value}></div>;
               })
             ) : (
               <></>
             )}
             {productId !== undefined ? (
               product && (
-                <li class="breadcrumb-item active" aria-current="page">
+                <li className="breadcrumb-item active" aria-current="page">
                   <Link
                     className={productId !== undefined ? cls.linkActive : cls.links}
                     to={`/catalog/${category}/${subcategory}/${productId}`}>
@@ -78,13 +78,13 @@ const BreadcrumbBootstrap = () => {
             )}
           </ol>
         ) : (
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
               <Link className={cls.links} to="/">
                 Главная
               </Link>
             </li>
-            <li class="breadcrumb-item">
+            <li className="breadcrumb-item">
               <Link
                 className={pathnameValue === 'person' ? cls.linkActive : cls.links}
                 to="/basket/">

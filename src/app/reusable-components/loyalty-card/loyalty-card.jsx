@@ -30,7 +30,7 @@ const LoyaltyCard = ({ userGrade }) => {
   return gradesArray.map((item) => {
     if (item.grade === userGrade) {
       return (
-        <div className={cls.loyaltyCard}>
+        <div key={item.grade} className={cls.loyaltyCard}>
           <div className={item.cardColor}>
             <div className={item.cardContent}>
               <div className={cls.blockContent}>
@@ -43,7 +43,7 @@ const LoyaltyCard = ({ userGrade }) => {
           </div>
         </div>
       );
-    } else return <></>;
+    } else return <div key={item.grade}></div>;
   });
 };
 

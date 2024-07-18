@@ -28,9 +28,8 @@ import { ScrollBlock } from '../../../hooks/useScrollBlock';
 import AddProductSvg from '../../../image/svg/addProductSvg';
 import ModalAdminPage from '../modal-admin-page/modal-admin-page';
 import { getModalAdminAccept, setModalAdminAccept } from '../../../store/modals';
-import { getAdminStatus, getLoadingStatus } from '../../../store/currentUser';
+import { getAdminStatus } from '../../../store/currentUser';
 import { Redirect } from 'react-router-dom';
-// import { initialize } from '../../../utils/mockData';
 
 const AdminPage = () => {
   const dispatch = useDispatch();
@@ -38,7 +37,6 @@ const AdminPage = () => {
   useEffect(() => {
     dispatch(setAllSaleProducts());
     dispatch(setAllSpecialProducts());
-    // initialize();
   }, [dispatch]);
 
   const foundProducts = useSelector(getFoundProductsOnAdminPage());
@@ -50,7 +48,6 @@ const AdminPage = () => {
   const whereAdding = useSelector(getAddingProductWhere());
   const currentAddingProduct = useSelector(getCurrentProductAdding());
   const isAddOrRemove = useSelector(getAddOrRemove());
-  const loadingStatusCurrentUser = useSelector(getLoadingStatus());
 
   const isAdmin = useSelector(getAdminStatus());
 
@@ -119,76 +116,77 @@ const AdminPage = () => {
     }
   };
 
-  return loadingStatusCurrentUser === 'READY' ? (
-    isAdmin ? (
-      <MainContainerBg>
-        {isOpenModal ? <ModalAdminPage /> : <></>}
-        {isModalAccept ? (
-          <div className={cls.modalBlock}>
-            <div className={cls.modalContent}>
-              <div className={cls.adminModalContainer}>
-                <p>Подтверждение</p>
-                <div className={cls.confirmBlock}>
-                  <p>
-                    {isAddOrRemove === 'add'
-                      ? `Вы точно хотите ДОБАВИТЬ товар в "${whereAdding}"?`
-                      : `Вы точно хотите УДАЛИТЬ товар из "${whereAdding}"?`}
-                  </p>
-                  <div className={cls.buttonsBlock}>
-                    <button
-                      onClick={
-                        isAddOrRemove === 'add'
-                          ? addCurrentProductToSaleOrSpecial
-                          : removeCurrentProductToSaleOrSpecial
-                      }
-                      id="yes"
-                      className={cls.button}>
-                      Да
-                    </button>
-                    <button
-                      onClick={
-                        isAddOrRemove === 'add'
-                          ? addCurrentProductToSaleOrSpecial
-                          : removeCurrentProductToSaleOrSpecial
-                      }
-                      id="no"
-                      className={cls.button}>
-                      Нет
-                    </button>
-                  </div>
+  return isAdmin ? (
+    // loadingStatusCurrentUser === 'READY' ? (
+    <MainContainerBg>
+      {isOpenModal ? <ModalAdminPage /> : <></>}
+      {isModalAccept ? (
+        <div className={cls.modalBlock}>
+          <div className={cls.modalContent}>
+            <div className={cls.adminModalContainer}>
+              <p>Подтверждение</p>
+              <div className={cls.confirmBlock}>
+                <p>
+                  {isAddOrRemove === 'add'
+                    ? `Вы точно хотите ДОБАВИТЬ товар в "${whereAdding}"?`
+                    : `Вы точно хотите УДАЛИТЬ товар из "${whereAdding}"?`}
+                </p>
+                <div className={cls.buttonsBlock}>
+                  <button
+                    onClick={
+                      isAddOrRemove === 'add'
+                        ? addCurrentProductToSaleOrSpecial
+                        : removeCurrentProductToSaleOrSpecial
+                    }
+                    id="yes"
+                    className={cls.button}>
+                    Да
+                  </button>
+                  <button
+                    onClick={
+                      isAddOrRemove === 'add'
+                        ? addCurrentProductToSaleOrSpecial
+                        : removeCurrentProductToSaleOrSpecial
+                    }
+                    id="no"
+                    className={cls.button}>
+                    Нет
+                  </button>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      ) : (
+        <></>
+      )}
+      <div className={cls.adminPage}>
+        <h3>Admin page</h3>
+        <div className={cls.addProductBlock}>
+          <button id="global" onClick={openAdminModal} className={cls.addProductButton}>
+            Добавить товар <AddProductSvg />
+          </button>
+        </div>
+        <SearchProductsOnAdminPage />
+        {loadingStatus === 'READY' ? (
+          <div className={cls.products}>
+            {foundProducts && foundProducts.length > 0
+              ? foundProducts.map((product) => <Card admin product={product} />)
+              : products.map((product) =>
+                  product.name ? <Card admin product={product} /> : <></>
+                )}
+          </div>
         ) : (
           <></>
         )}
-        <div className={cls.adminPage}>
-          <h3>Admin page</h3>
-          <div className={cls.addProductBlock}>
-            <button id="global" onClick={openAdminModal} className={cls.addProductButton}>
-              Добавить товар <AddProductSvg />
-            </button>
-          </div>
-          <SearchProductsOnAdminPage />
-          {loadingStatus === 'READY' ? (
-            <div className={cls.products}>
-              {foundProducts && foundProducts.length > 0
-                ? foundProducts.map((product) => <Card admin product={product} />)
-                : products.map((product) =>
-                    product.name ? <Card admin product={product} /> : <></>
-                  )}
-            </div>
-          ) : (
-            <></>
-          )}
-        </div>
-      </MainContainerBg>
-    ) : (
-      <Redirect to={'/'} />
-    )
+      </div>
+    </MainContainerBg>
   ) : (
-    'Loading'
+    //  : (
+    //   'Loading'
+    // )
+    // )
+    <Redirect to={'/'} />
   );
 };
 

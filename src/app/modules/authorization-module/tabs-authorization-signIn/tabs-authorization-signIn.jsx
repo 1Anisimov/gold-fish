@@ -49,9 +49,10 @@ const TabsAuthorizationSignIn = () => {
   const validate = () => {
     const allErrors = validator(loginForm, validatorConfig);
     setErrors(allErrors);
-    console.log(errors);
     return Object.keys(allErrors).length === 0;
   };
+  const isValid = Object.keys(errors).length === 0;
+
   return (
     <div className={cls.signIn}>
       <div className={cls.contant}>
@@ -80,7 +81,7 @@ const TabsAuthorizationSignIn = () => {
           </div>
           <p className={cls.p}>Забыли пароль?</p>
           <MainButton
-            isDisabled={errors.email || errors.password ? true : false}
+            isDisabled={!isValid}
             handleClick={pushLoginForm}
             width="274"
             heigth="39"

@@ -23,12 +23,7 @@ const FilterSubcategory = ({ category }) => {
             {category === item.category ? (
               <Link
                 to={`/catalog/${item.category}/${item.value}`}
-                className={cls.links}
-                style={
-                  item.value === subcategory
-                    ? { color: '#F9A43F' }
-                    : { color: 'rgba(42, 42, 42, 1)' }
-                }
+                className={item.value === subcategory ? cls.linksActive : cls.links}
                 onClick={() => handleSetTitleCatalog(item.name)}>
                 {item.name}
               </Link>

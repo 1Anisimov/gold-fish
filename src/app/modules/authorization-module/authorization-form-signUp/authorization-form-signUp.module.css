@@ -11,8 +11,27 @@
     padding-left: 10px;
     color: rgba(42, 42, 42, 1);
     border: 1px solid rgba(42, 42, 42, 0.38)
-
 }
+
+.inputError{
+    background-color: azure;
+    height: 45px;
+    width: 100%;
+    border-radius: 9px;
+    overflow: hidden;
+    font-family: Trebuchet MS;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+    padding-left: 10px;
+    color: rgba(42, 42, 42, 1);
+    border: 1px solid rgb(255, 0, 0)
+}
+
+.errorText{
+    color: rgb(255, 0, 0);
+}
+
 .email{
     display: flex;
     flex-direction: column;

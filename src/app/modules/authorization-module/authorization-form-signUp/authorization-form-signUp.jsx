@@ -1,18 +1,68 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cls from './authorization-form-signUp.module.css';
 import MainButton from '../../../reusable-components/main-button';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../../store/currentUser';
-// import history from "../../../utils/history";
-
+import { validator } from '../../../utils/validator';
+import { setModalRegisterForm } from '../../../store/modals';
 const AuthorizationFormSignUp = () => {
   const dispatch = useDispatch();
 
   const [registerForm, setRegisterForm] = useState({
     name: '',
     politic: false,
-    news: false
+    news: false,
+    email: '',
+    password: ''
   });
+  const [errors, setErrors] = useState({});
+
+  const validatorConfig = {
+    email: {
+      isRequired: {
+        message: 'Электронная почта обязательна для заполнения'
+      },
+      isEmail: {
+        message: 'Email введен некорректно'
+      }
+    },
+    name: {
+      isRequired: {
+        message: 'Имя обязательно для заполнения'
+      },
+      min: {
+        message: 'Имя должно состоять минимум из 3 символов',
+        value: 3
+      }
+    },
+    password: {
+      isRequired: {
+        message: 'Пароль обязателен для заполнения'
+      },
+      isCapitalSymbol: {
+        message: 'Пароль должен содержать хотя бы одну заглавную букву'
+      },
+      isContainDigit: {
+        message: 'Пароль должен содержать хотя бы одно число'
+      },
+      min: {
+        message: 'Пароль должен состоять минимум из 8 символов',
+        value: 8
+      }
+    }
+  };
+
+  useEffect(() => {
+    validate();
+  }, [registerForm]);
+
+  const validate = () => {
+    const allErrors = validator(registerForm, validatorConfig);
+    setErrors(allErrors);
+    return Object.keys(allErrors).length === 0;
+  };
+  const isValid = Object.keys(errors).length === 0;
+
   const handleChangeRegisterForm = ({ target }) => {
     setRegisterForm((prevState) => ({
       ...prevState,
@@ -28,13 +78,18 @@ const AuthorizationFormSignUp = () => {
   const pushRegisterForm = (e) => {
     e.preventDefault();
     dispatch(signUp(registerForm));
-    // history.push()
+    dispatch(setModalRegisterForm(false));
   };
   const registerFormInputsArray = [
-    { htmlfor: 'name', type: 'name', name: 'name', placeholder: 'Имя' },
-    // { htmlfor: 'secondName', type: 'text', name: 'secondName', placeholder: 'Фамилия' },
-    { htmlfor: 'email', type: 'email', name: 'mail', placeholder: 'E-mail' },
-    { htmlfor: 'password', type: 'password', name: 'password', placeholder: 'Пароль' }
+    { htmlfor: 'name', type: 'name', name: 'name', placeholder: 'Имя', error: errors?.name },
+    { htmlfor: 'email', type: 'email', name: 'email', placeholder: 'E-mail', error: errors?.email },
+    {
+      htmlfor: 'password',
+      type: 'password',
+      name: 'password',
+      placeholder: 'Пароль',
+      error: errors?.password
+    }
   ];
   return (
     <div className={cls.signIn}>
@@ -42,15 +97,16 @@ const AuthorizationFormSignUp = () => {
         <form className={cls.formContant} action="login">
           {registerFormInputsArray &&
             registerFormInputsArray.map((item) => (
-              <div className={cls.email}>
+              <div key={item.name} className={cls.email}>
                 <label htmlFor={item.htmlfor}>{item.placeholder}</label>
                 <input
                   placeholder={item.placeholder}
                   onChange={handleChangeRegisterForm}
-                  className={cls.emailInput}
+                  className={!item.error ? cls.emailInput : cls.inputError}
                   type={item.type}
                   name={item.name}
                 />
+                {item.error ? <div className={cls.errorText}>{item.error}</div> : <></>}
               </div>
             ))}
 
@@ -98,6 +154,7 @@ const AuthorizationFormSignUp = () => {
               heigth="39"
               isGradient
               text="Зарегистрироваться"
+              isDisabled={!isValid}
             />
           </div>
         </form>

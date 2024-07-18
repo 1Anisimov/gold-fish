@@ -16,38 +16,48 @@ const Footer = () => {
     {
       class: cls.footer_top_title + ' ' + cls.footer_top_part_2_title,
       name: 'Каталог',
-      url: '/catalog'
+      url: '/catalog',
+      key: 1
     },
-    { class: cls.footer_top_part_2_categories, name: 'Warhammer 40000', url: '/catalog/warhammer' },
+    {
+      class: cls.footer_top_part_2_categories,
+      name: 'Warhammer 40000',
+      url: '/catalog/warhammer',
+      key: 2
+    },
     {
       class: cls.footer_top_part_2_categories,
       name: 'Настольные игры',
-      url: '/catalog/board_games'
+      url: '/catalog/board_games',
+      key: 3
     },
     {
       class: cls.footer_top_part_2_categories,
       name: 'Magic: the Gathering',
-      url: '/catalog/magic'
+      url: '/catalog/magic',
+      key: 4
     },
     {
       class: cls.footer_top_part_2_categories,
       name: 'Аксессуары для игр',
-      url: '/catalog/accessories_game'
+      url: '/catalog/accessories_game',
+      key: 5
     },
-    { class: cls.footer_top_part_2_categories, name: 'Краски', url: '/catalog/paints' },
+    { class: cls.footer_top_part_2_categories, name: 'Краски', url: '/catalog/paints', key: 6 },
     {
       class: cls.footer_top_part_2_categories,
       name: 'Аксессуары для моделизма',
-      url: '/catalog/accessories_modeling'
+      url: '/catalog/accessories_modeling',
+      key: 7
     }
   ];
 
   const linksArrayTwo = [
-    { name: 'Правила клуба', url: '/' },
-    { name: 'Мероприятия', url: '/' },
-    { name: 'О нас', url: '/' },
-    { name: 'Контакты', url: '/' },
-    { name: 'Блог', url: '/' }
+    { name: 'Правила клуба', url: '/', key: 8 },
+    { name: 'Мероприятия', url: '/', key: 9 },
+    { name: 'О нас', url: '/', key: 10 },
+    { name: 'Контакты', url: '/', key: 11 },
+    { name: 'Блог', url: '/', key: 12 }
   ];
 
   return (
@@ -66,7 +76,11 @@ const Footer = () => {
             <div className={cls.footer_top_item + ' ' + cls.footer_top_part_2}>
               <div className={cls.footer_top_part_2_list}>
                 {linksArrayOne.map((item) => (
-                  <Link onClick={scrollToUpOnPage} className={item.class} to={item.url}>
+                  <Link
+                    key={item.key}
+                    onClick={scrollToUpOnPage}
+                    className={item.class}
+                    to={item.url}>
                     {item.name}
                   </Link>
                 ))}
@@ -75,7 +89,7 @@ const Footer = () => {
             <div className={cls.footer_top_item + ' ' + cls.footer_top_part_3}>
               <div className={cls.footer_top_part_3_list}>
                 {linksArrayTwo.map((item) => (
-                  <Link className={cls.footer_top_title} to={item.url}>
+                  <Link key={item.key} className={cls.footer_top_title} to={item.url}>
                     {item.name}
                   </Link>
                 ))}

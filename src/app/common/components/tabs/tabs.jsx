@@ -1,8 +1,5 @@
 import React from 'react';
 import { ConfigProvider, Tabs } from 'antd';
-const onChange = (key) => {
-  console.log(key);
-};
 
 const Tab = ({ tabItems, tabSize, tabClassName }) => (
   <ConfigProvider
@@ -17,12 +14,7 @@ const Tab = ({ tabItems, tabSize, tabClassName }) => (
         }
       }
     }}>
-    <Tabs
-      className={tabClassName ? 'w340' : ''}
-      defaultActiveKey="1"
-      items={tabItems}
-      onChange={onChange}
-    />
+    <Tabs className={tabClassName ? 'w340' : ''} defaultActiveKey="1" items={tabItems} />
   </ConfigProvider>
 );
 export default Tab;

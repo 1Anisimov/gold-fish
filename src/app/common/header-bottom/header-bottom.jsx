@@ -13,11 +13,11 @@ const HeaderBottom = () => {
   const dispatch = useDispatch();
 
   const linksArray = [
-    { name: 'Warhammer', url: '/catalog/warhammer' },
-    { name: 'Magic:the Cathering', url: '/catalog/magic' },
-    { name: 'Мероприятия', url: '/' },
-    { name: 'О центре', url: '/' },
-    { name: 'Контакты', url: '/' }
+    { name: 'Warhammer', url: '/catalog/warhammer', key: 1 },
+    { name: 'Magic:the Cathering', url: '/catalog/magic', key: 2 },
+    { name: 'Мероприятия', url: '/', key: 3 },
+    { name: 'О центре', url: '/', key: 4 },
+    { name: 'Контакты', url: '/', key: 5 }
   ];
 
   const handleOpenCatalog = () => {
@@ -33,7 +33,7 @@ const HeaderBottom = () => {
             <span>Каталог</span>
           </button>
           {linksArray.map((item) => (
-            <Link to={item.url} className={cls.header_bottom_nav_item + ' links'}>
+            <Link key={item.key} to={item.url} className={cls.header_bottom_nav_item + ' links'}>
               {item.name}
             </Link>
           ))}
